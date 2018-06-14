@@ -14,24 +14,24 @@ import java.sql.SQLException;
  *
  * @author JVict
  */
-public class ConnectionFactory {
+public class Conexao {
 
     private static final String DRIVER = "com.mysql.jdbc.Driver";
     private static final String URL = "jdbc.mysql://localhost:3306/bd_unicorn";
-    private static final String USER = "root";
-    private static final String PASS = "";
+    private static final String USUARIO = "root";
+    private static final String SENHA = "";
 
-    public static Connection getConnection() {
+    public static Connection getConexao() {
         try {
             Class.forName(DRIVER);
 
-            return DriverManager.getConnection(URL, USER, PASS);
+            return DriverManager.getConnection(URL, USUARIO, SENHA);
         } catch (ClassNotFoundException | SQLException ex) {
             throw new RuntimeException("Erro de Conexão com o Banco!", ex);
         }
     }
     
-    public static void closeConnection(Connection con){
+    public static void closeConexao(Connection con){
         
         if(con != null){
             try {
@@ -42,7 +42,7 @@ public class ConnectionFactory {
         }
      }
     
-    public static void closeConnection(Connection con, PreparedStatement stmt){
+    public static void closeConexao(Connection con, PreparedStatement stmt){
         
         if(stmt != null){
             try {
@@ -52,10 +52,10 @@ public class ConnectionFactory {
             }
         }
         
-        closeConnection(con);
+        closeConexao(con);
      }
     
-    public static void closeConnection(Connection con, PreparedStatement stmt, ResultSet rs){
+    public static void closeConexao(Connection con, PreparedStatement stmt, ResultSet rs){
         
         if(rs != null){
             try {
@@ -65,6 +65,6 @@ public class ConnectionFactory {
             }
         }
         
-        closeConnection(con, stmt);
+        closeConexao(con, stmt);
      }
 }
