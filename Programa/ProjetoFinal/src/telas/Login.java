@@ -32,12 +32,12 @@ public class Login extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        TextUsuario = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
+        PassUsuario = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         jButton1 = new javax.swing.JButton();
@@ -89,10 +89,11 @@ public class Login extends javax.swing.JFrame {
 
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
 
-        jTextField1.setMaximumSize(new java.awt.Dimension(150, 23));
-        jTextField1.setMinimumSize(new java.awt.Dimension(150, 23));
-        jTextField1.setPreferredSize(new java.awt.Dimension(150, 23));
-        jPanel2.add(jTextField1);
+        TextUsuario.setMaximumSize(new java.awt.Dimension(150, 23));
+        TextUsuario.setMinimumSize(new java.awt.Dimension(150, 23));
+        TextUsuario.setNextFocusableComponent(PassUsuario);
+        TextUsuario.setPreferredSize(new java.awt.Dimension(150, 23));
+        jPanel2.add(TextUsuario);
 
         getContentPane().add(jPanel2);
 
@@ -123,10 +124,10 @@ public class Login extends javax.swing.JFrame {
 
         jPanel7.setLayout(new javax.swing.BoxLayout(jPanel7, javax.swing.BoxLayout.LINE_AXIS));
 
-        jTextField2.setMaximumSize(new java.awt.Dimension(150, 23));
-        jTextField2.setMinimumSize(new java.awt.Dimension(150, 23));
-        jTextField2.setPreferredSize(new java.awt.Dimension(150, 23));
-        jPanel7.add(jTextField2);
+        PassUsuario.setMaximumSize(new java.awt.Dimension(150, 23));
+        PassUsuario.setMinimumSize(new java.awt.Dimension(150, 23));
+        PassUsuario.setPreferredSize(new java.awt.Dimension(150, 23));
+        jPanel7.add(PassUsuario);
 
         getContentPane().add(jPanel7);
 
@@ -140,6 +141,11 @@ public class Login extends javax.swing.JFrame {
         jPanel3.add(jButton1);
 
         jButton4.setText("Sair");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton4);
         jPanel3.add(filler2);
 
@@ -147,6 +153,10 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,6 +168,8 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField PassUsuario;
+    private javax.swing.JTextField TextUsuario;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.JButton jButton1;
@@ -172,7 +184,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
