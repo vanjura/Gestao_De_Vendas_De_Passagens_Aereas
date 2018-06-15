@@ -168,6 +168,7 @@ public class Login extends javax.swing.JFrame {
         
         //depois de validado usar esse comando abaixo
         Inicio inicio = new Inicio();
+        inicio.setLocationRelativeTo(null);
         inicio.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
