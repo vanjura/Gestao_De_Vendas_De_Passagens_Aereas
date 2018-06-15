@@ -5,8 +5,6 @@
  */
 package telas;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 /**
  *
@@ -69,6 +67,7 @@ public class Inicio extends MenuSuperior{
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
