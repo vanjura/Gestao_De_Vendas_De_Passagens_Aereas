@@ -7,7 +7,8 @@ package passagens_aereas;
 
 /**
  *
- * @author JVict
+ * @author João Victor Lima
+ * @author Lucas Vanjura
  */
 public class Aeroporto {
    private int id;
