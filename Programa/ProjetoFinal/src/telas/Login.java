@@ -28,19 +28,21 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
-        btnLogin = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
-        filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
-        jPanel4 = new javax.swing.JPanel();
-        filler8 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
-        jLabel1 = new javax.swing.JLabel();
-        filler7 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         jPanel5 = new javax.swing.JPanel();
-        filler9 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        jPanel4 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        filler10 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        jPanel8 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jTextField2 = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        jButton1 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -55,64 +57,93 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
+        setMinimumSize(new java.awt.Dimension(200, 200));
+        setPreferredSize(new java.awt.Dimension(200, 200));
+        setResizable(false);
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.PAGE_AXIS));
 
-        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
-        jPanel2.add(filler5);
+        jPanel5.setMaximumSize(new java.awt.Dimension(32767, 23));
+        jPanel5.setMinimumSize(new java.awt.Dimension(0, 23));
+        jPanel5.setName(""); // NOI18N
+        jPanel5.setPreferredSize(new java.awt.Dimension(200, 23));
 
-        btnLogin.setText("Login");
-        btnLogin.setPreferredSize(new java.awt.Dimension(75, 23));
-        jPanel2.add(btnLogin);
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 213, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 23, Short.MAX_VALUE)
+        );
 
-        btnCancelar.setText("Cancelar");
-        jPanel2.add(btnCancelar);
-        jPanel2.add(filler6);
+        getContentPane().add(jPanel5);
 
         jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.LINE_AXIS));
-        jPanel4.add(filler8);
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Usuário");
         jPanel4.add(jLabel1);
-        jPanel4.add(filler7);
 
-        jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.LINE_AXIS));
-        jPanel5.add(filler9);
+        getContentPane().add(jPanel4);
 
-        jTextField1.setText("jTextField1");
-        jPanel5.add(jTextField1);
-        jPanel5.add(filler10);
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(82, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(105, Short.MAX_VALUE)))
+        jTextField1.setMaximumSize(new java.awt.Dimension(150, 23));
+        jTextField1.setMinimumSize(new java.awt.Dimension(150, 23));
+        jTextField1.setPreferredSize(new java.awt.Dimension(150, 23));
+        jPanel2.add(jTextField1);
+
+        getContentPane().add(jPanel2);
+
+        jPanel8.setMaximumSize(new java.awt.Dimension(32767, 10));
+        jPanel8.setMinimumSize(new java.awt.Dimension(0, 10));
+        jPanel8.setName(""); // NOI18N
+        jPanel8.setPreferredSize(new java.awt.Dimension(429, 10));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 213, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(60, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(72, Short.MAX_VALUE)))
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
         );
+
+        getContentPane().add(jPanel8);
+
+        jPanel6.setLayout(new javax.swing.BoxLayout(jPanel6, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel2.setText("Senha");
+        jPanel6.add(jLabel2);
+
+        getContentPane().add(jPanel6);
+
+        jPanel7.setLayout(new javax.swing.BoxLayout(jPanel7, javax.swing.BoxLayout.LINE_AXIS));
+
+        jTextField2.setMaximumSize(new java.awt.Dimension(150, 23));
+        jTextField2.setMinimumSize(new java.awt.Dimension(150, 23));
+        jTextField2.setPreferredSize(new java.awt.Dimension(150, 23));
+        jPanel7.add(jTextField2);
+
+        getContentPane().add(jPanel7);
+
+        jPanel3.setMaximumSize(new java.awt.Dimension(32767, 50));
+        jPanel3.setMinimumSize(new java.awt.Dimension(0, 50));
+        jPanel3.setPreferredSize(new java.awt.Dimension(429, 50));
+        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
+        jPanel3.add(filler1);
+
+        jButton1.setText("Login");
+        jPanel3.add(jButton1);
+
+        jButton4.setText("Sair");
+        jPanel3.add(jButton4);
+        jPanel3.add(filler2);
+
+        getContentPane().add(jPanel3);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -127,19 +158,21 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnLogin;
-    private javax.swing.Box.Filler filler10;
-    private javax.swing.Box.Filler filler5;
-    private javax.swing.Box.Filler filler6;
-    private javax.swing.Box.Filler filler7;
-    private javax.swing.Box.Filler filler8;
-    private javax.swing.Box.Filler filler9;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
