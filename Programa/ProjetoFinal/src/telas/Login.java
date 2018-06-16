@@ -5,6 +5,10 @@
  */
 package telas;
 
+import connection.UsuarioCRUD;
+import javax.swing.JOptionPane;
+import passagens_aereas.Usuario;
+
 /**
  *
  * @author lucas_nuze0yo
@@ -32,12 +36,12 @@ public class Login extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        TextUsuario = new javax.swing.JTextField();
+        TextoUsuario = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        PassUsuario = new javax.swing.JPasswordField();
+        SenhaUsuario = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         jButton1 = new javax.swing.JButton();
@@ -89,11 +93,11 @@ public class Login extends javax.swing.JFrame {
 
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
 
-        TextUsuario.setMaximumSize(new java.awt.Dimension(150, 23));
-        TextUsuario.setMinimumSize(new java.awt.Dimension(150, 23));
-        TextUsuario.setNextFocusableComponent(PassUsuario);
-        TextUsuario.setPreferredSize(new java.awt.Dimension(150, 23));
-        jPanel2.add(TextUsuario);
+        TextoUsuario.setMaximumSize(new java.awt.Dimension(150, 23));
+        TextoUsuario.setMinimumSize(new java.awt.Dimension(150, 23));
+        TextoUsuario.setNextFocusableComponent(SenhaUsuario);
+        TextoUsuario.setPreferredSize(new java.awt.Dimension(150, 23));
+        jPanel2.add(TextoUsuario);
 
         getContentPane().add(jPanel2);
 
@@ -124,10 +128,10 @@ public class Login extends javax.swing.JFrame {
 
         jPanel7.setLayout(new javax.swing.BoxLayout(jPanel7, javax.swing.BoxLayout.LINE_AXIS));
 
-        PassUsuario.setMaximumSize(new java.awt.Dimension(150, 23));
-        PassUsuario.setMinimumSize(new java.awt.Dimension(150, 23));
-        PassUsuario.setPreferredSize(new java.awt.Dimension(150, 23));
-        jPanel7.add(PassUsuario);
+        SenhaUsuario.setMaximumSize(new java.awt.Dimension(150, 23));
+        SenhaUsuario.setMinimumSize(new java.awt.Dimension(150, 23));
+        SenhaUsuario.setPreferredSize(new java.awt.Dimension(150, 23));
+        jPanel7.add(SenhaUsuario);
 
         getContentPane().add(jPanel7);
 
@@ -138,6 +142,7 @@ public class Login extends javax.swing.JFrame {
         jPanel3.add(filler1);
 
         jButton1.setText("Login");
+        jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -146,6 +151,7 @@ public class Login extends javax.swing.JFrame {
         jPanel3.add(jButton1);
 
         jButton4.setText("Sair");
+        jButton4.setFocusable(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -165,26 +171,63 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Código de validação de login
-        
-        //depois de validado usar esse comando abaixo
-        Inicio inicio = new Inicio();
-        inicio.setLocationRelativeTo(null);
-        inicio.setVisible(true);
-        this.setVisible(false);
+        Usuario usuario = new Usuario(this.TextoUsuario, this.SenhaUsuario);
+        validaUsuario(usuario);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        //criação da tela de login
         Login login = new Login();
         login.setLocationRelativeTo(null);
         login.setVisible(true);
     }
 
+    public void validaUsuario(Usuario usuario) {
+        UsuarioCRUD usuarioCrud = new UsuarioCRUD();
+        //uso de booleans para um controle maior em caso de novas opções de login surgirem futuramente
+        boolean U = false;
+        boolean S = false;
+
+        //codigo que percorre o array criado com os dados do banco e detecta qual dos dados está errado
+        for (Usuario u : usuarioCrud.buscaTodos()) {
+            if (u.getNome().equals(usuario.getNome())) {
+                U = true;
+                if (u.getSenha().equals(usuario.getSenha())) {
+                    S = true;
+                    usuario.setNivel(u.getNivel());
+                }
+            }
+        }
+        //inicia o sistema somente se usuario e senha conferem
+        if (U == true && S == true) {
+            iniciaSistema(usuario);
+        //se somente o usuário for encontrado, avisa que a senha está incorreta
+        } else if (U == true) {
+            JOptionPane.showMessageDialog(null, "Senha incorreta.");
+        //se o usuario não for encontrado também informa este fato
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuário não encontrado.");
+        }
+    }
+
+    //inicia o sistema utilizando o usuário encontrado no banco e previne a entrada de usuários com nível zerado.
+    public void iniciaSistema(Usuario usuario) {
+        if(usuario.getNivel() == 0){
+            JOptionPane.showMessageDialog(null, "Usuário banido, impossível logar.");
+            System.exit(0);
+        }
+        Inicio inicio = new Inicio(usuario);
+        inicio.setLocationRelativeTo(null);
+        inicio.setVisible(true);
+        this.setVisible(false);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField PassUsuario;
-    private javax.swing.JTextField TextUsuario;
+    private javax.swing.JPasswordField SenhaUsuario;
+    private javax.swing.JTextField TextoUsuario;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.JButton jButton1;
