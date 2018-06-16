@@ -5,18 +5,25 @@
  */
 package telas;
 
-
+import passagens_aereas.Usuario;
 /**
  *
  * @author lucas_nuze0yo
  */
-public class Inicio extends MenuSuperior{
+public class Inicio extends javax.swing.JFrame {
 
     /**
      * Creates new form Inicio
      */
-    public Inicio() {
+    public Inicio(Usuario usuario) {
         initComponents();
+        //comando para deixar a janela em fullscreen
+        this.setExtendedState(Inicio.MAXIMIZED_BOTH);
+        //se o nível do usuário for menor que 10 a opção 2 e 3 do menu estarão inacessiveis
+        if (usuario.getNivel() < 10) {
+            menuOp2.setEnabled(false);
+            menuOp3.setEnabled(false);
+        }
     }
 
     /**
@@ -28,50 +35,62 @@ public class Inicio extends MenuSuperior{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        barraMenu = new javax.swing.JMenuBar();
+        menuOp1 = new javax.swing.JMenu();
+        menuOp2 = new javax.swing.JMenu();
+        menuOp3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(0, 0));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 473, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 584, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 29, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 473, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 271, Short.MAX_VALUE)
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 62, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jPanel5, java.awt.BorderLayout.PAGE_START);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 584, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 249, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel4, java.awt.BorderLayout.CENTER);
+
+        menuOp1.setText("Voo");
+        barraMenu.add(menuOp1);
+
+        menuOp2.setText("Funcionários");
+        barraMenu.add(menuOp2);
+
+        menuOp3.setText("Funcionários");
+        barraMenu.add(menuOp3);
+
+        setJMenuBar(barraMenu);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JMenuBar barraMenu;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JMenu menuOp1;
+    private javax.swing.JMenu menuOp2;
+    private javax.swing.JMenu menuOp3;
     // End of variables declaration//GEN-END:variables
 }
