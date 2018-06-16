@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class Conexao {
 
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc.mysql://localhost:3306/bd_unicorn";
+    private static final String URL = "jdbc:mysql://localhost:3306/bd_unicorn";
     private static final String USUARIO = "root";
     private static final String SENHA = "";
 
@@ -31,7 +31,7 @@ public class Conexao {
         }
     }
     
-    public static void closeConexao(Connection con){
+    public static void fecharConexao(Connection con){
         
         if(con != null){
             try {
@@ -42,7 +42,7 @@ public class Conexao {
         }
      }
     
-    public static void closeConexao(Connection con, PreparedStatement stmt){
+    public static void fecharConexao(Connection con, PreparedStatement stmt){
         
         if(stmt != null){
             try {
@@ -52,10 +52,10 @@ public class Conexao {
             }
         }
         
-        closeConexao(con);
+        fecharConexao(con);
      }
     
-    public static void closeConexao(Connection con, PreparedStatement stmt, ResultSet rs){
+    public static void fecharConexao(Connection con, PreparedStatement stmt, ResultSet rs){
         
         if(rs != null){
             try {
@@ -65,6 +65,6 @@ public class Conexao {
             }
         }
         
-        closeConexao(con, stmt);
+        fecharConexao(con, stmt);
      }
 }

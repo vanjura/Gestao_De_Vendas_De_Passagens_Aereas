@@ -5,15 +5,30 @@
  */
 package passagens_aereas;
 
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
 /**
  *
  * @author JVict
  */
 public class Usuario {
+
     private int id_usuario;
     private String nome;
     private String senha;
-    private String email;
+    private int nivel = 0;
+
+    //construtor utilizado para setar os dados através do banco
+    public Usuario() {
+    }
+
+    //construtor utilizado para conseguir os dados do usuário através da tela de login
+    public Usuario(JTextField TextUsuario, JPasswordField PassUsuario) {
+        this.nome = TextUsuario.getText();
+        this.senha = PassUsuario.getText();
+        this.nivel = 0;
+    }
 
     public int getId_usuario() {
         return id_usuario;
@@ -39,11 +54,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getEmail() {
-        return email;
+    public int getNivel() {
+        return nivel;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
     }
 }
