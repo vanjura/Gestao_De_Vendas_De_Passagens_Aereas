@@ -5,6 +5,7 @@
  */
 package passagens_aereas;
 
+
 /**
  *
  * @author João Victor Lima
@@ -16,6 +17,18 @@ public class Aeroporto {
    private String cidade;
    private String estado;
 
+    public Aeroporto() {
+    }
+
+    public Aeroporto(String nome, String cidade, String estado) {
+        this.nome = nome;
+        this.cidade = cidade;
+        this.estado = estado;
+    }
+
+   
+
+   
     public int getId() {
         return id;
     }

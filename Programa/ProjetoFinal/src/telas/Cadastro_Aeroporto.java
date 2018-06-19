@@ -5,6 +5,9 @@
  */
 package telas;
 
+import connection.AeroportoCRUD;
+import passagens_aereas.Aeroporto;
+
 /**
  *
  * @author JVict
@@ -35,7 +38,9 @@ public class Cadastro_Aeroporto extends javax.swing.JFrame {
         jTfCidade = new javax.swing.JTextField();
         jTfNumRegistro = new javax.swing.JTextField();
         jTfNomeAeroporto = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jCbEstado = new javax.swing.JComboBox<>();
+        jBCadastro = new javax.swing.JButton();
+        jBVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,16 +54,35 @@ public class Cadastro_Aeroporto extends javax.swing.JFrame {
 
         jLbEstado.setText("Estado:");
 
+        jTfCidade.setNextFocusableComponent(jCbEstado);
+
+        jTfNumRegistro.setNextFocusableComponent(jTfNomeAeroporto);
+
+        jTfNomeAeroporto.setNextFocusableComponent(jTfCidade);
         jTfNomeAeroporto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTfNomeAeroportoActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jCbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        jCbEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jCbEstadoActionPerformed(evt);
+            }
+        });
+
+        jBCadastro.setText("Cadastrar");
+        jBCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCadastroActionPerformed(evt);
+            }
+        });
+
+        jBVoltar.setText("Voltar");
+        jBVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBVoltarActionPerformed(evt);
             }
         });
 
@@ -81,11 +105,17 @@ public class Cadastro_Aeroporto extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLbCidade)
                         .addGap(18, 18, 18)
-                        .addComponent(jTfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jBCadastro)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBVoltar))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLbEstado)))
                         .addGap(18, 18, 18)
-                        .addComponent(jLbEstado)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jCbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -106,8 +136,12 @@ public class Cadastro_Aeroporto extends javax.swing.JFrame {
                         .addComponent(jTfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLbEstado)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(127, Short.MAX_VALUE))
+                        .addComponent(jCbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBCadastro)
+                    .addComponent(jBVoltar))
+                .addGap(45, 45, 45))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -119,9 +153,23 @@ public class Cadastro_Aeroporto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTfNomeAeroportoActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jCbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbEstadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_jCbEstadoActionPerformed
+
+    private void jBVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVoltarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBVoltarActionPerformed
+
+    private void jBCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadastroActionPerformed
+        Aeroporto aeroporto = new Aeroporto();
+        aeroporto.setNome(jTfNomeAeroporto.getText());
+        aeroporto.setCidade(jTfCidade.getText());
+        aeroporto.setEstado(jCbEstado.getSelectedItem().toString());
+        
+        AeroportoCRUD aeroportoCrud = new AeroportoCRUD();
+        aeroportoCrud.inserir(aeroporto);
+    }//GEN-LAST:event_jBCadastroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,7 +207,9 @@ public class Cadastro_Aeroporto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jBCadastro;
+    private javax.swing.JButton jBVoltar;
+    private javax.swing.JComboBox<String> jCbEstado;
     private javax.swing.JLabel jLbCidade;
     private javax.swing.JLabel jLbEstado;
     private javax.swing.JLabel jLbNomeAeroporto;
