@@ -6,17 +6,29 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="menuOp1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Voo"/>
+            <Property name="text" type="java.lang.String" value="Controle de Voos"/>
           </Properties>
+          <SubComponents>
+            <Menu class="javax.swing.JMenu" name="menuOp5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Passagens"/>
+              </Properties>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="menuOp6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Voos"/>
+              </Properties>
+            </Menu>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuOp2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Funcion&#xe1;rios"/>
+            <Property name="text" type="java.lang.String" value="Controle de Funcionarios"/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuOp3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Funcion&#xe1;rios"/>
+            <Property name="text" type="java.lang.String" value="Controle de Frota"/>
           </Properties>
         </Menu>
       </SubComponents>

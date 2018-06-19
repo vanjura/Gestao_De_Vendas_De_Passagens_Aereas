@@ -39,6 +39,8 @@ public class Inicio extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         barraMenu = new javax.swing.JMenuBar();
         menuOp1 = new javax.swing.JMenu();
+        menuOp5 = new javax.swing.JMenu();
+        menuOp6 = new javax.swing.JMenu();
         menuOp2 = new javax.swing.JMenu();
         menuOp3 = new javax.swing.JMenu();
 
@@ -70,13 +72,20 @@ public class Inicio extends javax.swing.JFrame {
 
         getContentPane().add(jPanel4, java.awt.BorderLayout.CENTER);
 
-        menuOp1.setText("Voo");
+        menuOp1.setText("Controle de Voos");
+
+        menuOp5.setText("Passagens");
+        menuOp1.add(menuOp5);
+
+        menuOp6.setText("Voos");
+        menuOp1.add(menuOp6);
+
         barraMenu.add(menuOp1);
 
-        menuOp2.setText("Funcionários");
+        menuOp2.setText("Controle de Funcionarios");
         barraMenu.add(menuOp2);
 
-        menuOp3.setText("Funcionários");
+        menuOp3.setText("Controle de Frota");
         barraMenu.add(menuOp3);
 
         setJMenuBar(barraMenu);
@@ -92,5 +101,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenu menuOp1;
     private javax.swing.JMenu menuOp2;
     private javax.swing.JMenu menuOp3;
+    private javax.swing.JMenu menuOp5;
+    private javax.swing.JMenu menuOp6;
     // End of variables declaration//GEN-END:variables
 }
