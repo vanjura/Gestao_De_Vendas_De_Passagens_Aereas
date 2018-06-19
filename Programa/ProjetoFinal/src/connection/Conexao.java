@@ -27,7 +27,7 @@ public class Conexao {
 
             return DriverManager.getConnection(URL, USUARIO, SENHA);
         } catch (ClassNotFoundException | SQLException ex) {
-            throw new RuntimeException("Erro de Conexão com o Banco!", ex);
+            throw new RuntimeException("Erro de Conexão com o Banco!" + ex.getMessage());
         }
     }
     
