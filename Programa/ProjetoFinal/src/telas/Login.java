@@ -181,7 +181,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void SenhaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SenhaUsuarioActionPerformed
-        
+        validaUsuario();
     }//GEN-LAST:event_SenhaUsuarioActionPerformed
 
     /**
