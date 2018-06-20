@@ -25,7 +25,6 @@ public class CadastroAeroporto extends java.awt.Dialog {
         super(parent, modal);
         initComponents();
     }
-    public int perguntaCadastro(Aeroporto aeroporto){
 
     public boolean validaAeroporto(Aeroporto aeroporto) {
         return true;
@@ -129,6 +128,11 @@ public class CadastroAeroporto extends java.awt.Dialog {
         jTextFieldCidade.setMinimumSize(new java.awt.Dimension(150, 20));
         jTextFieldCidade.setName(""); // NOI18N
         jTextFieldCidade.setPreferredSize(new java.awt.Dimension(150, 20));
+        jTextFieldCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCidadeActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTextFieldCidade);
 
         jPanelMid.add(jPanel1);
