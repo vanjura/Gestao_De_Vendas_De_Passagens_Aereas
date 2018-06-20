@@ -24,6 +24,8 @@ public class CadastroAeroporto extends java.awt.Dialog {
     public CadastroAeroporto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
     
     //Método reservado a todas as validações de um aeroporto, retorna True se todas as validações estiverem corretas
@@ -41,7 +43,9 @@ public class CadastroAeroporto extends java.awt.Dialog {
                 + "\nNome: " + aeroporto.getNome()
                 + "\nCidade: " + aeroporto.getCidade()
                 + "\nEstado: " + aeroporto.getEstado()
-                + "\nDeseja cadastrar outro?";
+                + "\n"
+                + "\nDeseja cadastrar outro?"
+                + "\nClique em cancelar para editar os dados acima.";
         //JoptionPane com título deve ter obrigatóriamente os dados de opções
         op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_CANCEL_OPTION);
         if (op == JOptionPane.YES_OPTION) {

@@ -11,33 +11,36 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import passagens_aereas.Aviao;
 import passagens_aereas.Usuario;
 
 /**
  *
  * @author lucas_nuze0yo
  */
-public class UsuarioCRUD {
+public class AviaoCRUD {
 
     private Connection con = null;
 
-    public UsuarioCRUD() {
+    public AviaoCRUD() {
         con = Conexao.getConexao();
     }
-    
-    //Insere novos usuaros ao banco
-    public boolean inserir(Usuario usuario) {
+
+    public boolean inserir(Aviao aviao) {
         PreparedStatement stmt = null;
-        
+
         //Comando sql de inserção 
-        String sql = "INSERT INTO USUARIO (NOME, SENHA, NIVEL) VALUES(?,?,?)";
-        
+        String sql = "INSERT INTO AVIAO (registro, modelo, qtd_assentos, qtd_assentos_esp) VALUES(?,?,?,?)";
+
         try {
             stmt = con.prepareStatement(sql);
             // cada numero do setString ou setInt corresponde a um ? (interrogação) do comando sql
-            stmt.setString(1, usuario.getNome());
-            stmt.setString(2, usuario.getSenha());
-            stmt.setInt(3, usuario.getNivel());
+            stmt.setString(1, aviao.getRegistro());
+            stmt.setString(2, aviao.getRegistro());
+            stmt.setInt(3, aviao.getQtd_assentos());
+            stmt.setInt(4, aviao.getQtd_assentos_esp());
             //Executa o Update
             stmt.executeUpdate();
             return true;
@@ -50,41 +53,26 @@ public class UsuarioCRUD {
             Conexao.fecharConexao(con, stmt);
         }
     }
-    
-    //Busca cada um dos usuarios e armazena em um ArrayList
-    public List<Usuario> buscaTodos(){
-        //comando sql
-        String sql = "SELECT * FROM USUARIO";
+
+    public boolean procuraRegistro(String registro) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        
-        //criando o ArrayLista para armazenar os dados encontrados para um posterior teste de validação
-        List<Usuario> usuarios = new ArrayList<>();
+        String sql = "select * from aviao where registro = ?";
         try {
             
             stmt = con.prepareStatement(sql);
+            stmt.setString(1, registro);
             
             rs = stmt.executeQuery();
-            
-            //Tratamento para cada dado encontrado ir para seu devido lugar
-            while (rs.next()) {
-                Usuario usuario = new Usuario();
-                
-                //os gets recebem uma string com o mesmo nome da coluna respectiva no banco
-                usuario.setNome(rs.getString("NOME"));
-                usuario.setSenha(rs.getString("SENHA"));
-                usuario.setNivel(rs.getInt("NIVEL"));
-                usuarios.add(usuario);
+            if(rs.next()){
+                return true;
+            }else{
+                return false;
             }
-        
         } catch (SQLException ex) {
-            //Erro seguido do código
             System.err.println("Erro: " + ex);
-        } finally{
-            //Finalizando a Conexão, Statement e o ResultSet
+        } finally {
             Conexao.fecharConexao(con, stmt, rs);
         }
-        //Retorna o ArrayList
-        return usuarios;
     }
 }

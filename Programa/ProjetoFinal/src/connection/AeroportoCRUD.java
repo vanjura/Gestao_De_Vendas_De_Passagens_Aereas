@@ -15,13 +15,13 @@ import passagens_aereas.Aeroporto;
  */
 public class AeroportoCRUD {
     
-      private Connection con = null;
+    private Connection con = null;
 
     public AeroportoCRUD() {
         con = Conexao.getConexao();
     }
     
-    //Insere novos usuaros ao banco
+    //Insere novos Aeroportos ao banco
     public boolean inserir(Aeroporto aeroporto) {
         PreparedStatement stmt = null;
         
