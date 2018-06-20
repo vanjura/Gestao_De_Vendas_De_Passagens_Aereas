@@ -25,20 +25,24 @@ public class CadastroAeroporto extends java.awt.Dialog {
         super(parent, modal);
         initComponents();
     }
-
+    
+    //Método reservado a todas as validações de um aeroporto, retorna True se todas as validações estiverem corretas
     public boolean validaAeroporto(Aeroporto aeroporto) {
         return true;
     }
 
+    //Mostra em tela os dados que serão inseridos e da a opção de cancelamento e nova inserção após a atual
     public void perguntaCadastro(Aeroporto aeroporto) {
         int op;
         String titulo = "Cadastro de Aeroporto";
-        String texto = "";
+        String texto;
+        //Criação da fraze a ser apresentada no JOptionPane
         texto = "Informações cadastradas:"
                 + "\nNome: " + aeroporto.getNome()
                 + "\nCidade: " + aeroporto.getCidade()
                 + "\nEstado: " + aeroporto.getEstado()
                 + "\nDeseja cadastrar outro?";
+        //JoptionPane com título deve ter obrigatóriamente os dados de opções
         op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_CANCEL_OPTION);
         if (op == JOptionPane.YES_OPTION) {
             cadastraAeroporto(aeroporto);
@@ -48,15 +52,20 @@ public class CadastroAeroporto extends java.awt.Dialog {
         }
     }
     
+    //Cadastra um aeroporto e limpa os dados de cadastro que estavam preenchidos
     public void cadastraAeroporto(Aeroporto aeroporto){
+        //Cria o CRUD e executa o método de inserção
+        AeroportoCRUD aeroCRUD = new AeroportoCRUD();
+        aeroCRUD.inserir(aeroporto);
+        //Limpa os dados dos ComboBox e TextField
         this.jComboBoxEstado.setSelectedItem("AC");
         this.jTextFieldNome.setText("");
         this.jTextFieldCidade.setText("");
-        AeroportoCRUD aeroCRUD = new AeroportoCRUD();
-        aeroCRUD.inserir(aeroporto);
     }
     
-    public void grava(){
+    //Executa métodos relacionados a gravação de dados de um aeroporto
+    public void gravaAero(){
+        //Cria um aeroporto com os dados inseridos
         Aeroporto aeroporto = new Aeroporto(jTextFieldNome.getText(), jTextFieldCidade.getText(), jComboBoxEstado.getSelectedItem().toString());
         if (validaAeroporto(aeroporto)) {
             perguntaCadastro(aeroporto);
@@ -176,28 +185,17 @@ public class CadastroAeroporto extends java.awt.Dialog {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jTextFieldCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCidadeActionPerformed
-        grava();
+        gravaAero();
     }//GEN-LAST:event_jTextFieldCidadeActionPerformed
 
     private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
-        grava();
+        gravaAero();
     }//GEN-LAST:event_jButtonOKActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                CadastroAeroporto dialog = new CadastroAeroporto(new java.awt.Frame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
     }
 
 
