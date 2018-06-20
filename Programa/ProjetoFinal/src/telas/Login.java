@@ -177,8 +177,7 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Código de validação de login
-        Usuario usuario = new Usuario(this.TextoUsuario, this.SenhaUsuario);
-        validaUsuario(usuario);
+        validaUsuario();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void SenhaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SenhaUsuarioActionPerformed
@@ -195,7 +194,8 @@ public class Login extends javax.swing.JFrame {
         login.setVisible(true);
     }
 
-    public void validaUsuario(Usuario usuario) {
+    public void validaUsuario() {
+        Usuario usuario = new Usuario(this.TextoUsuario, this.SenhaUsuario);
         UsuarioCRUD usuarioCrud = new UsuarioCRUD();
         //uso de booleans para um controle maior em caso de novas opções de login surgirem futuramente
         boolean U = false;
