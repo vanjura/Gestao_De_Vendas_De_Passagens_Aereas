@@ -132,6 +132,11 @@ public class Login extends javax.swing.JFrame {
         SenhaUsuario.setMaximumSize(new java.awt.Dimension(150, 23));
         SenhaUsuario.setMinimumSize(new java.awt.Dimension(150, 23));
         SenhaUsuario.setPreferredSize(new java.awt.Dimension(150, 23));
+        SenhaUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SenhaUsuarioActionPerformed(evt);
+            }
+        });
         jPanel7.add(SenhaUsuario);
 
         getContentPane().add(jPanel7);
@@ -175,6 +180,10 @@ public class Login extends javax.swing.JFrame {
         Usuario usuario = new Usuario(this.TextoUsuario, this.SenhaUsuario);
         validaUsuario(usuario);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void SenhaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SenhaUsuarioActionPerformed
+        
+    }//GEN-LAST:event_SenhaUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
