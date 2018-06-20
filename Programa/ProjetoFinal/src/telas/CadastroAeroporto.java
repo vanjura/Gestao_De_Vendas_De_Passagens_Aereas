@@ -18,6 +18,21 @@ public class CadastroAeroporto extends java.awt.Dialog {
         super(parent, modal);
         initComponents();
     }
+    public int perguntaCadastro(Aeroporto aeroporto){
+        int op;
+        String titulo = "Cadastro de Aeroporto";
+        String texto = "";
+        texto = "Informações cadastradas:"
+                + "\nNome: " + aeroporto.getNome()
+                + "\nCidade: " + aeroporto.getCidade()
+                + "\nEstado: " + aeroporto.getEstado()
+                + "\nDeseja cadastrar outro?";
+        op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_CANCEL_OPTION);
+        if (op == JOptionPane.YES_OPTION){
+            
+        }
+        return op;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
