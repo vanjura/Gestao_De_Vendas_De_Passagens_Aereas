@@ -27,6 +27,10 @@ public class CadastroAeroporto extends java.awt.Dialog {
     }
     public int perguntaCadastro(Aeroporto aeroporto){
 
+    public boolean validaAeroporto(Aeroporto aeroporto) {
+        return true;
+    }
+
         int op;
         String titulo = "Cadastro de Aeroporto";
         String texto = "";
