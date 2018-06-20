@@ -41,8 +41,13 @@ public class CadastroAeroporto extends java.awt.Dialog {
                 + "\nEstado: " + aeroporto.getEstado()
                 + "\nDeseja cadastrar outro?";
         op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_CANCEL_OPTION);
-        if (op == JOptionPane.YES_OPTION){
-            
+        if (op == JOptionPane.YES_OPTION) {
+            cadastraAeroporto(aeroporto);
+        } else if (op == JOptionPane.NO_OPTION){
+            cadastraAeroporto(aeroporto);
+            this.dispose();
+        }
+    }
         }
         return op;
     }
