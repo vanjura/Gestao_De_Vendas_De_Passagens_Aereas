@@ -31,6 +31,7 @@ public class CadastroAeroporto extends java.awt.Dialog {
         return true;
     }
 
+    public void perguntaCadastro(Aeroporto aeroporto) {
         int op;
         String titulo = "Cadastro de Aeroporto";
         String texto = "";
