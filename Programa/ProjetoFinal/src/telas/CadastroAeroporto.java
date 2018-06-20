@@ -48,6 +48,13 @@ public class CadastroAeroporto extends java.awt.Dialog {
             this.dispose();
         }
     }
+    public void cadastraAeroporto(Aeroporto aeroporto){
+        this.jComboBoxEstado.setSelectedItem("AC");
+        this.jTextFieldNome.setText("");
+        this.jTextFieldCidade.setText("");
+        AeroportoCRUD aeroCRUD = new AeroportoCRUD();
+        aeroCRUD.inserir(aeroporto);
+    }
         }
         return op;
     }
