@@ -143,6 +143,11 @@ public class CadastroAeroporto extends java.awt.Dialog {
         jButtonOK.setMaximumSize(new java.awt.Dimension(75, 23));
         jButtonOK.setMinimumSize(new java.awt.Dimension(75, 23));
         jButtonOK.setPreferredSize(new java.awt.Dimension(75, 23));
+        jButtonOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOKActionPerformed(evt);
+            }
+        });
         jPanelBottom.add(jButtonOK);
 
         jButtonCancelar.setText("Cancelar");
