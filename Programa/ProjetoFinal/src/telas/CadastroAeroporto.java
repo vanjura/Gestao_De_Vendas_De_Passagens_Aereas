@@ -175,6 +175,14 @@ public class CadastroAeroporto extends java.awt.Dialog {
         this.dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
+    private void jTextFieldCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCidadeActionPerformed
+        grava();
+    }//GEN-LAST:event_jTextFieldCidadeActionPerformed
+
+    private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
+        grava();
+    }//GEN-LAST:event_jButtonOKActionPerformed
+
     /**
      * @param args the command line arguments
      */
