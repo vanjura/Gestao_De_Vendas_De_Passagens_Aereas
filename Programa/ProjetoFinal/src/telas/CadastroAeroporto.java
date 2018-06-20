@@ -5,6 +5,10 @@
  */
 package telas;
 
+import connection.AeroportoCRUD;
+import javax.swing.JOptionPane;
+import passagens_aereas.Aeroporto;
+
 /**
  *
  * @author lucas_nuze0yo
@@ -13,12 +17,16 @@ public class CadastroAeroporto extends java.awt.Dialog {
 
     /**
      * Creates new form CadastroAeroporto
+     *
+     * @param parent
+     * @param modal
      */
     public CadastroAeroporto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
     public int perguntaCadastro(Aeroporto aeroporto){
+
         int op;
         String titulo = "Cadastro de Aeroporto";
         String texto = "";
