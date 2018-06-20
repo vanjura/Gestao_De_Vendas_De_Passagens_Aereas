@@ -43,6 +43,8 @@ public class Inicio extends javax.swing.JFrame {
         menuOp6 = new javax.swing.JMenu();
         menuOp2 = new javax.swing.JMenu();
         menuOp3 = new javax.swing.JMenu();
+        menuOpAeroportos = new javax.swing.JMenu();
+        jMenuItemCadAero = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,14 +90,34 @@ public class Inicio extends javax.swing.JFrame {
         menuOp3.setText("Controle de Frota");
         barraMenu.add(menuOp3);
 
+        menuOpAeroportos.setText("Aeroportos");
+
+        jMenuItemCadAero.setText("Cadastro de Aeroporto");
+        jMenuItemCadAero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCadAeroActionPerformed(evt);
+            }
+        });
+        menuOpAeroportos.add(jMenuItemCadAero);
+
+        barraMenu.add(menuOpAeroportos);
+
         setJMenuBar(barraMenu);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jMenuItemCadAeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadAeroActionPerformed
+        //inicia o cadastro de um aeroporto
+        CadastroAeroporto cadAero = new CadastroAeroporto(this, true);
+        cadAero.setLocationRelativeTo(null);
+        cadAero.setVisible(true);
+    }//GEN-LAST:event_jMenuItemCadAeroActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barraMenu;
+    private javax.swing.JMenuItem jMenuItemCadAero;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JMenu menuOp1;
@@ -103,5 +125,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenu menuOp3;
     private javax.swing.JMenu menuOp5;
     private javax.swing.JMenu menuOp6;
+    private javax.swing.JMenu menuOpAeroportos;
     // End of variables declaration//GEN-END:variables
 }
