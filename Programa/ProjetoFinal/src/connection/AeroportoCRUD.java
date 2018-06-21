@@ -11,28 +11,27 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import passagens_aereas.Aeroporto;
+
 /**
  *
  * @author JVict
  */
 public class AeroportoCRUD {
-    
+
     private Connection con = null;
 
     public AeroportoCRUD() {
         con = Conexao.getConexao();
     }
-    
+
     //Insere novos Aeroportos ao banco
     public boolean inserir(Aeroporto aeroporto) {
         PreparedStatement stmt = null;
-        
+
         //Comando sql de inserção 
         String sql = "INSERT INTO aeroporto (NOME, CIDADE, ESTADO) VALUES(?,?,?)";
-        
+
         try {
             stmt = con.prepareStatement(sql);
             // cada numero do setString ou setInt corresponde a um ? (interrogação) do comando sql
@@ -51,8 +50,8 @@ public class AeroportoCRUD {
             Conexao.fecharConexao(con, stmt);
         }
     }
-    
-    public List<Aeroporto> buscaTodos(){
+
+    public List<Aeroporto> buscaNome() {
         List<Aeroporto> aeroportos = new ArrayList<>();
         String slq = "select nome from aeroporto";
         PreparedStatement stmt;
@@ -60,15 +59,33 @@ public class AeroportoCRUD {
         try {
             stmt = con.prepareStatement(slq);
             rs = stmt.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 Aeroporto aeroporto = new Aeroporto();
                 aeroporto.setNome(rs.getString("nome"));
                 aeroportos.add(aeroporto);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AeroportoCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Erro: " + ex);
         }
         return aeroportos;
     }
     
+    public int buscaRegistroComNome(String nome){
+        int registro = 0;
+        String slq = "select registro from aeroporto where nome = ?";
+        PreparedStatement stmt;
+        ResultSet rs;
+        try {
+            stmt = con.prepareStatement(slq);
+            stmt.setString(1, nome);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                registro = rs.getInt("registro");
+            }
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+        }
+        return registro;
+    }
+
 }
