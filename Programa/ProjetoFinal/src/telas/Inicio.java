@@ -101,6 +101,11 @@ public class Inicio extends javax.swing.JFrame {
         menuFrota.add(menuFrota_CadAviao);
 
         menuFrota_CadRotas.setText("Cadastro de Rotas");
+        menuFrota_CadRotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFrota_CadRotasActionPerformed(evt);
+            }
+        });
         menuFrota.add(menuFrota_CadRotas);
 
         barraMenu.add(menuFrota);
@@ -134,6 +139,10 @@ public class Inicio extends javax.swing.JFrame {
     private void menuCadastroDeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroDeUsuarioActionPerformed
         CadastroUsuario cadastroUsuario = new CadastroUsuario(null, true);
     }//GEN-LAST:event_menuCadastroDeUsuarioActionPerformed
+
+    private void menuFrota_CadRotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFrota_CadRotasActionPerformed
+        CadastroRota cadastroRota = new CadastroRota(null, true);
+    }//GEN-LAST:event_menuFrota_CadRotasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
