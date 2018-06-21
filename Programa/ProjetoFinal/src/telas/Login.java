@@ -32,21 +32,16 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        TextoUsuario = new javax.swing.JTextField();
-        jPanel8 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        SenhaUsuario = new javax.swing.JPasswordField();
-        jPanel3 = new javax.swing.JPanel();
-        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        jPanel9 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        jPanel11 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        TextoUsuario = new javax.swing.JTextField();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        SenhaUsuario = new javax.swing.JPasswordField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -61,128 +56,85 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
-        setMaximumSize(new java.awt.Dimension(200, 200));
-        setMinimumSize(new java.awt.Dimension(200, 200));
-        setPreferredSize(new java.awt.Dimension(200, 200));
+        setMaximumSize(null);
+        setPreferredSize(null);
         setResizable(false);
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.PAGE_AXIS));
 
-        jPanel5.setMaximumSize(new java.awt.Dimension(32767, 23));
-        jPanel5.setMinimumSize(new java.awt.Dimension(0, 23));
-        jPanel5.setName(""); // NOI18N
-        jPanel5.setPreferredSize(new java.awt.Dimension(200, 23));
+        jButton1.setText("Login");
+        jButton1.setFocusable(false);
+        jPanel9.add(jButton1);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 210, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 23, Short.MAX_VALUE)
-        );
+        jButton4.setText("Sair");
+        jButton4.setFocusable(false);
+        jPanel9.add(jButton4);
 
-        getContentPane().add(jPanel5);
+        getContentPane().add(jPanel9, java.awt.BorderLayout.PAGE_END);
 
-        jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.LINE_AXIS));
+        jPanel11.setLayout(new java.awt.GridLayout(0, 1));
 
         jLabel1.setText("Usuário");
-        jPanel4.add(jLabel1);
-
-        getContentPane().add(jPanel4);
-
-        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
 
         TextoUsuario.setMaximumSize(new java.awt.Dimension(150, 23));
         TextoUsuario.setMinimumSize(new java.awt.Dimension(150, 23));
         TextoUsuario.setNextFocusableComponent(SenhaUsuario);
         TextoUsuario.setPreferredSize(new java.awt.Dimension(150, 23));
-        jPanel2.add(TextoUsuario);
 
-        getContentPane().add(jPanel2);
-
-        jPanel8.setMaximumSize(new java.awt.Dimension(32767, 10));
-        jPanel8.setMinimumSize(new java.awt.Dimension(0, 10));
-        jPanel8.setName(""); // NOI18N
-        jPanel8.setPreferredSize(new java.awt.Dimension(429, 10));
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 210, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(TextoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(TextoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel8);
-
-        jPanel6.setLayout(new javax.swing.BoxLayout(jPanel6, javax.swing.BoxLayout.LINE_AXIS));
+        jPanel11.add(jPanel10);
 
         jLabel2.setText("Senha");
-        jPanel6.add(jLabel2);
-
-        getContentPane().add(jPanel6);
-
-        jPanel7.setLayout(new javax.swing.BoxLayout(jPanel7, javax.swing.BoxLayout.LINE_AXIS));
 
         SenhaUsuario.setMaximumSize(new java.awt.Dimension(150, 23));
         SenhaUsuario.setMinimumSize(new java.awt.Dimension(150, 23));
         SenhaUsuario.setPreferredSize(new java.awt.Dimension(150, 23));
-        SenhaUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SenhaUsuarioActionPerformed(evt);
-            }
-        });
-        jPanel7.add(SenhaUsuario);
 
-        getContentPane().add(jPanel7);
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(SenhaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(SenhaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
+        );
 
-        jPanel3.setMaximumSize(new java.awt.Dimension(32767, 50));
-        jPanel3.setMinimumSize(new java.awt.Dimension(0, 50));
-        jPanel3.setPreferredSize(new java.awt.Dimension(429, 50));
-        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
-        jPanel3.add(filler1);
+        jPanel11.add(jPanel12);
 
-        jButton1.setText("Login");
-        jButton1.setFocusable(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton1);
-
-        jButton4.setText("Sair");
-        jButton4.setFocusable(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton4);
-        jPanel3.add(filler2);
-
-        getContentPane().add(jPanel3);
+        getContentPane().add(jPanel11, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // Código de validação de login
-        validaUsuario();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void SenhaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SenhaUsuarioActionPerformed
-        validaUsuario();
-    }//GEN-LAST:event_SenhaUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,19 +190,14 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField SenhaUsuario;
     private javax.swing.JTextField TextoUsuario;
-    private javax.swing.Box.Filler filler1;
-    private javax.swing.Box.Filler filler2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel9;
     // End of variables declaration//GEN-END:variables
 }
