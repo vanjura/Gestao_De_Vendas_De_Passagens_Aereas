@@ -89,6 +89,7 @@ public final class CadastroRota extends java.awt.Dialog {
     public void insereRota(Rota rota){
         RotaCRUD rotaCRUD = new RotaCRUD();
         rotaCRUD.inserir(rota);
+        //mensagem para rota inserida
     }
 
     /**
@@ -264,23 +265,6 @@ public final class CadastroRota extends java.awt.Dialog {
         dispose();
     }//GEN-LAST:event_closeDialog
 
-    private void ftextoDescontoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ftextoDescontoFocusLost
-        String texto01 = this.ftextoPrecoPass.getText().replace(",", ".");
-        String texto02 = this.ftextoDesconto.getText().replace(",", ".");
-        float num1, num2, result;
-        try {
-            num1 = Float.parseFloat(texto01);
-            num2 = Float.parseFloat(texto02);
-        } catch (NumberFormatException ex) {
-            num1 = 0;
-            num2 = 0;
-        }
-        if (num1 != 0 || num2 != 0) {
-            result = num1 - (num2 * (num1 / 100));
-            this.textoValorPassEsp.setText(Float.toString(result));
-        }
-    }//GEN-LAST:event_ftextoDescontoFocusLost
-
     private void ftextoPrecoPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ftextoPrecoPassFocusGained
         this.ftextoPrecoPass.selectAll();
     }//GEN-LAST:event_ftextoPrecoPassFocusGained
@@ -299,6 +283,23 @@ public final class CadastroRota extends java.awt.Dialog {
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
+
+    private void ftextoDescontoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ftextoDescontoFocusLost
+        String texto01 = this.ftextoPrecoPass.getText().replace(",", ".");
+        String texto02 = this.ftextoDesconto.getText().replace(",", ".");
+        float num1, num2, result;
+        try {
+            num1 = Float.parseFloat(texto01);
+            num2 = Float.parseFloat(texto02);
+        } catch (NumberFormatException ex) {
+            num1 = 0;
+            num2 = 0;
+        }
+        if (num1 != 0 || num2 != 0) {
+            result = num1 - (num2 * (num1 / 100));
+            this.textoValorPassEsp.setText(Float.toString(result));
+        }
+    }//GEN-LAST:event_ftextoDescontoFocusLost
 
     /**
      * @param args the command line arguments
