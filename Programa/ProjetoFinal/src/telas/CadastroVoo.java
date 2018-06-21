@@ -35,11 +35,7 @@ public class CadastroVoo extends java.awt.Dialog {
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jSpinField1 = new com.toedter.components.JSpinField();
-        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
-        jYearChooser1 = new com.toedter.calendar.JYearChooser();
-        jPanel6 = new javax.swing.JPanel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -69,19 +65,10 @@ public class CadastroVoo extends java.awt.Dialog {
         jLabel4.setText("Data de Saída: ");
         jPanel4.add(jLabel4);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jSpinField1.setMaximumSize(new java.awt.Dimension(40, 20));
-        jSpinField1.setMinimum(1);
-        jSpinField1.setMinimumSize(new java.awt.Dimension(40, 20));
-        jSpinField1.setPreferredSize(new java.awt.Dimension(40, 20));
-        jSpinField1.setValue(1);
-        jPanel5.add(jSpinField1);
-        jPanel5.add(jMonthChooser1);
-        jPanel5.add(jYearChooser1);
-
-        jPanel4.add(jPanel5);
-        jPanel4.add(jPanel6);
+        jDateChooser1.setMaximumSize(new java.awt.Dimension(100, 20));
+        jDateChooser1.setMinimumSize(new java.awt.Dimension(100, 20));
+        jDateChooser1.setPreferredSize(new java.awt.Dimension(100, 20));
+        jPanel4.add(jDateChooser1);
 
         jPanel2.add(jPanel4);
 
@@ -128,18 +115,14 @@ public class CadastroVoo extends java.awt.Dialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private com.toedter.calendar.JMonthChooser jMonthChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private com.toedter.components.JSpinField jSpinField1;
-    private com.toedter.calendar.JYearChooser jYearChooser1;
     // End of variables declaration//GEN-END:variables
 }
