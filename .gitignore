@@ -5,6 +5,7 @@
 *.class
 *.xml
 *.mf
+*.form
 Programa/ProjetoFinal/build.xml
 Programa/ProjetoFinal/manifest.mf
 
