@@ -3,4 +3,5 @@
 /Programa/ProjetoFinal/dist/
 *.properties
 *.class
-*.xml*.mf
+*.xml
+*.mf
