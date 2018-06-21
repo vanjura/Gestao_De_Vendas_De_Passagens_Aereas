@@ -20,10 +20,14 @@ public class Inicio extends javax.swing.JFrame {
         //comando para deixar a janela em fullscreen
         this.setExtendedState(Inicio.MAXIMIZED_BOTH);
         //se o nível do usuário for menor que 10 a opção 2 e 3 do menu estarão inacessiveis
-        if (usuario.getNivel() < 10) {
-            menuOp2.setEnabled(false);
-            menuOp3.setEnabled(false);
+        if(usuario.getNivel() <= 5){
+            this.menuUsuar.setEnabled(false);
         }
+        if(usuario.getNivel() <= 1){
+            this.menuFrota.setEnabled(false);
+            this.menuAero.setEnabled(false);
+        }
+        
     }
 
     /**
@@ -38,12 +42,13 @@ public class Inicio extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         barraMenu = new javax.swing.JMenuBar();
-        menuOp2 = new javax.swing.JMenu();
+        menuUsuar = new javax.swing.JMenu();
         menuCadastroDeUsuario = new javax.swing.JMenuItem();
-        menuOp3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        menuOpAeroportos = new javax.swing.JMenu();
-        jMenuItemCadAero = new javax.swing.JMenuItem();
+        menuFrota = new javax.swing.JMenu();
+        menuFrota_CadAviao = new javax.swing.JMenuItem();
+        menuFrota_CadRotas = new javax.swing.JMenuItem();
+        menuAero = new javax.swing.JMenu();
+        menuAero_CadAero = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,7 +78,7 @@ public class Inicio extends javax.swing.JFrame {
 
         getContentPane().add(jPanel4, java.awt.BorderLayout.CENTER);
 
-        menuOp2.setText("Controle de Usuários");
+        menuUsuar.setText("Usuários");
 
         menuCadastroDeUsuario.setText("Cadastro de Usuários");
         menuCadastroDeUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -81,47 +86,50 @@ public class Inicio extends javax.swing.JFrame {
                 menuCadastroDeUsuarioActionPerformed(evt);
             }
         });
-        menuOp2.add(menuCadastroDeUsuario);
+        menuUsuar.add(menuCadastroDeUsuario);
 
-        barraMenu.add(menuOp2);
+        barraMenu.add(menuUsuar);
 
-        menuOp3.setText("Controle de Frota");
+        menuFrota.setText("Frota");
 
-        jMenuItem1.setText("Cadastro de Aviões");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        menuFrota_CadAviao.setText("Cadastro de Aviões");
+        menuFrota_CadAviao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                menuFrota_CadAviaoActionPerformed(evt);
             }
         });
-        menuOp3.add(jMenuItem1);
+        menuFrota.add(menuFrota_CadAviao);
 
-        barraMenu.add(menuOp3);
+        menuFrota_CadRotas.setText("Cadastro de Rotas");
+        menuFrota.add(menuFrota_CadRotas);
 
-        menuOpAeroportos.setText("Aeroportos");
+        barraMenu.add(menuFrota);
 
-        jMenuItemCadAero.setText("Cadastro de Aeroportos");
-        jMenuItemCadAero.addActionListener(new java.awt.event.ActionListener() {
+        menuAero.setText("Aeroportos");
+
+        menuAero_CadAero.setText("Cadastro de Aeroportos");
+        menuAero_CadAero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemCadAeroActionPerformed(evt);
+                menuAero_CadAeroActionPerformed(evt);
             }
         });
-        menuOpAeroportos.add(jMenuItemCadAero);
+        menuAero.add(menuAero_CadAero);
 
-        barraMenu.add(menuOpAeroportos);
+        barraMenu.add(menuAero);
 
         setJMenuBar(barraMenu);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItemCadAeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadAeroActionPerformed
+    private void menuAero_CadAeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAero_CadAeroActionPerformed
         //inicia o cadastro de um aeroporto
         CadastroAeroporto cadAero = new CadastroAeroporto(this, true);
-    }//GEN-LAST:event_jMenuItemCadAeroActionPerformed
+    }//GEN-LAST:event_menuAero_CadAeroActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void menuFrota_CadAviaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFrota_CadAviaoActionPerformed
         CadastroAviao cadastroAviao = new CadastroAviao(null, true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_menuFrota_CadAviaoActionPerformed
 
     private void menuCadastroDeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroDeUsuarioActionPerformed
         CadastroUsuario cadastroUsuario = new CadastroUsuario(null, true);
@@ -130,13 +138,14 @@ public class Inicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barraMenu;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItemCadAero;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JMenu menuAero;
+    private javax.swing.JMenuItem menuAero_CadAero;
     private javax.swing.JMenuItem menuCadastroDeUsuario;
-    private javax.swing.JMenu menuOp2;
-    private javax.swing.JMenu menuOp3;
-    private javax.swing.JMenu menuOpAeroportos;
+    private javax.swing.JMenu menuFrota;
+    private javax.swing.JMenuItem menuFrota_CadAviao;
+    private javax.swing.JMenuItem menuFrota_CadRotas;
+    private javax.swing.JMenu menuUsuar;
     // End of variables declaration//GEN-END:variables
 }
