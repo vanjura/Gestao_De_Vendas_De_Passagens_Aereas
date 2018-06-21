@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import passagens_aereas.Usuario;
 
 /**
@@ -86,5 +88,26 @@ public class UsuarioCRUD {
         }
         //Retorna o ArrayList
         return usuarios;
+    }
+    public boolean procurarUsuario(String usuario){
+        boolean result = false;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String sql = "select * from usuario where nome = ?";
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, usuario);
+            rs = stmt.executeQuery();
+            if(rs.next()){
+                result = true;
+            }else{
+                result = false;
+            }
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+        } finally {
+            Conexao.fecharConexao(con, stmt, rs);
+        }
+        return result;
     }
 }

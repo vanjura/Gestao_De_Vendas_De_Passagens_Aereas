@@ -38,8 +38,8 @@ public class Inicio extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         barraMenu = new javax.swing.JMenuBar();
-        menuOp1 = new javax.swing.JMenu();
         menuOp2 = new javax.swing.JMenu();
+        menuCadastroDeUsuario = new javax.swing.JMenuItem();
         menuOp3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         menuOpAeroportos = new javax.swing.JMenu();
@@ -73,15 +73,21 @@ public class Inicio extends javax.swing.JFrame {
 
         getContentPane().add(jPanel4, java.awt.BorderLayout.CENTER);
 
-        menuOp1.setText("Controle de Voos");
-        barraMenu.add(menuOp1);
+        menuOp2.setText("Controle de Usuários");
 
-        menuOp2.setText("Controle de Funcionarios");
+        menuCadastroDeUsuario.setText("Cadastro de Usuários");
+        menuCadastroDeUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadastroDeUsuarioActionPerformed(evt);
+            }
+        });
+        menuOp2.add(menuCadastroDeUsuario);
+
         barraMenu.add(menuOp2);
 
         menuOp3.setText("Controle de Frota");
 
-        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.setText("Cadastro de Aviões");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -93,7 +99,7 @@ public class Inicio extends javax.swing.JFrame {
 
         menuOpAeroportos.setText("Aeroportos");
 
-        jMenuItemCadAero.setText("Cadastro de Aeroporto");
+        jMenuItemCadAero.setText("Cadastro de Aeroportos");
         jMenuItemCadAero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemCadAeroActionPerformed(evt);
@@ -114,8 +120,12 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemCadAeroActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        CadastroAviao cadAviao = new CadastroAviao(null, true);
+        CadastroAviao cadastroAviao = new CadastroAviao(null, true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void menuCadastroDeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroDeUsuarioActionPerformed
+        CadastroUsuario cadastroUsuario = new CadastroUsuario(null, true);
+    }//GEN-LAST:event_menuCadastroDeUsuarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -124,7 +134,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemCadAero;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JMenu menuOp1;
+    private javax.swing.JMenuItem menuCadastroDeUsuario;
     private javax.swing.JMenu menuOp2;
     private javax.swing.JMenu menuOp3;
     private javax.swing.JMenu menuOpAeroportos;

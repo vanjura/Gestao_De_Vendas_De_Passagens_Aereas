@@ -4,15 +4,20 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="barraMenu">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="menuOp1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Controle de Voos"/>
-          </Properties>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="menuOp2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Controle de Funcionarios"/>
+            <Property name="text" type="java.lang.String" value="Controle de Usu&#xe1;rios"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="menuCadastroDeUsuario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cadastro de Usu&#xe1;rios"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCadastroDeUsuarioActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuOp3">
           <Properties>
@@ -21,7 +26,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jMenuItem1"/>
+                <Property name="text" type="java.lang.String" value="Cadastro de Avi&#xf5;es"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
@@ -36,7 +41,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemCadAero">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cadastro de Aeroporto"/>
+                <Property name="text" type="java.lang.String" value="Cadastro de Aeroportos"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemCadAeroActionPerformed"/>

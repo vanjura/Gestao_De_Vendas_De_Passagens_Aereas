@@ -9,12 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import passagens_aereas.Aviao;
-import passagens_aereas.Usuario;
 
 /**
  *
@@ -55,6 +50,7 @@ public class AviaoCRUD {
     }
 
     public boolean procuraRegistro(String registro) {
+        boolean result = false;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         String sql = "select * from aviao where registro = ?";
@@ -65,14 +61,15 @@ public class AviaoCRUD {
             
             rs = stmt.executeQuery();
             if(rs.next()){
-                return true;
+                result = true;
             }else{
-                return false;
+                result = false;
             }
         } catch (SQLException ex) {
             System.err.println("Erro: " + ex);
         } finally {
             Conexao.fecharConexao(con, stmt, rs);
         }
+        return result;
     }
 }
