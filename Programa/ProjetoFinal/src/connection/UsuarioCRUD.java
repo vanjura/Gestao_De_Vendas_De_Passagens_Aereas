@@ -11,8 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import passagens_aereas.Usuario;
 
 /**
@@ -26,14 +24,14 @@ public class UsuarioCRUD {
     public UsuarioCRUD() {
         con = Conexao.getConexao();
     }
-    
+
     //Insere novos usuaros ao banco
     public boolean inserir(Usuario usuario) {
         PreparedStatement stmt = null;
-        
+
         //Comando sql de inserção 
         String sql = "INSERT INTO USUARIO (NOME, SENHA, NIVEL) VALUES(?,?,?)";
-        
+
         try {
             stmt = con.prepareStatement(sql);
             // cada numero do setString ou setInt corresponde a um ? (interrogação) do comando sql
@@ -52,44 +50,45 @@ public class UsuarioCRUD {
             Conexao.fecharConexao(con, stmt);
         }
     }
-    
+
     //Busca cada um dos usuarios e armazena em um ArrayList
-    public List<Usuario> buscaTodos(){
+    public List<Usuario> buscaTodos() {
         //comando sql
         String sql = "SELECT * FROM USUARIO";
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        
+
         //criando o ArrayLista para armazenar os dados encontrados para um posterior teste de validação
         List<Usuario> usuarios = new ArrayList<>();
         try {
-            
+
             stmt = con.prepareStatement(sql);
-            
+
             rs = stmt.executeQuery();
-            
+
             //Tratamento para cada dado encontrado ir para seu devido lugar
             while (rs.next()) {
                 Usuario usuario = new Usuario();
-                
+
                 //os gets recebem uma string com o mesmo nome da coluna respectiva no banco
                 usuario.setNome(rs.getString("NOME"));
                 usuario.setSenha(rs.getString("SENHA"));
                 usuario.setNivel(rs.getInt("NIVEL"));
                 usuarios.add(usuario);
             }
-        
+
         } catch (SQLException ex) {
             //Erro seguido do código
             System.err.println("Erro: " + ex);
-        } finally{
+        } finally {
             //Finalizando a Conexão, Statement e o ResultSet
             Conexao.fecharConexao(con, stmt, rs);
         }
         //Retorna o ArrayList
         return usuarios;
     }
-    public boolean procurarUsuario(String usuario){
+
+    public boolean procurarUsuario(String usuario) {
         boolean result = false;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -98,9 +97,9 @@ public class UsuarioCRUD {
             stmt = con.prepareStatement(sql);
             stmt.setString(1, usuario);
             rs = stmt.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 result = true;
-            }else{
+            } else {
                 result = false;
             }
         } catch (SQLException ex) {
@@ -109,5 +108,32 @@ public class UsuarioCRUD {
             Conexao.fecharConexao(con, stmt, rs);
         }
         return result;
+    }
+
+    public List<Usuario> listarUsuarios() {
+        Connection con = Conexao.getConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Usuario> usuarioLista = new ArrayList<>();
+        String sql = "Select nome, nivel from usuario";
+        try {
+            stmt = con.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                Usuario usuario = new Usuario();
+
+                usuario.setNome(rs.getString("nome"));
+                usuario.setNivel(rs.getInt("nivel"));
+                usuarioLista.add(usuario);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro!" + ex);
+        } finally {
+            Conexao.fecharConexao(con, stmt, rs);
+        }
+
+        return usuarioLista;
     }
 }

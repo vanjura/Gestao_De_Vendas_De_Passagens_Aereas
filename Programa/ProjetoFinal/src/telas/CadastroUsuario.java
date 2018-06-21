@@ -13,16 +13,40 @@ import passagens_aereas.Usuario;
  * @author lucas_nuze0yo
  */
 public class CadastroUsuario extends java.awt.Dialog {
+    
+    private int opção;
 
     /**
      * Creates new form CadastroUsuario
      */
-    public CadastroUsuario(java.awt.Frame parent, boolean modal) {
+    public CadastroUsuario(java.awt.Frame parent, boolean modal, int op) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        opção = op;
     }
+
+    public CadastroUsuario(java.awt.Frame parent, boolean modal, int op, Usuario usuario) {
+        super(parent, modal);
+        initComponents();
+        this.campoNome.setText(usuario.getNome());
+        this.campoSenha.setText(usuario.getSenha());
+        this.campoConfirmaSenha.setText(usuario.getSenha());
+        this.campoNivel.setSelectedItem(retornaNivel(usuario));
+    }
+    
+    public String retornaNivel(Usuario usuario){
+        if (usuario.getNivel() == 1){
+            return "Atendente";
+        }else if(usuario.getNivel() == 5){
+            return "Gerente";
+        }else if(usuario.getNivel() == 10){
+            return "Administrador";
+        }
+        return null;
+    }
+    
     
     public void salvaUsuario(Usuario usuario){
         if(!validaUsuario()){
@@ -34,7 +58,12 @@ public class CadastroUsuario extends java.awt.Dialog {
             return;
         }
         UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
-        usuarioCRUD.inserir(usuario);
+        if (opção == 0){
+            usuarioCRUD.inserir(usuario);
+        }else if(opção == 1){
+            
+        }
+        
     }
     
     public Usuario criaUsuario(){
@@ -83,7 +112,7 @@ public class CadastroUsuario extends java.awt.Dialog {
      * @param args
      */
     public static void main(String[] args) {
-        CadastroUsuario teste = new CadastroUsuario(null, true);
+        CadastroUsuario teste = new CadastroUsuario(null, true, 0);
     }
 
     /**

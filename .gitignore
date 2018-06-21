@@ -5,10 +5,3 @@
 *.class
 *.xml
 *.mf
-*.form
-Programa/ProjetoFinal/build.xml
-Programa/ProjetoFinal/manifest.mf
-
-*.class
-Programa/ProjetoFinal/build/classes/.netbeans_automatic_build
-Programa/ProjetoFinal/build/classes/.netbeans_update_resources
