@@ -7,3 +7,7 @@
 *.mf
 Programa/ProjetoFinal/build.xml
 Programa/ProjetoFinal/manifest.mf
+*.form
+*.class
+Programa/ProjetoFinal/build/classes/.netbeans_automatic_build
+Programa/ProjetoFinal/build/classes/.netbeans_update_resources
