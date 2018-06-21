@@ -8,12 +8,13 @@ package telas;
 import connection.AeroportoCRUD;
 import connection.RotaCRUD;
 import passagens_aereas.Aeroporto;
+import passagens_aereas.Rota;
 
 /**
  *
  * @author lucas_nuze0yo
  */
-public class CadastroRota extends java.awt.Dialog {
+public final class CadastroRota extends java.awt.Dialog {
 
     /**
      * Creates new form CadastroRota
@@ -22,14 +23,72 @@ public class CadastroRota extends java.awt.Dialog {
         super(parent, modal);
         initComponents();
         pesquisaAeroporto();
+        arrumaHoraMinuto();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+    }
+
+    public void arrumaHoraMinuto() {
+        for (int i = 1; i < 10; i++) {
+            this.caixaHora.addItem("0" + i);
+        }
+        for (int j = 10; j < 24; j++) {
+            this.caixaHora.addItem(Integer.toString(j));
+        }
+        for (int i = 1; i < 10; i++) {
+            this.caixaMinuto.addItem("0" + i);
+        }
+        for (int j = 10; j < 60; j++) {
+            this.caixaMinuto.addItem(Integer.toString(j));
+        }
+    }
+
+    public void pesquisaAeroporto() {
+        AeroportoCRUD aeroCRUD = new AeroportoCRUD();
+        for (Aeroporto a : aeroCRUD.buscaNome()) {
+            this.caixaOrigem.addItem(a.getNome());
+            this.caixaDestino.addItem(a.getNome());
+        }
+
+    }
+
+    public Rota validaCampos() {
+        Rota rota = criaRota();
+        if (rota.getPreco_c() <= 0 || rota.getPreco_e() <= 0){
+            System.out.println("Os campos Preço e Desconto não podem ser menores ou iguais a zero.");
+            return null;
+        }
+        return rota;
+    }
+
+    public int retornaIdAeroporto(String nomeAero) {
+        AeroportoCRUD aeroportoCRUD = new AeroportoCRUD();
+        return aeroportoCRUD.buscaRegistroComNome(nomeAero);
+    }
+
+    public String retornaHoraFormatada(String hora, String minuto) {
+        String tempo;
+        tempo = this.caixaHora.getSelectedItem()
+                + ":"
+                + this.caixaMinuto.getSelectedItem()
+                + ":00";
+        return tempo;
+    }
+
+    public Rota criaRota() {
+        Rota rota = new Rota();
+        rota.setOrigem(retornaIdAeroporto(this.caixaOrigem.getSelectedItem().toString()));
+        rota.setDestino(retornaIdAeroporto(this.caixaDestino.getSelectedItem().toString()));
+        rota.setDuracao(retornaHoraFormatada(this.caixaHora.getSelectedItem().toString(),
+                this.caixaMinuto.getSelectedItem().toString()));
+        rota.setPreco_c(Float.parseFloat(this.ftextoPrecoPass.getText().replace(",", ".")));
+        rota.setPreco_e(Float.parseFloat(this.textoValorPassEsp.getText().replace(",", ".")));
+        return rota;
     }
     
-    public void pesquisaAeroporto(){
-        AeroportoCRUD aeroCRUD = new AeroportoCRUD();
-        for(Aeroporto a : aeroCRUD.buscaTodos()){
-            this.jComboBox1.addItem(a.getNome());
-        }
-        
+    public void insereRota(Rota rota){
+        RotaCRUD rotaCRUD = new RotaCRUD();
+        rotaCRUD.inserir(rota);
     }
 
     /**
@@ -41,30 +100,156 @@ public class CadastroRota extends java.awt.Dialog {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jPanel3 = new javax.swing.JPanel();
+        textoOrigem = new javax.swing.JLabel();
+        caixaOrigem = new javax.swing.JComboBox<>();
+        jPanel5 = new javax.swing.JPanel();
+        textoDestino = new javax.swing.JLabel();
+        caixaDestino = new javax.swing.JComboBox<>();
+        jPanel4 = new javax.swing.JPanel();
+        textoDuracao = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        textoHora = new javax.swing.JLabel();
+        caixaHora = new javax.swing.JComboBox<>();
+        textoMinuto = new javax.swing.JLabel();
+        caixaMinuto = new javax.swing.JComboBox<>();
+        jPanel8 = new javax.swing.JPanel();
+        textoPrecoPass = new javax.swing.JLabel();
+        ftextoPrecoPass = new javax.swing.JFormattedTextField();
+        textoDesconto = new javax.swing.JLabel();
+        ftextoDesconto = new javax.swing.JFormattedTextField();
+        textoPorcent = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        textoPrecoPassEsp = new javax.swing.JLabel();
+        textoSifra = new javax.swing.JLabel();
+        textoValorPassEsp = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        botaoSalvar = new javax.swing.JButton();
+        botaoCancelar = new javax.swing.JButton();
 
+        setAutoRequestFocus(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
             }
         });
 
-        jLabel1.setText("jLabel1");
-        jPanel2.add(jLabel1);
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.PAGE_AXIS));
 
-        jPanel2.add(jComboBox1);
+        textoOrigem.setText("Origem");
+        jPanel3.add(textoOrigem);
+
+        caixaOrigem.setMaximumSize(new java.awt.Dimension(200, 20));
+        caixaOrigem.setMinimumSize(new java.awt.Dimension(200, 20));
+        caixaOrigem.setPreferredSize(new java.awt.Dimension(300, 20));
+        jPanel3.add(caixaOrigem);
+        jPanel3.add(jPanel5);
+
+        textoDestino.setText("Destino");
+        jPanel3.add(textoDestino);
+
+        caixaDestino.setMaximumSize(new java.awt.Dimension(200, 20));
+        caixaDestino.setMinimumSize(new java.awt.Dimension(200, 20));
+        caixaDestino.setPreferredSize(new java.awt.Dimension(300, 20));
+        jPanel3.add(caixaDestino);
+
+        jPanel2.add(jPanel3);
+
+        jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        textoDuracao.setText("Duração");
+        jPanel4.add(textoDuracao);
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        textoHora.setText("Hora:");
+        jPanel7.add(textoHora);
+
+        caixaHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00" }));
+        jPanel7.add(caixaHora);
+
+        textoMinuto.setText("Minuto:");
+        jPanel7.add(textoMinuto);
+
+        caixaMinuto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00" }));
+        jPanel7.add(caixaMinuto);
+
+        jPanel4.add(jPanel7);
+
+        jPanel2.add(jPanel4);
+
+        jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        textoPrecoPass.setText("Preço Passagem:");
+        jPanel8.add(textoPrecoPass);
+
+        ftextoPrecoPass.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        ftextoPrecoPass.setText("00,00");
+        ftextoPrecoPass.setMaximumSize(new java.awt.Dimension(100, 20));
+        ftextoPrecoPass.setMinimumSize(new java.awt.Dimension(100, 20));
+        ftextoPrecoPass.setNextFocusableComponent(ftextoDesconto);
+        ftextoPrecoPass.setPreferredSize(new java.awt.Dimension(100, 20));
+        ftextoPrecoPass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                ftextoPrecoPassFocusGained(evt);
+            }
+        });
+        jPanel8.add(ftextoPrecoPass);
+
+        textoDesconto.setText("Desconto em Ass. Especial:");
+        jPanel8.add(textoDesconto);
+
+        ftextoDesconto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        ftextoDesconto.setText("00,00");
+        ftextoDesconto.setMaximumSize(new java.awt.Dimension(50, 20));
+        ftextoDesconto.setMinimumSize(new java.awt.Dimension(50, 20));
+        ftextoDesconto.setNextFocusableComponent(ftextoPrecoPass);
+        ftextoDesconto.setPreferredSize(new java.awt.Dimension(50, 20));
+        ftextoDesconto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                ftextoDescontoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ftextoDescontoFocusLost(evt);
+            }
+        });
+        jPanel8.add(ftextoDesconto);
+
+        textoPorcent.setText("%");
+        jPanel8.add(textoPorcent);
+
+        jPanel2.add(jPanel8);
+
+        jPanel10.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        textoPrecoPassEsp.setText("Preço da Passagem Especial:");
+        jPanel10.add(textoPrecoPassEsp);
+
+        textoSifra.setText("R$");
+        jPanel10.add(textoSifra);
+
+        textoValorPassEsp.setText("0,00");
+        jPanel10.add(textoValorPassEsp);
+
+        jPanel2.add(jPanel10);
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
 
-        jButton1.setText("Salvar");
-        jPanel1.add(jButton1);
+        botaoSalvar.setText("Salvar");
+        botaoSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSalvarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botaoSalvar);
 
-        jButton2.setText("Cancelar");
-        jPanel1.add(jButton2);
+        botaoCancelar.setText("Cancelar");
+        botaoCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCancelarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botaoCancelar);
 
         add(jPanel1, java.awt.BorderLayout.SOUTH);
 
@@ -79,30 +264,77 @@ public class CadastroRota extends java.awt.Dialog {
         dispose();
     }//GEN-LAST:event_closeDialog
 
+    private void ftextoDescontoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ftextoDescontoFocusLost
+        String texto01 = this.ftextoPrecoPass.getText().replace(",", ".");
+        String texto02 = this.ftextoDesconto.getText().replace(",", ".");
+        float num1, num2, result;
+        try {
+            num1 = Float.parseFloat(texto01);
+            num2 = Float.parseFloat(texto02);
+        } catch (NumberFormatException ex) {
+            num1 = 0;
+            num2 = 0;
+        }
+        if (num1 != 0 || num2 != 0) {
+            result = num1 - (num2 * (num1 / 100));
+            this.textoValorPassEsp.setText(Float.toString(result));
+        }
+    }//GEN-LAST:event_ftextoDescontoFocusLost
+
+    private void ftextoPrecoPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ftextoPrecoPassFocusGained
+        this.ftextoPrecoPass.selectAll();
+    }//GEN-LAST:event_ftextoPrecoPassFocusGained
+
+    private void ftextoDescontoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ftextoDescontoFocusGained
+        this.ftextoDesconto.selectAll();
+    }//GEN-LAST:event_ftextoDescontoFocusGained
+
+    private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
+        Rota rota = validaCampos();
+        if (rota != null){
+            insereRota(rota);
+        }
+    }//GEN-LAST:event_botaoSalvarActionPerformed
+
+    private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botaoCancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                CadastroRota dialog = new CadastroRota(new java.awt.Frame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
+        CadastroRota cadastroRota = new CadastroRota(null, true);
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton botaoCancelar;
+    private javax.swing.JButton botaoSalvar;
+    private javax.swing.JComboBox<String> caixaDestino;
+    private javax.swing.JComboBox<String> caixaHora;
+    private javax.swing.JComboBox<String> caixaMinuto;
+    private javax.swing.JComboBox<String> caixaOrigem;
+    private javax.swing.JFormattedTextField ftextoDesconto;
+    private javax.swing.JFormattedTextField ftextoPrecoPass;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JLabel textoDesconto;
+    private javax.swing.JLabel textoDestino;
+    private javax.swing.JLabel textoDuracao;
+    private javax.swing.JLabel textoHora;
+    private javax.swing.JLabel textoMinuto;
+    private javax.swing.JLabel textoOrigem;
+    private javax.swing.JLabel textoPorcent;
+    private javax.swing.JLabel textoPrecoPass;
+    private javax.swing.JLabel textoPrecoPassEsp;
+    private javax.swing.JLabel textoSifra;
+    private javax.swing.JLabel textoValorPassEsp;
     // End of variables declaration//GEN-END:variables
 }
