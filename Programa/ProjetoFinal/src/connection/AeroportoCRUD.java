@@ -7,7 +7,12 @@ package connection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import passagens_aereas.Aeroporto;
 /**
  *
@@ -45,6 +50,25 @@ public class AeroportoCRUD {
             //fecha a conexão e o Statement
             Conexao.fecharConexao(con, stmt);
         }
+    }
+    
+    public List<Aeroporto> buscaTodos(){
+        List<Aeroporto> aeroportos = new ArrayList<>();
+        String slq = "select nome from aeroporto";
+        PreparedStatement stmt;
+        ResultSet rs;
+        try {
+            stmt = con.prepareStatement(slq);
+            rs = stmt.executeQuery();
+            while (rs.next()){
+                Aeroporto aeroporto = new Aeroporto();
+                aeroporto.setNome(rs.getString("nome"));
+                aeroportos.add(aeroporto);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AeroportoCRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return aeroportos;
     }
     
 }
