@@ -134,7 +134,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void menuAero_CadAeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAero_CadAeroActionPerformed
         //inicia o cadastro de um aeroporto
-        CadastroAeroporto cadAero = new CadastroAeroporto(this, true, false);
+        CadastroAeroporto cadAero = new CadastroAeroporto(this, true);
     }//GEN-LAST:event_menuAero_CadAeroActionPerformed
 
     private void menuFrota_CadAviaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFrota_CadAviaoActionPerformed
@@ -142,7 +142,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_menuFrota_CadAviaoActionPerformed
 
     private void menuCadastroDeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroDeUsuarioActionPerformed
-        CadastroUsuario cadastroUsuario = new CadastroUsuario(null, true, 0);
+        CadastroUsuario cadastroUsuario = new CadastroUsuario(null, true);
     }//GEN-LAST:event_menuCadastroDeUsuarioActionPerformed
 
     private void menuFrota_CadRotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFrota_CadRotasActionPerformed

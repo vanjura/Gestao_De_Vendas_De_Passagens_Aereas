@@ -14,22 +14,22 @@ import passagens_aereas.Usuario;
  */
 public class CadastroUsuario extends java.awt.Dialog {
     
-    private int opção;
+    boolean atualizacao = false;
 
     /**
      * Creates new form CadastroUsuario
      */
-    public CadastroUsuario(java.awt.Frame parent, boolean modal, int op) {
+    public CadastroUsuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        opção = op;
     }
 
-    public CadastroUsuario(java.awt.Frame parent, boolean modal, int op, Usuario usuario) {
+    public CadastroUsuario(java.awt.Frame parent, boolean modal, Usuario usuario) {
         super(parent, modal);
         initComponents();
+        atualizacao = true;
         this.campoNome.setText(usuario.getNome());
         this.campoSenha.setText(usuario.getSenha());
         this.campoConfirmaSenha.setText(usuario.getSenha());
@@ -58,10 +58,10 @@ public class CadastroUsuario extends java.awt.Dialog {
             return;
         }
         UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
-        if (opção == 0){
-            usuarioCRUD.inserir(usuario);
-        }else if(opção == 1){
+        if (atualizacao){
             
+        }else{
+            usuarioCRUD.inserir(usuario);            
         }
         
     }

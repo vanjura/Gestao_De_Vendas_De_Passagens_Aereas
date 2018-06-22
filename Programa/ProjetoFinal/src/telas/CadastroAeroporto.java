@@ -13,24 +13,35 @@ import passagens_aereas.Aeroporto;
  *
  * @author lucas_nuze0yo
  */
-public class CadastroAeroporto extends java.awt.Dialog {
-    
-    boolean at;
+public final class CadastroAeroporto extends java.awt.Dialog {
 
+    boolean atualizacao = false;
     /**
      * Creates new form CadastroAeroporto
      *
      * @param parent
      * @param modal
      */
-    public CadastroAeroporto(java.awt.Frame parent, boolean modal, boolean atualizacao) {
+    public CadastroAeroporto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        at = atualizacao;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
     
+    public CadastroAeroporto(java.awt.Frame parent, boolean modal, Aeroporto aeroporto) {
+        super(parent, modal);
+        initComponents();
+        this.atualizacao = true;
+        setCampos(aeroporto);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+    }
+    
+    public void setCampos(Aeroporto aeroporto){
+        this.jTFNome.setText();
+    }
+
     //Método reservado a todas as validações de um aeroporto, retorna True se todas as validações estiverem corretas
     public boolean validaAeroporto(Aeroporto aeroporto) {
         return true;
@@ -53,35 +64,43 @@ public class CadastroAeroporto extends java.awt.Dialog {
         op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_CANCEL_OPTION);
         if (op == JOptionPane.YES_OPTION) {
             cadastraAeroporto(aeroporto);
-        } else if (op == JOptionPane.NO_OPTION){
+        } else if (op == JOptionPane.NO_OPTION) {
             cadastraAeroporto(aeroporto);
             this.dispose();
         }
     }
-    
+
     //Cadastra um aeroporto e limpa os dados de cadastro que estavam preenchidos
-    public void cadastraAeroporto(Aeroporto aeroporto){
+    public void cadastraAeroporto(Aeroporto aeroporto) {
         //Cria o CRUD e executa o método de inserção
         AeroportoCRUD aeroCRUD = new AeroportoCRUD();
-        if(at){
-            
-        }else{
+        if (atualizacao) {
+
+        } else {
             aeroCRUD.inserir(aeroporto);
         }
-        //Limpa os dados dos ComboBox e TextField
-        this.jComboBoxEstado.setSelectedItem("AC");
-        this.jTextFieldNome.setText("");
+        limpaCampos();
+    }
+
+    public void limpaCampos() {
+        this.jCBEstado.setSelectedItem("AC");
+        this.jTFNome.setText("");
         this.jTextFieldCidade.setText("");
     }
-    
-    //Executa métodos relacionados a gravação de dados de um aeroporto
-    public void gravaAero(){
-        //Cria um aeroporto com os dados inseridos
-        Aeroporto aeroporto = new Aeroporto(jTextFieldNome.getText(), jTextFieldCidade.getText(), jComboBoxEstado.getSelectedItem().toString());
-        
+
+    public void gravaAero() {
+        Aeroporto aeroporto = criaAeroporto();
         if (validaAeroporto(aeroporto)) {
             perguntaCadastro(aeroporto);
         }
+    }
+
+    public Aeroporto criaAeroporto() {
+        Aeroporto aeroporto = new Aeroporto();
+        aeroporto.setNome(this.jTextFijTFNomet());
+        aeroporto.setCidade(this.jTextFieldCidade.getText());
+        aeroporto.setEstado(this.jCombojCBEstadolectedItem().toString());
+        return aeroporto;
     }
 
     /**
@@ -96,12 +115,12 @@ public class CadastroAeroporto extends java.awt.Dialog {
         jPanelMid = new javax.swing.JPanel();
         jPanelNome = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabelNome = new javax.swing.JLabel();
-        jTextFieldNome = new javax.swing.JTextField();
+        jLblNome = new javax.swing.JLabel();
+        jTFNome = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabelEstado = new javax.swing.JLabel();
-        jComboBoxEstado = new javax.swing.JComboBox<>();
+        jLblEstado = new javax.swing.JLabel();
+        jCBEstado = new javax.swing.JComboBox<>();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 0));
         jLabelCidade = new javax.swing.JLabel();
         jTextFieldCidade = new javax.swing.JTextField();
@@ -124,22 +143,22 @@ public class CadastroAeroporto extends java.awt.Dialog {
         jPanelNome.setLayout(new java.awt.GridBagLayout());
         jPanelNome.add(jPanel3, new java.awt.GridBagConstraints());
 
-        jLabelNome.setText("Nome: ");
-        jPanelNome.add(jLabelNome, new java.awt.GridBagConstraints());
+        jLblNome.setText("Nome: ");
+        jPanelNome.add(jLblNome, new java.awt.GridBagConstraints());
 
-        jTextFieldNome.setMaximumSize(new java.awt.Dimension(300, 20));
-        jTextFieldNome.setMinimumSize(new java.awt.Dimension(300, 20));
-        jTextFieldNome.setPreferredSize(new java.awt.Dimension(300, 20));
-        jPanelNome.add(jTextFieldNome, new java.awt.GridBagConstraints());
+        jTFNome.setMaximumSize(new java.awt.Dimension(300, 20));
+        jTFNome.setMinimumSize(new java.awt.Dimension(300, 20));
+        jTFNome.setPreferredSize(new java.awt.Dimension(300, 20));
+        jPanelNome.add(jTFNome, new java.awt.GridBagConstraints());
         jPanelNome.add(jPanel2, new java.awt.GridBagConstraints());
 
         jPanelMid.add(jPanelNome);
 
-        jLabelEstado.setText("Estado: ");
-        jPanel1.add(jLabelEstado);
+        jLblEstado.setText("Estado: ");
+        jPanel1.add(jLblEstado);
 
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
-        jPanel1.add(jComboBoxEstado);
+        jCBEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        jPanel1.add(jCBEstado);
         jPanel1.add(filler1);
 
         jLabelCidade.setText("Cidade: ");
@@ -208,6 +227,7 @@ public class CadastroAeroporto extends java.awt.Dialog {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        CadastroAeroporto cadastroAeroporto = new CadastroAeroporto(null, true);
     }
 
 
@@ -215,10 +235,10 @@ public class CadastroAeroporto extends java.awt.Dialog {
     private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonOK;
-    private javax.swing.JComboBox<String> jComboBoxEstado;
+    private javax.swing.JComboBox<String> jCBEstado;
     private javax.swing.JLabel jLabelCidade;
-    private javax.swing.JLabel jLabelEstado;
-    private javax.swing.JLabel jLabelNome;
+    private javax.swing.JLabel jLblEstado;
+    private javax.swing.JLabel jLblNome;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -226,7 +246,7 @@ public class CadastroAeroporto extends java.awt.Dialog {
     private javax.swing.JPanel jPanelMid;
     private javax.swing.JPanel jPanelNome;
     private javax.swing.JPanel jPanelTop;
+    private javax.swing.JTextField jTFNome;
     private javax.swing.JTextField jTextFieldCidade;
-    private javax.swing.JTextField jTextFieldNome;
     // End of variables declaration//GEN-END:variables
 }
