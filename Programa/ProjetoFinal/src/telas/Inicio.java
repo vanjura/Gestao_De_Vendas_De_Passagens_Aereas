@@ -11,17 +11,18 @@ import passagens_aereas.Usuario;
  * @author lucas_nuze0yo
  */
 public class Inicio extends javax.swing.JFrame {
-
+    Usuario usu;
     /**
      * Creates new form Inicio
      */
     public Inicio(Usuario usuario) {
+        usu = usuario;
         initComponents();
         //comando para deixar a janela em fullscreen
         this.setExtendedState(Inicio.MAXIMIZED_BOTH);
         //se o nível do usuário for menor que 10 a opção 2 e 3 do menu estarão inacessiveis
         if(usuario.getNivel() <= 5){
-            this.menuUsuar.setEnabled(false);
+            this.menuCadastroDeUsuario.setEnabled(false);
         }
         if(usuario.getNivel() <= 1){
             this.menuFrota.setEnabled(false);
@@ -43,6 +44,7 @@ public class Inicio extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         barraMenu = new javax.swing.JMenuBar();
         menuUsuar = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         menuCadastroDeUsuario = new javax.swing.JMenuItem();
         menuFrota = new javax.swing.JMenu();
         menuFrota_CadAviao = new javax.swing.JMenuItem();
@@ -79,6 +81,9 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().add(jPanel4, java.awt.BorderLayout.CENTER);
 
         menuUsuar.setText("Usuários");
+
+        jMenuItem1.setText("Vizualisar Usuários");
+        menuUsuar.add(jMenuItem1);
 
         menuCadastroDeUsuario.setText("Cadastro de Usuários");
         menuCadastroDeUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +134,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void menuAero_CadAeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAero_CadAeroActionPerformed
         //inicia o cadastro de um aeroporto
-        CadastroAeroporto cadAero = new CadastroAeroporto(this, true);
+        CadastroAeroporto cadAero = new CadastroAeroporto(this, true, false);
     }//GEN-LAST:event_menuAero_CadAeroActionPerformed
 
     private void menuFrota_CadAviaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFrota_CadAviaoActionPerformed
@@ -147,6 +152,7 @@ public class Inicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barraMenu;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JMenu menuAero;

@@ -14,6 +14,8 @@ import passagens_aereas.Aeroporto;
  * @author lucas_nuze0yo
  */
 public class CadastroAeroporto extends java.awt.Dialog {
+    
+    boolean at;
 
     /**
      * Creates new form CadastroAeroporto
@@ -21,8 +23,9 @@ public class CadastroAeroporto extends java.awt.Dialog {
      * @param parent
      * @param modal
      */
-    public CadastroAeroporto(java.awt.Frame parent, boolean modal) {
+    public CadastroAeroporto(java.awt.Frame parent, boolean modal, boolean atualizacao) {
         super(parent, modal);
+        at = atualizacao;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -60,7 +63,11 @@ public class CadastroAeroporto extends java.awt.Dialog {
     public void cadastraAeroporto(Aeroporto aeroporto){
         //Cria o CRUD e executa o método de inserção
         AeroportoCRUD aeroCRUD = new AeroportoCRUD();
-        aeroCRUD.inserir(aeroporto);
+        if(at){
+            
+        }else{
+            aeroCRUD.inserir(aeroporto);
+        }
         //Limpa os dados dos ComboBox e TextField
         this.jComboBoxEstado.setSelectedItem("AC");
         this.jTextFieldNome.setText("");
@@ -71,6 +78,7 @@ public class CadastroAeroporto extends java.awt.Dialog {
     public void gravaAero(){
         //Cria um aeroporto com os dados inseridos
         Aeroporto aeroporto = new Aeroporto(jTextFieldNome.getText(), jTextFieldCidade.getText(), jComboBoxEstado.getSelectedItem().toString());
+        
         if (validaAeroporto(aeroporto)) {
             perguntaCadastro(aeroporto);
         }

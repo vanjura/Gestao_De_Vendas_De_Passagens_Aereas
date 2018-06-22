@@ -9,6 +9,11 @@
             <Property name="text" type="java.lang.String" value="Usu&#xe1;rios"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Vizualisar Usu&#xe1;rios"/>
+              </Properties>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuCadastroDeUsuario">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cadastro de Usu&#xe1;rios"/>
