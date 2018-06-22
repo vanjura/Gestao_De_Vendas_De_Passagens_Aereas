@@ -16,6 +16,7 @@ import passagens_aereas.Aeroporto;
 public final class CadastroAeroporto extends java.awt.Dialog {
 
     boolean atualizacao = false;
+
     /**
      * Creates new form CadastroAeroporto
      *
@@ -28,7 +29,7 @@ public final class CadastroAeroporto extends java.awt.Dialog {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-    
+
     public CadastroAeroporto(java.awt.Frame parent, boolean modal, Aeroporto aeroporto) {
         super(parent, modal);
         initComponents();
@@ -37,18 +38,21 @@ public final class CadastroAeroporto extends java.awt.Dialog {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-    
-    public void setCampos(Aeroporto aeroporto){
+
+    public void setCampos(Aeroporto aeroporto) {
         this.jTFNome.setText(aeroporto.getNome());
         this.jCBEstado.setSelectedItem(aeroporto.getEstado());
         this.jTextFieldCidade.setText(aeroporto.getCidade());
     }
 
-    //Método reservado a todas as validações de um aeroporto, retorna True se todas as validações estiverem corretas
     public boolean validaAeroporto(Aeroporto aeroporto) {
+        if(aeroporto.getNome().equals("")||aeroporto.getCidade().equals("")){
+            System.out.println("Os campos de Nome e Cidade devem estar preenchidos.");
+            return false;
+        }
         AeroportoCRUD aeroportoCRUD = new AeroportoCRUD();
-        for(Aeroporto a : aeroportoCRUD.buscaNome()){
-            if(a.getNome().equals(aeroporto.getNome())){
+        for (Aeroporto a : aeroportoCRUD.buscaNome()) {
+            if (a.getNome().equals(aeroporto.getNome())) {
                 System.out.println("Aeroporto já existe com esse nome.");
                 //frase de aeroporto já existente com esse nome
                 return false;
@@ -62,7 +66,7 @@ public final class CadastroAeroporto extends java.awt.Dialog {
         int op;
         String titulo = "Cadastro de Aeroporto";
         String texto;
-        
+
         texto = "Informações cadastradas:"
                 + "\nNome: " + aeroporto.getNome()
                 + "\nCidade: " + aeroporto.getCidade()
@@ -70,7 +74,7 @@ public final class CadastroAeroporto extends java.awt.Dialog {
                 + "\n"
                 + "\nDeseja cadastrar outro?"
                 + "\nClique em cancelar para editar os dados acima.";
-        
+
         op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_CANCEL_OPTION);
         if (op == JOptionPane.YES_OPTION) {
             cadastraAeroporto(aeroporto);
@@ -80,9 +84,7 @@ public final class CadastroAeroporto extends java.awt.Dialog {
         }
     }
 
-    //Cadastra um aeroporto e limpa os dados de cadastro que estavam preenchidos
     public void cadastraAeroporto(Aeroporto aeroporto) {
-        //Cria o CRUD e executa o método de inserção
         AeroportoCRUD aeroCRUD = new AeroportoCRUD();
         if (atualizacao) {
 
