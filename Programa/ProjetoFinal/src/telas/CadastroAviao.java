@@ -25,31 +25,82 @@ public class CadastroAviao extends java.awt.Dialog {
         this.setVisible(true);
     }
 
-    public boolean validação(Aviao aviao) {
-        //códigos de validação
+    public boolean validacaoAviao(Aviao aviao) {
+        if (this.jFTFRegistro.getText().equals("   -  ")
+                || this.jTFModelo.getText().isEmpty()
+                || this.jftfAssentosComuns.getText().isEmpty()
+                || this.jFTFAssentosEspeciais.getText().isEmpty()) {
+            System.out.println("Campo em branco");
+            return false;
+        }
+        try {
+            if (Integer.parseInt(this.jLblQtdAss.getText()) < 1) {
+                System.out.println("Valor de assentos menor que 1");
+                return false;
+            }
+            if (Integer.parseInt(this.jFTFAssentosEspeciais.getText()) < 1) {
+                System.out.println("Valor de assentos especiais menor que 1");
+                return false;
+            }
+        } catch (NumberFormatException ex) {
+            System.out.println("numero inválido de assentos ou assentos especiais");
+            return false;
+        }
         return true;
     }
-    
-    public void iniciaGravacao(){
-        criaAviao();
+
+    public void iniciaGravacao() {
+        Aviao aviao = criaAviao();
         AviaoCRUD aviaocrud = new AviaoCRUD();
-        if(aviaocrud.procuraRegistro(aviao.getRegistro())){
-            JOptionPane.showMessageDialog(null, "Já existe um avião cadastrado com esse registro."
-                    + "\nFavor informar um registro diferente.");
-        }else{
-            //código para armazenar o avião
+        System.out.println(validacaoAviao(aviao));
+        if (!validacaoAviao(aviao)) {
+            return;
+        }
+        if (aviao != null) {
+            if (aviaocrud.procuraRegistro(aviao.getRegistro())) {
+                JOptionPane.showMessageDialog(null, "Já existe um avião cadastrado com esse registro."
+                        + "\nFavor informar um registro diferente.");
+            } else {
+                if (mostraDados(aviao)) {
+                    salvaAviao(aviao);
+                }
+            }
         }
     }
-    
-    public Aviao criaAviao(){
-        String registro = this.jFTFRegistro.getText();
-        String modelo = this.jTFModelo.getText();
-        int qtd_ass_esp = Integer.parseInt(this.jFTFAssentosEspeciais.getText());
-        int qtd_ass = Integer.parseInt(this.jftfAssentosComuns.getText()) - qtd_ass_esp;
-        Aviao aviao = new Aviao(registro, modelo, qtd_ass, qtd_ass_esp);
-        return aviao;
+
+    public boolean mostraDados(Aviao aviao) {
+        int op = JOptionPane.showConfirmDialog(null, "Dados Gravados: "
+                + "\n" + this.jLblRegistro.getText() + " " + aviao.getRegistro()
+                + "\nModelo: " + aviao.getModelo()
+                + "\nQuantidade de assentos: " + aviao.getQtd_assentos()
+                + "\nQuantidade ass. espec.: " + aviao.getQtd_assentos_esp());
+        if (op == JOptionPane.OK_OPTION) {
+
+        }
     }
-    
+
+    public void salvaAviao(Aviao aviao) {
+
+    }
+
+    public Aviao criaAviao() {
+        try {
+            String registro = this.jFTFRegistro.getText();
+            String modelo = this.jTFModelo.getText();
+            int qtd_ass_esp = Integer.parseInt(this.jFTFAssentosEspeciais.getText());
+            int qtd_ass = Integer.parseInt(this.jftfAssentosComuns.getText()) - qtd_ass_esp;
+            Aviao aviao = new Aviao(registro, modelo, qtd_ass, qtd_ass_esp);
+            return aviao;
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Os campos '"
+                    + this.jLblAssentosEspeciais.getText()
+                    + "' e '"
+                    + this.jLblQtdAss.getText()
+                    + "' \nsão de preenchimento obrigatório.");
+            return null;
+        }
+    }
+
     public static void main(String[] args) {
         CadastroAviao cadastroAviao = new CadastroAviao(null, true);
     }
@@ -69,7 +120,7 @@ public class CadastroAviao extends java.awt.Dialog {
         jLblModelo = new javax.swing.JLabel();
         jTFModelo = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jLabelQtdAss = new javax.swing.JLabel();
+        jLblQtdAss = new javax.swing.JLabel();
         jftfAssentosComuns = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
         jLblAssentosEspeciais = new javax.swing.JLabel();
@@ -115,8 +166,8 @@ public class CadastroAviao extends java.awt.Dialog {
 
         jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jLabelQtdAss.setText("Quantidade Total de Assentos:");
-        jPanel3.add(jLabelQtdAss);
+        jLblQtdAss.setText("Quantidade Total de Assentos:");
+        jPanel3.add(jLblQtdAss);
 
         jftfAssentosComuns.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         jftfAssentosComuns.setMaximumSize(new java.awt.Dimension(50, 20));
@@ -142,9 +193,6 @@ public class CadastroAviao extends java.awt.Dialog {
         add(jPanelMed, java.awt.BorderLayout.CENTER);
 
         jButtonOK.setText("Inserir");
-        jButtonOK.setMaximumSize(new java.awt.Dimension(75, 23));
-        jButtonOK.setMinimumSize(new java.awt.Dimension(75, 23));
-        jButtonOK.setPreferredSize(new java.awt.Dimension(75, 23));
         jButtonOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonOKActionPerformed(evt);
@@ -153,6 +201,11 @@ public class CadastroAviao extends java.awt.Dialog {
         jPanelBaixo.add(jButtonOK);
 
         jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
         jPanelBaixo.add(jButtonCancelar);
 
         add(jPanelBaixo, java.awt.BorderLayout.SOUTH);
@@ -172,15 +225,20 @@ public class CadastroAviao extends java.awt.Dialog {
         iniciaGravacao();
     }//GEN-LAST:event_jButtonOKActionPerformed
 
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonOK;
     private javax.swing.JFormattedTextField jFTFAssentosEspeciais;
     private javax.swing.JFormattedTextField jFTFRegistro;
-    private javax.swing.JLabel jLabelQtdAss;
     private javax.swing.JLabel jLblAssentosEspeciais;
     private javax.swing.JLabel jLblModelo;
+    private javax.swing.JLabel jLblQtdAss;
     private javax.swing.JLabel jLblRegistro;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
