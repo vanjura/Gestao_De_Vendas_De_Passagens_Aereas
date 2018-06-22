@@ -112,7 +112,7 @@ public class CadastroUsuario extends java.awt.Dialog {
      * @param args
      */
     public static void main(String[] args) {
-        CadastroUsuario teste = new CadastroUsuario(null, true, 0);
+        CadastroUsuario teste = new CadastroUsuario(null, true);
     }
 
     /**

@@ -39,11 +39,21 @@ public final class CadastroAeroporto extends java.awt.Dialog {
     }
     
     public void setCampos(Aeroporto aeroporto){
-        this.jTFNome.setText();
+        this.jTFNome.setText(aeroporto.getNome());
+        this.jCBEstado.setSelectedItem(aeroporto.getEstado());
+        this.jTextFieldCidade.setText(aeroporto.getCidade());
     }
 
     //Método reservado a todas as validações de um aeroporto, retorna True se todas as validações estiverem corretas
     public boolean validaAeroporto(Aeroporto aeroporto) {
+        AeroportoCRUD aeroportoCRUD = new AeroportoCRUD();
+        for(Aeroporto a : aeroportoCRUD.buscaNome()){
+            if(a.getNome().equals(aeroporto.getNome())){
+                System.out.println("Aeroporto já existe com esse nome.");
+                //frase de aeroporto já existente com esse nome
+                return false;
+            }
+        }
         return true;
     }
 
@@ -52,7 +62,7 @@ public final class CadastroAeroporto extends java.awt.Dialog {
         int op;
         String titulo = "Cadastro de Aeroporto";
         String texto;
-        //Criação da fraze a ser apresentada no JOptionPane
+        
         texto = "Informações cadastradas:"
                 + "\nNome: " + aeroporto.getNome()
                 + "\nCidade: " + aeroporto.getCidade()
@@ -60,7 +70,7 @@ public final class CadastroAeroporto extends java.awt.Dialog {
                 + "\n"
                 + "\nDeseja cadastrar outro?"
                 + "\nClique em cancelar para editar os dados acima.";
-        //JoptionPane com título deve ter obrigatóriamente os dados de opções
+        
         op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_CANCEL_OPTION);
         if (op == JOptionPane.YES_OPTION) {
             cadastraAeroporto(aeroporto);
@@ -88,7 +98,7 @@ public final class CadastroAeroporto extends java.awt.Dialog {
         this.jTextFieldCidade.setText("");
     }
 
-    public void gravaAero() {
+    public void iniciaGravacaoAeroporto() {
         Aeroporto aeroporto = criaAeroporto();
         if (validaAeroporto(aeroporto)) {
             perguntaCadastro(aeroporto);
@@ -97,9 +107,9 @@ public final class CadastroAeroporto extends java.awt.Dialog {
 
     public Aeroporto criaAeroporto() {
         Aeroporto aeroporto = new Aeroporto();
-        aeroporto.setNome(this.jTextFijTFNomet());
+        aeroporto.setNome(this.jTFNome.getText());
         aeroporto.setCidade(this.jTextFieldCidade.getText());
-        aeroporto.setEstado(this.jCombojCBEstadolectedItem().toString());
+        aeroporto.setEstado(this.jCBEstado.getSelectedItem().toString());
         return aeroporto;
     }
 
@@ -168,11 +178,6 @@ public final class CadastroAeroporto extends java.awt.Dialog {
         jTextFieldCidade.setMinimumSize(new java.awt.Dimension(150, 20));
         jTextFieldCidade.setName(""); // NOI18N
         jTextFieldCidade.setPreferredSize(new java.awt.Dimension(150, 20));
-        jTextFieldCidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCidadeActionPerformed(evt);
-            }
-        });
         jPanel1.add(jTextFieldCidade);
 
         jPanelMid.add(jPanel1);
@@ -215,12 +220,8 @@ public final class CadastroAeroporto extends java.awt.Dialog {
         this.dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-    private void jTextFieldCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCidadeActionPerformed
-        gravaAero();
-    }//GEN-LAST:event_jTextFieldCidadeActionPerformed
-
     private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
-        gravaAero();
+        iniciaGravacaoAeroporto();
     }//GEN-LAST:event_jButtonOKActionPerformed
 
     /**

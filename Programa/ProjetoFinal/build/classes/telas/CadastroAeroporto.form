@@ -180,9 +180,6 @@
                   <Dimension value="[150, 20]"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldCidadeActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>

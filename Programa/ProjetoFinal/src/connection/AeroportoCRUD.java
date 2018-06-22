@@ -52,7 +52,7 @@ public class AeroportoCRUD {
     }
 
     public List<Aeroporto> buscaNome() {
-        List<Aeroporto> aeroportos = new ArrayList<>();
+        List<Aeroporto> aeroportoNomes = new ArrayList<>();
         String slq = "select nome from aeroporto";
         PreparedStatement stmt;
         ResultSet rs;
@@ -62,12 +62,12 @@ public class AeroportoCRUD {
             while (rs.next()) {
                 Aeroporto aeroporto = new Aeroporto();
                 aeroporto.setNome(rs.getString("nome"));
-                aeroportos.add(aeroporto);
+                aeroportoNomes.add(aeroporto);
             }
         } catch (SQLException ex) {
             System.err.println("Erro: " + ex);
         }
-        return aeroportos;
+        return aeroportoNomes;
     }
     
     public int buscaRegistroComNome(String nome){
