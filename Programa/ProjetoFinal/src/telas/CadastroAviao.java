@@ -77,6 +77,7 @@ public class CadastroAviao extends java.awt.Dialog {
         if (op == JOptionPane.OK_OPTION) {
 
         }
+        return false;
     }
 
     public void salvaAviao(Aviao aviao) {

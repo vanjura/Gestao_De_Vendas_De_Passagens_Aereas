@@ -40,7 +40,6 @@ public class TabelaUsuario extends javax.swing.JDialog {
         UsuarioCRUD uCrud = new UsuarioCRUD();
 
         for (Usuario u : uCrud.buscaTodos()) {
-            System.out.println(u.toString());
             modelo.addRow(new Object[]{
                 u.getNome(),
                 u.getNivel(),

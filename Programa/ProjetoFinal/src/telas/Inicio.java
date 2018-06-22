@@ -43,6 +43,8 @@ public class Inicio extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         barraMenu = new javax.swing.JMenuBar();
+        menuVoo = new javax.swing.JMenu();
+        menuVoos_CadVoo = new javax.swing.JMenuItem();
         menuUsuar = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         menuCadastroDeUsuario = new javax.swing.JMenuItem();
@@ -79,6 +81,18 @@ public class Inicio extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel4, java.awt.BorderLayout.CENTER);
+
+        menuVoo.setText("Voos");
+
+        menuVoos_CadVoo.setText("Cadastro de Voo");
+        menuVoos_CadVoo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuVoos_CadVooActionPerformed(evt);
+            }
+        });
+        menuVoo.add(menuVoos_CadVoo);
+
+        barraMenu.add(menuVoo);
 
         menuUsuar.setText("Usuários");
 
@@ -149,6 +163,10 @@ public class Inicio extends javax.swing.JFrame {
         CadastroRota cadastroRota = new CadastroRota(null, true);
     }//GEN-LAST:event_menuFrota_CadRotasActionPerformed
 
+    private void menuVoos_CadVooActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVoos_CadVooActionPerformed
+        CadastroVoo cadastroVoo = new CadastroVoo(null, true);
+    }//GEN-LAST:event_menuVoos_CadVooActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barraMenu;
@@ -162,5 +180,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuFrota_CadAviao;
     private javax.swing.JMenuItem menuFrota_CadRotas;
     private javax.swing.JMenu menuUsuar;
+    private javax.swing.JMenu menuVoo;
+    private javax.swing.JMenuItem menuVoos_CadVoo;
     // End of variables declaration//GEN-END:variables
 }

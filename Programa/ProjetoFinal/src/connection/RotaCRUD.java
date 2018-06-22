@@ -7,7 +7,12 @@ package connection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import passagens_aereas.Rota;
 
 /**
@@ -31,8 +36,8 @@ public class RotaCRUD {
         try {
             stmt = con.prepareStatement(sql);
             // cada numero do setString ou setInt corresponde a um ? (interrogação) do comando sql
-            stmt.setInt(1, rota.getOrigem());
-            stmt.setInt(2, rota.getDestino());
+            stmt.setString(1, rota.getOrigem());
+            stmt.setString(2, rota.getDestino());
             stmt.setString(3, rota.getDuracao());
             stmt.setFloat(4, rota.getPreco_c());
             stmt.setFloat(5, rota.getPreco_e());
@@ -48,5 +53,31 @@ public class RotaCRUD {
             //fecha a conexão e o Statement
             Conexao.fecharConexao(con, stmt);
         }
+    }
+    public List<Rota> buscaTodos(){
+        ArrayList<Rota> rotas = new ArrayList<>();
+        String sql = "select * from rota";
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = con.prepareStatement(sql);
+            rs = stmt.executeQuery();
+            while (rs.next()){
+                Rota rota = new Rota();
+                
+                rota.setId(rs.getInt("id_rota"));
+                rota.setOrigem(rs.getString("origem"));
+                rota.setDestino(rs.getString("destino"));
+                rota.setDuracao(rs.getString("duracao"));
+                rota.setPreco_c(rs.getInt("preco_c"));
+                rota.setPreco_e(rs.getInt("preco_e"));
+                rotas.add(rota);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RotaCRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            Conexao.fecharConexao(con, stmt, rs);
+        }
+        return rotas;
     }
 }

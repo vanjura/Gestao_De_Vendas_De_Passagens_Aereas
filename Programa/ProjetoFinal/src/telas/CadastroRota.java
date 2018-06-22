@@ -77,8 +77,8 @@ public final class CadastroRota extends java.awt.Dialog {
 
     public Rota criaRota() {
         Rota rota = new Rota();
-        rota.setOrigem(retornaIdAeroporto(this.caixaOrigem.getSelectedItem().toString()));
-        rota.setDestino(retornaIdAeroporto(this.caixaDestino.getSelectedItem().toString()));
+        rota.setOrigem(this.caixaOrigem.getSelectedItem().toString());
+        rota.setDestino(this.caixaDestino.getSelectedItem().toString());
         rota.setDuracao(retornaHoraFormatada(this.caixaHora.getSelectedItem().toString(),
                 this.caixaMinuto.getSelectedItem().toString()));
         rota.setPreco_c(Float.parseFloat(this.ftextoPrecoPass.getText().replace(",", ".")));

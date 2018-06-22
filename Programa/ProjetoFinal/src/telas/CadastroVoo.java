@@ -9,14 +9,28 @@ package telas;
  *
  * @author lucas_nuze0yo
  */
-public class CadastroVoo extends java.awt.Dialog {
+public final class CadastroVoo extends java.awt.Dialog {
+    
+    private int rota_selecionada;
+
+    public int getRota_selecionada() {
+        return rota_selecionada;
+    }
+
+    public void setRota_selecionada(int rota_selecionada) {
+        this.rota_selecionada = rota_selecionada;
+    }
 
     /**
      * Creates new form CadastroVoo
+     * @param parent
+     * @param modal
      */
     public CadastroVoo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     /**
@@ -36,6 +50,8 @@ public class CadastroVoo extends java.awt.Dialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -48,10 +64,15 @@ public class CadastroVoo extends java.awt.Dialog {
 
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.PAGE_AXIS));
 
-        jLabel1.setText("Viagem:");
+        jLabel1.setText("Rota:");
         jPanel3.add(jLabel1);
 
-        jButton3.setText("Selecionar Viagem");
+        jButton3.setText("Selecionar Rota");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton3);
 
         jLabel2.setText("Escolha uma viagem clicando no botão ao lado");
@@ -69,6 +90,12 @@ public class CadastroVoo extends java.awt.Dialog {
         jDateChooser1.setMinimumSize(new java.awt.Dimension(100, 20));
         jDateChooser1.setPreferredSize(new java.awt.Dimension(100, 20));
         jPanel4.add(jDateChooser1);
+
+        jLabel5.setText("Data Prevista de chegada: ");
+        jPanel4.add(jLabel5);
+
+        jLabel6.setText("00/00/000");
+        jPanel4.add(jLabel6);
 
         jPanel2.add(jPanel4);
 
@@ -93,21 +120,18 @@ public class CadastroVoo extends java.awt.Dialog {
         dispose();
     }//GEN-LAST:event_closeDialog
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        TelaSelecRota telaSelecRota = new TelaSelecRota(null, true);
+        int i = telaSelecRota.getRota_int();
+        String x = telaSelecRota.getRota_string();
+        telaSelecRota.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                CadastroVoo dialog = new CadastroVoo(new java.awt.Frame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
+        CadastroVoo cadastroVoo = new CadastroVoo(null, true);
     }
 
 
@@ -120,6 +144,8 @@ public class CadastroVoo extends java.awt.Dialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

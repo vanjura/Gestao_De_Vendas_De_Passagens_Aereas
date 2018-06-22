@@ -12,12 +12,25 @@ import java.sql.Time;
  * @author lucas_nuze0yo
  */
 public class Rota {
+
     private int id;
-    private int origem;
-    private int destino;
+    private String origem;
+    private String destino;
     private String duracao;
     private float preco_c;
     private float preco_e;
+
+    public Rota() {
+    }
+
+    public Rota(int id, String origem, String destino, String duracao, float preco_c, float preco_e) {
+        this.id = id;
+        this.origem = origem;
+        this.destino = destino;
+        this.duracao = duracao;
+        this.preco_c = preco_c;
+        this.preco_e = preco_e;
+    }
 
     /**
      * @return the id
@@ -36,28 +49,28 @@ public class Rota {
     /**
      * @return the origem
      */
-    public int getOrigem() {
+    public String getOrigem() {
         return origem;
     }
 
     /**
      * @param origem the origem to set
      */
-    public void setOrigem(int origem) {
+    public void setOrigem(String origem) {
         this.origem = origem;
     }
 
     /**
      * @return the destino
      */
-    public int getDestino() {
+    public String getDestino() {
         return destino;
     }
 
     /**
      * @param destino the destino to set
      */
-    public void setDestino(int destino) {
+    public void setDestino(String destino) {
         this.destino = destino;
     }
 
