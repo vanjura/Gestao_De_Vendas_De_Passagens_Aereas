@@ -29,6 +29,30 @@ public class CadastroAviao extends java.awt.Dialog {
         //códigos de validação
         return true;
     }
+    
+    public void iniciaGravacao(){
+        criaAviao();
+        AviaoCRUD aviaocrud = new AviaoCRUD();
+        if(aviaocrud.procuraRegistro(aviao.getRegistro())){
+            JOptionPane.showMessageDialog(null, "Já existe um avião cadastrado com esse registro."
+                    + "\nFavor informar um registro diferente.");
+        }else{
+            //código para armazenar o avião
+        }
+    }
+    
+    public Aviao criaAviao(){
+        String registro = this.jFTFRegistro.getText();
+        String modelo = this.jTFModelo.getText();
+        int qtd_ass_esp = Integer.parseInt(this.jFTFAssentosEspeciais.getText());
+        int qtd_ass = Integer.parseInt(this.jftfAssentosComuns.getText()) - qtd_ass_esp;
+        Aviao aviao = new Aviao(registro, modelo, qtd_ass, qtd_ass_esp);
+        return aviao;
+    }
+    
+    public static void main(String[] args) {
+        CadastroAviao cadastroAviao = new CadastroAviao(null, true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -145,18 +169,7 @@ public class CadastroAviao extends java.awt.Dialog {
     }//GEN-LAST:event_closeDialog
 
     private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
-        String registro = this.jFTFRegistro.getText();
-        String modelo = this.jTFModelo.getText();
-        int qtd_ass_esp = Integer.parseInt(this.jFTFAssentosEspeciais.getText());
-        int qtd_ass = Integer.parseInt(this.jftfAssentosComuns.getText()) - qtd_ass_esp;
-        Aviao aviao = new Aviao(registro, modelo, qtd_ass, qtd_ass_esp);
-        AviaoCRUD aviaocrud = new AviaoCRUD();
-        if(aviaocrud.procuraRegistro(aviao.getRegistro())){
-            JOptionPane.showMessageDialog(null, "Já existe um avião cadastrado com esse registro."
-                    + "\nFavor informar um registro diferente.");
-        }else{
-            //código para armazenar o avião
-        }
+        iniciaGravacao();
     }//GEN-LAST:event_jButtonOKActionPerformed
 
 
