@@ -31,16 +31,15 @@ public class RotaCRUD {
         PreparedStatement stmt = null;
 
         //Comando sql de inserção 
-        String sql = "insert into rota (origem, destino, duracao, preco_c, preco_e) VALUES(?,?,?,?,?)";
+        String sql = "insert into rota (origem, destino, preco_c, preco_e) VALUES(?,?,?,?)";
 
         try {
             stmt = con.prepareStatement(sql);
             // cada numero do setString ou setInt corresponde a um ? (interrogação) do comando sql
             stmt.setString(1, rota.getOrigem());
             stmt.setString(2, rota.getDestino());
-            stmt.setString(3, rota.getDuracao());
-            stmt.setFloat(4, rota.getPreco_c());
-            stmt.setFloat(5, rota.getPreco_e());
+            stmt.setFloat(3, rota.getPreco_c());
+            stmt.setFloat(4, rota.getPreco_e());
             
             //Executa o Update
             stmt.executeUpdate();
@@ -68,7 +67,6 @@ public class RotaCRUD {
                 rota.setId(rs.getInt("id_rota"));
                 rota.setOrigem(rs.getString("origem"));
                 rota.setDestino(rs.getString("destino"));
-                rota.setDuracao(rs.getString("duracao"));
                 rota.setPreco_c(rs.getInt("preco_c"));
                 rota.setPreco_e(rs.getInt("preco_e"));
                 rotas.add(rota);

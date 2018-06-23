@@ -15,15 +15,24 @@ import passagens_aereas.Rota;
  */
 public final class TelaSelecRota extends java.awt.Dialog {
 
-    private int rota_int;
-    private String rota_string;
+    private int rota_int = 0;
+    private String rota_Origem;
+    private String rota_Destino;
 
-    public String getRota_string() {
-        return rota_string;
+    public String getRota_Destino() {
+        return rota_Destino;
     }
 
-    public void setRota_string(String rota_string) {
-        this.rota_string = rota_string;
+    public void setRota_Destino(String rota_Destino) {
+        this.rota_Destino = rota_Destino;
+    }
+
+    public String getRota_Origem() {
+        return rota_Origem;
+    }
+
+    public void setRota_Origem(String rota_Origem) {
+        this.rota_Origem = rota_Origem;
     }
 
     public int getRota_int() {
@@ -47,6 +56,22 @@ public final class TelaSelecRota extends java.awt.Dialog {
         this.setVisible(true);
     }
     
+    public int pegaId(){
+        int coluna = 0;
+        int linha = jTable1.getSelectedRow();
+        return (int) jTable1.getValueAt(linha, coluna);
+    }
+    
+    public String pegaOrigem(){
+        int coluna = 1;
+        int linha = jTable1.getSelectedRow();
+        return (String) jTable1.getValueAt(linha, coluna);
+    }
+    public String pegaDestino(){
+        int coluna = 2;
+        int linha = jTable1.getSelectedRow();
+        return (String) jTable1.getValueAt(linha, coluna);
+    }
     
     public void populaTabela(){
         RotaCRUD rotaCRUD = new RotaCRUD();
@@ -56,7 +81,6 @@ public final class TelaSelecRota extends java.awt.Dialog {
                 r.getId(),
                 r.getOrigem(),
                 r.getDestino(),
-                r.getDuracao(),
                 r.getPreco_c(),
                 r.getPreco_e()
             });
@@ -117,7 +141,7 @@ public final class TelaSelecRota extends java.awt.Dialog {
 
         jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Clique em um item na tabela e após isso clique em selecionar.");
         jPanel4.add(jLabel1);
 
         jPanel2.add(jPanel4);
@@ -136,8 +160,15 @@ public final class TelaSelecRota extends java.awt.Dialog {
     }//GEN-LAST:event_closeDialog
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.setRota_int(1);
+        try{
+        this.setRota_int(pegaId());
+        this.setRota_Origem(pegaOrigem());
+        this.setRota_Destino(pegaDestino());
         this.setVisible(false);
+            
+        }catch(Exception ex){
+            
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -5,13 +5,37 @@
  */
 package telas;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lucas_nuze0yo
  */
 public final class CadastroVoo extends java.awt.Dialog {
-    
+
     private int rota_selecionada;
+    private Time duracao_selecionada;
+    private Date data_selecionada;
+
+    public Time getDuracao_selecionada() {
+        return duracao_selecionada;
+    }
+
+    public void setDuracao_selecionada(Time duracao_selecionada) {
+        this.duracao_selecionada = duracao_selecionada;
+    }
+
+    public Date getData_selecionada() {
+        return data_selecionada;
+    }
+
+    public void setData_selecionada(Date data_selecionada) {
+        this.data_selecionada = data_selecionada;
+    }
 
     public int getRota_selecionada() {
         return rota_selecionada;
@@ -23,6 +47,7 @@ public final class CadastroVoo extends java.awt.Dialog {
 
     /**
      * Creates new form CadastroVoo
+     *
      * @param parent
      * @param modal
      */
@@ -31,6 +56,24 @@ public final class CadastroVoo extends java.awt.Dialog {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+    }
+
+//            this.setData_selecionada(format.format(this.jDateChooser1.getDate()));
+    private void setVariaveisRota() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        if (this.jDateChooser1.getDate() != null) {
+            System.out.println(format.format(this.jDateChooser1.getDate()));
+            TelaSelecRota telaSelecRota = new TelaSelecRota(null, true);
+            this.setData_selecionada(this.jDateChooser1.getDate());
+            if (telaSelecRota.getRota_int() != 0) {
+                int i = telaSelecRota.getRota_int();
+                String x = telaSelecRota.getRota_Origem();
+                String y = telaSelecRota.getRota_Destino();
+                telaSelecRota.dispose();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione uma data de saida primeiramente.");
+        }
     }
 
     /**
@@ -42,16 +85,17 @@ public final class CadastroVoo extends java.awt.Dialog {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -63,22 +107,6 @@ public final class CadastroVoo extends java.awt.Dialog {
         });
 
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.PAGE_AXIS));
-
-        jLabel1.setText("Rota:");
-        jPanel3.add(jLabel1);
-
-        jButton3.setText("Selecionar Rota");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton3);
-
-        jLabel2.setText("Escolha uma viagem clicando no botão ao lado");
-        jPanel3.add(jLabel2);
-
-        jPanel2.add(jPanel3);
 
         jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
         jPanel4.add(jLabel3);
@@ -99,12 +127,34 @@ public final class CadastroVoo extends java.awt.Dialog {
 
         jPanel2.add(jPanel4);
 
+        jLabel1.setText("Rota:");
+        jPanel3.add(jLabel1);
+
+        jButton3.setText("Selecionar Rota");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton3);
+
+        jLabel2.setText("Escolha uma viagem clicando no botão ao lado");
+        jPanel3.add(jLabel2);
+
+        jPanel2.add(jPanel3);
+        jPanel2.add(jPanel5);
+
         add(jPanel2, java.awt.BorderLayout.CENTER);
 
         jButton1.setText("Salvar");
         jPanel1.add(jButton1);
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2);
 
         add(jPanel1, java.awt.BorderLayout.SOUTH);
@@ -121,11 +171,13 @@ public final class CadastroVoo extends java.awt.Dialog {
     }//GEN-LAST:event_closeDialog
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        TelaSelecRota telaSelecRota = new TelaSelecRota(null, true);
-        int i = telaSelecRota.getRota_int();
-        String x = telaSelecRota.getRota_string();
-        telaSelecRota.dispose();
+        setVariaveisRota();
+
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,5 +202,6 @@ public final class CadastroVoo extends java.awt.Dialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,7 +16,6 @@ public class Rota {
     private int id;
     private String origem;
     private String destino;
-    private String duracao;
     private float preco_c;
     private float preco_e;
 
@@ -27,7 +26,6 @@ public class Rota {
         this.id = id;
         this.origem = origem;
         this.destino = destino;
-        this.duracao = duracao;
         this.preco_c = preco_c;
         this.preco_e = preco_e;
     }
@@ -72,20 +70,6 @@ public class Rota {
      */
     public void setDestino(String destino) {
         this.destino = destino;
-    }
-
-    /**
-     * @return the duracao
-     */
-    public String getDuracao() {
-        return duracao;
-    }
-
-    /**
-     * @param duracao the duracao to set
-     */
-    public void setDuracao(String duracao) {
-        this.duracao = duracao;
     }
 
     /**

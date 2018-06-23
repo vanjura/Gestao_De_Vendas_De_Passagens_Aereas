@@ -23,24 +23,8 @@ public final class CadastroRota extends java.awt.Dialog {
         super(parent, modal);
         initComponents();
         pesquisaAeroporto();
-        arrumaHoraMinuto();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-    }
-
-    public void arrumaHoraMinuto() {
-        for (int i = 1; i < 10; i++) {
-            this.caixaHora.addItem("0" + i);
-        }
-        for (int j = 10; j < 24; j++) {
-            this.caixaHora.addItem(Integer.toString(j));
-        }
-        for (int i = 1; i < 10; i++) {
-            this.caixaMinuto.addItem("0" + i);
-        }
-        for (int j = 10; j < 60; j++) {
-            this.caixaMinuto.addItem(Integer.toString(j));
-        }
     }
 
     public void pesquisaAeroporto() {
@@ -66,21 +50,10 @@ public final class CadastroRota extends java.awt.Dialog {
         return aeroportoCRUD.buscaRegistroComNome(nomeAero);
     }
 
-    public String retornaHoraFormatada(String hora, String minuto) {
-        String tempo;
-        tempo = this.caixaHora.getSelectedItem()
-                + ":"
-                + this.caixaMinuto.getSelectedItem()
-                + ":00";
-        return tempo;
-    }
-
     public Rota criaRota() {
         Rota rota = new Rota();
         rota.setOrigem(this.caixaOrigem.getSelectedItem().toString());
         rota.setDestino(this.caixaDestino.getSelectedItem().toString());
-        rota.setDuracao(retornaHoraFormatada(this.caixaHora.getSelectedItem().toString(),
-                this.caixaMinuto.getSelectedItem().toString()));
         rota.setPreco_c(Float.parseFloat(this.ftextoPrecoPass.getText().replace(",", ".")));
         rota.setPreco_e(Float.parseFloat(this.textoValorPassEsp.getText().replace(",", ".")));
         return rota;
@@ -107,13 +80,6 @@ public final class CadastroRota extends java.awt.Dialog {
         jPanel5 = new javax.swing.JPanel();
         textoDestino = new javax.swing.JLabel();
         caixaDestino = new javax.swing.JComboBox<>();
-        jPanel4 = new javax.swing.JPanel();
-        textoDuracao = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        textoHora = new javax.swing.JLabel();
-        caixaHora = new javax.swing.JComboBox<>();
-        textoMinuto = new javax.swing.JLabel();
-        caixaMinuto = new javax.swing.JComboBox<>();
         jPanel8 = new javax.swing.JPanel();
         textoPrecoPass = new javax.swing.JLabel();
         ftextoPrecoPass = new javax.swing.JFormattedTextField();
@@ -155,29 +121,6 @@ public final class CadastroRota extends java.awt.Dialog {
         jPanel3.add(caixaDestino);
 
         jPanel2.add(jPanel3);
-
-        jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
-
-        textoDuracao.setText("Duração");
-        jPanel4.add(textoDuracao);
-
-        jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        textoHora.setText("Hora:");
-        jPanel7.add(textoHora);
-
-        caixaHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00" }));
-        jPanel7.add(caixaHora);
-
-        textoMinuto.setText("Minuto:");
-        jPanel7.add(textoMinuto);
-
-        caixaMinuto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00" }));
-        jPanel7.add(caixaMinuto);
-
-        jPanel4.add(jPanel7);
-
-        jPanel2.add(jPanel4);
 
         jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
@@ -313,8 +256,6 @@ public final class CadastroRota extends java.awt.Dialog {
     private javax.swing.JButton botaoCancelar;
     private javax.swing.JButton botaoSalvar;
     private javax.swing.JComboBox<String> caixaDestino;
-    private javax.swing.JComboBox<String> caixaHora;
-    private javax.swing.JComboBox<String> caixaMinuto;
     private javax.swing.JComboBox<String> caixaOrigem;
     private javax.swing.JFormattedTextField ftextoDesconto;
     private javax.swing.JFormattedTextField ftextoPrecoPass;
@@ -322,15 +263,10 @@ public final class CadastroRota extends java.awt.Dialog {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JLabel textoDesconto;
     private javax.swing.JLabel textoDestino;
-    private javax.swing.JLabel textoDuracao;
-    private javax.swing.JLabel textoHora;
-    private javax.swing.JLabel textoMinuto;
     private javax.swing.JLabel textoOrigem;
     private javax.swing.JLabel textoPorcent;
     private javax.swing.JLabel textoPrecoPass;
