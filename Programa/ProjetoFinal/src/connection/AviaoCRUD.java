@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import passagens_aereas.Aviao;
 
 /**
@@ -71,5 +73,25 @@ public class AviaoCRUD {
             Conexao.fecharConexao(con, stmt, rs);
         }
         return result;
+    }
+    
+    public List<String> selecionaRegistro() {
+        List<String> avioes = new ArrayList<>();
+        String sql = "select registro from aviao";
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = con.prepareStatement(sql);
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                avioes.add(rs.getString("registro"));
+                System.out.println(rs.getString("registro"));
+            }
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+        } finally {
+            Conexao.fecharConexao(con, stmt, rs);
+        }
+        return avioes;
     }
 }

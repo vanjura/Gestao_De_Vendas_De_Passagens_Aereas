@@ -20,6 +20,9 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        JOptionPane.showMessageDialog(null, "mensagem", "titulo", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "mensagem", "titulo", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "mensagem", "", JOptionPane.WARNING_MESSAGE);
     }
 
     /**

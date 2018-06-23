@@ -26,7 +26,7 @@ public class UsuarioCRUD {
     }
 
     //Insere novos usuaros ao banco
-    public boolean inserir(Usuario usuario) {
+    public void inserir(Usuario usuario) {
         PreparedStatement stmt = null;
 
         //Comando sql de inserção 
@@ -40,11 +40,9 @@ public class UsuarioCRUD {
             stmt.setInt(3, usuario.getNivel());
             //Executa o Update
             stmt.executeUpdate();
-            return true;
         } catch (SQLException ex) {
             //imprime o erro em vermelho no console
             System.err.println("Erro: " + ex);
-            return false;
         } finally {
             //fecha a conexão e o Statement
             Conexao.fecharConexao(con, stmt);
@@ -53,24 +51,15 @@ public class UsuarioCRUD {
 
     //Busca cada um dos usuarios e armazena em um ArrayList
     public List<Usuario> buscaTodos() {
-        //comando sql
         String sql = "SELECT * FROM USUARIO";
         PreparedStatement stmt = null;
         ResultSet rs = null;
-
-        //criando o ArrayLista para armazenar os dados encontrados para um posterior teste de validação
         List<Usuario> usuarios = new ArrayList<>();
         try {
-
             stmt = con.prepareStatement(sql);
-
             rs = stmt.executeQuery();
-
-            //Tratamento para cada dado encontrado ir para seu devido lugar
             while (rs.next()) {
                 Usuario usuario = new Usuario();
-
-                //os gets recebem uma string com o mesmo nome da coluna respectiva no banco
                 usuario.setNome(rs.getString("NOME"));
                 usuario.setSenha(rs.getString("SENHA"));
                 usuario.setNivel(rs.getInt("NIVEL"));
@@ -111,13 +100,13 @@ public class UsuarioCRUD {
     }
 
     public List<Usuario> listarUsuarios() {
-        Connection con = Conexao.getConexao();
+        Connection conn = Conexao.getConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Usuario> usuarioLista = new ArrayList<>();
         String sql = "Select nome, nivel from usuario";
         try {
-            stmt = con.prepareStatement(sql);
+            stmt = conn.prepareStatement(sql);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -131,7 +120,7 @@ public class UsuarioCRUD {
         } catch (SQLException ex) {
             System.out.println("Erro!" + ex);
         } finally {
-            Conexao.fecharConexao(con, stmt, rs);
+            Conexao.fecharConexao(conn, stmt, rs);
         }
 
         return usuarioLista;

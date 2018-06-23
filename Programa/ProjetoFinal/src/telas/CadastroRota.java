@@ -73,11 +73,12 @@ public final class CadastroRota extends java.awt.Dialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel7 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         textoOrigem = new javax.swing.JLabel();
         caixaOrigem = new javax.swing.JComboBox<>();
-        jPanel5 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         textoDestino = new javax.swing.JLabel();
         caixaDestino = new javax.swing.JComboBox<>();
         jPanel8 = new javax.swing.JPanel();
@@ -93,6 +94,8 @@ public final class CadastroRota extends java.awt.Dialog {
         jPanel1 = new javax.swing.JPanel();
         botaoSalvar = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
 
         setAutoRequestFocus(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -100,17 +103,23 @@ public final class CadastroRota extends java.awt.Dialog {
                 closeDialog(evt);
             }
         });
+        add(jPanel7, java.awt.BorderLayout.NORTH);
 
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.PAGE_AXIS));
 
+        jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
         textoOrigem.setText("Origem");
-        jPanel3.add(textoOrigem);
+        jPanel4.add(textoOrigem);
 
         caixaOrigem.setMaximumSize(new java.awt.Dimension(200, 20));
         caixaOrigem.setMinimumSize(new java.awt.Dimension(200, 20));
         caixaOrigem.setPreferredSize(new java.awt.Dimension(300, 20));
-        jPanel3.add(caixaOrigem);
-        jPanel3.add(jPanel5);
+        jPanel4.add(caixaOrigem);
+
+        jPanel2.add(jPanel4);
+
+        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         textoDestino.setText("Destino");
         jPanel3.add(textoDestino);
@@ -196,6 +205,8 @@ public final class CadastroRota extends java.awt.Dialog {
         jPanel1.add(botaoCancelar);
 
         add(jPanel1, java.awt.BorderLayout.SOUTH);
+        add(jPanel6, java.awt.BorderLayout.EAST);
+        add(jPanel9, java.awt.BorderLayout.WEST);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -263,8 +274,11 @@ public final class CadastroRota extends java.awt.Dialog {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel textoDesconto;
     private javax.swing.JLabel textoDestino;
     private javax.swing.JLabel textoOrigem;

@@ -5,10 +5,17 @@
  */
 package telas;
 
-import java.sql.Time;
+import connection.AviaoCRUD;
+import connection.VooCRUD;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import passagens_aereas.Aviao;
+import passagens_aereas.Voo;
 
 /**
  *
@@ -16,25 +23,7 @@ import javax.swing.JOptionPane;
  */
 public final class CadastroVoo extends java.awt.Dialog {
 
-    private int rota_selecionada;
-    private Time duracao_selecionada;
-    private Date data_selecionada;
-
-    public Time getDuracao_selecionada() {
-        return duracao_selecionada;
-    }
-
-    public void setDuracao_selecionada(Time duracao_selecionada) {
-        this.duracao_selecionada = duracao_selecionada;
-    }
-
-    public Date getData_selecionada() {
-        return data_selecionada;
-    }
-
-    public void setData_selecionada(Date data_selecionada) {
-        this.data_selecionada = data_selecionada;
-    }
+    private int rota_selecionada = -1;
 
     public int getRota_selecionada() {
         return rota_selecionada;
@@ -53,25 +42,59 @@ public final class CadastroVoo extends java.awt.Dialog {
     public CadastroVoo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setAvioesComboBox();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
-//            this.setData_selecionada(format.format(this.jDateChooser1.getDate()));
+    private void setAvioesComboBox() {
+        AviaoCRUD acrud = new AviaoCRUD();
+        for (String s : acrud.selecionaRegistro()) {
+            this.jComboBox1.addItem(s);
+        }
+
+    }
+
     private void setVariaveisRota() {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        if (this.jDateChooser1.getDate() != null) {
-            System.out.println(format.format(this.jDateChooser1.getDate()));
-            TelaSelecRota telaSelecRota = new TelaSelecRota(null, true);
-            this.setData_selecionada(this.jDateChooser1.getDate());
-            if (telaSelecRota.getRota_int() != 0) {
-                int i = telaSelecRota.getRota_int();
-                String x = telaSelecRota.getRota_Origem();
-                String y = telaSelecRota.getRota_Destino();
-                telaSelecRota.dispose();
-            }
+        TelaSelecRota telaSelecRota = new TelaSelecRota(null, true);
+        if (telaSelecRota.getRota_int() != 0) {
+            this.setRota_selecionada(telaSelecRota.getRota_int());
+            telaSelecRota.dispose();
+        }
+    }
+
+    private boolean validaData() {
+        if (this.jDateChooser1.getDate() == null) {
+//            frase de aviso de data nula
+            System.out.println("data incorreta");
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione uma data de saida primeiramente.");
+            return true;
+        }
+        return false;
+    }
+
+    private boolean validaRota() {
+        if (this.getRota_selecionada() == -1) {
+            //frase
+            System.out.println("Nenhuma rota seleconada");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validaCampos() {
+        if (validaData()) {
+            System.out.println("data correta");
+            if (validaRota()) {
+
+            }
+        }
+        return false;
+    }
+
+    private void cadastraVoo() {
+        if (validaCampos()) {
+
         }
     }
 
@@ -95,8 +118,7 @@ public final class CadastroVoo extends java.awt.Dialog {
         jPanel5 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -111,16 +133,16 @@ public final class CadastroVoo extends java.awt.Dialog {
 
         jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel8.setText("Campos com");
         jPanel6.add(jLabel8);
 
-        jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 0, 0));
         jLabel9.setText("*");
         jPanel6.add(jLabel9);
 
-        jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 10)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel10.setText("são obrigatórios.");
         jPanel6.add(jLabel10);
 
@@ -132,16 +154,13 @@ public final class CadastroVoo extends java.awt.Dialog {
 
         jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 0, 0));
         jLabel5.setText("*");
         jPanel4.add(jLabel5);
 
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel4.setText("Data de Saída:");
         jPanel4.add(jLabel4);
 
-        jDateChooser1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jDateChooser1.setMaximumSize(new java.awt.Dimension(100, 20));
         jDateChooser1.setMinimumSize(new java.awt.Dimension(100, 20));
         jDateChooser1.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -151,16 +170,13 @@ public final class CadastroVoo extends java.awt.Dialog {
 
         jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 0, 0));
         jLabel6.setText("*");
         jPanel3.add(jLabel6);
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel1.setText("Rota:");
         jPanel3.add(jLabel1);
 
-        jButton3.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jButton3.setText("Selecionar Rota");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,7 +185,6 @@ public final class CadastroVoo extends java.awt.Dialog {
         });
         jPanel3.add(jButton3);
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel2.setText("Escolha uma viagem clicando no botão ao lado");
         jPanel3.add(jLabel2);
 
@@ -177,32 +192,29 @@ public final class CadastroVoo extends java.awt.Dialog {
 
         jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jLabel11.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 0, 0));
         jLabel11.setText("*");
         jPanel5.add(jLabel11);
 
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel7.setText("Avião:");
         jPanel5.add(jLabel7);
 
-        jButton4.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jButton4.setText("Selecionar Avião");
-        jPanel5.add(jButton4);
-
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jLabel3.setText("Escolha um avião clicando no botão ao lado");
-        jPanel5.add(jLabel3);
+        jComboBox1.setMinimumSize(new java.awt.Dimension(200, 20));
+        jComboBox1.setPreferredSize(new java.awt.Dimension(200, 20));
+        jPanel5.add(jComboBox1);
 
         jPanel2.add(jPanel5);
 
         add(jPanel2, java.awt.BorderLayout.CENTER);
 
-        jButton1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jButton1.setText("Salvar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
 
-        jButton2.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,6 +243,10 @@ public final class CadastroVoo extends java.awt.Dialog {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        cadastraVoo();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public static void main(String args[]) {
         CadastroVoo cadastroVoo = new CadastroVoo(null, true);
     }
@@ -240,13 +256,12 @@ public final class CadastroVoo extends java.awt.Dialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
