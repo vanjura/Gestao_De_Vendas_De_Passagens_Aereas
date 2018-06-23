@@ -88,7 +88,7 @@ public final class CadastroAeroporto extends java.awt.Dialog {
     public void cadastraAeroporto(Aeroporto aeroporto) {
         AeroportoCRUD aeroCRUD = new AeroportoCRUD();
         if (atualizacao) {
-            System.out.println("ATUALIZAÇÃO AEROPORTO");
+
         } else {
             aeroCRUD.inserir(aeroporto);
         }
