@@ -8,12 +8,6 @@ package telas;
 import connection.AviaoCRUD;
 import connection.VooCRUD;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import passagens_aereas.Aviao;
 import passagens_aereas.Voo;
 
@@ -81,12 +75,24 @@ public final class CadastroVoo extends java.awt.Dialog {
         }
         return true;
     }
-
+    
+    private boolean validaAvião(){
+        VooCRUD vooCRUD = new VooCRUD();
+        Date data = new Date(this.jDateChooser1.getDate().getTime());
+        for(Voo v : vooCRUD.procuraAvioesUtilizados(data)){
+            
+        }
+        return false;
+    }
+    
     private boolean validaCampos() {
         if (validaData()) {
-            System.out.println("data correta");
+            System.out.println("Data validada");
             if (validaRota()) {
-
+                System.out.println("Rota validada");
+                if(validaAvião()){
+                    
+                }
             }
         }
         return false;
