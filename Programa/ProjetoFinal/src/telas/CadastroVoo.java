@@ -8,6 +8,7 @@ package telas;
 import connection.AviaoCRUD;
 import connection.VooCRUD;
 import java.sql.Date;
+import javax.swing.JOptionPane;
 import passagens_aereas.Aviao;
 import passagens_aereas.Voo;
 
@@ -80,9 +81,44 @@ public final class CadastroVoo extends java.awt.Dialog {
         VooCRUD vooCRUD = new VooCRUD();
         Date data = new Date(this.jDateChooser1.getDate().getTime());
         for(Voo v : vooCRUD.procuraAvioesUtilizados(data)){
-            
+            if(v.getAviao().equals(this.jComboBox1.getSelectedItem().toString())){
+                System.out.println("Avião sendo utilizado");
+                return false; 
+            }
+        }
+        return true;
+    }
+    
+    private boolean perguntaVoo(Voo voo){
+        int op = JOptionPane.showConfirmDialog(this, "Dados adicionados:"
+                + "\nRota selecionada:  " + voo.getRota()
+                + "\nAvião selecionado: " + voo.getAviao()
+                + "\nData selecionada:  " + voo.getData()
+                + "\n"
+                + "\nDeseja adicionar outro?"
+                + "\nClique em 'Cancelar' para alterar os dados apresentados.");
+        if(op == JOptionPane.OK_OPTION){
+            this.jDateChooser1.setDate(null);
+            this.jComboBox1.setSelectedItem(null);
+            this.rota_selecionada = -1;
+            return true;
+        } else if(op == JOptionPane.NO_OPTION){
+            this.dispose();
+            return true;
         }
         return false;
+    }
+    
+    private void gravaVoo(){
+        Voo voo = new Voo();
+        Date data = new Date(this.jDateChooser1.getDate().getTime());
+        voo.setData(data);
+        voo.setRota(rota_selecionada);
+        voo.setAviao(this.jComboBox1.getSelectedItem().toString());
+        if(perguntaVoo(voo)){
+            VooCRUD vooCRUD = new VooCRUD();
+            vooCRUD.inserir(voo);
+        }
     }
     
     private boolean validaCampos() {
@@ -91,7 +127,8 @@ public final class CadastroVoo extends java.awt.Dialog {
             if (validaRota()) {
                 System.out.println("Rota validada");
                 if(validaAvião()){
-                    
+                    System.out.println("Aviao validado");
+                    gravaVoo();
                 }
             }
         }
