@@ -52,6 +52,20 @@ public class PassagemCRUD {
         }
     }
     
+    public void exclusao(int id_passagem){
+        PreparedStatement stmt = null;
+        String sql = "delete from passagem where id_passagem = ?";
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id_passagem);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+        } finally {
+            Conexao.fecharConexao(con, stmt);
+        }
+    }
+    
     public List<Passagem> buscaTudo(){
         List<Passagem> passagens = new ArrayList<>();
         String sql = "select * from passagem";

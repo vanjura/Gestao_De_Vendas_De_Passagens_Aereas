@@ -48,6 +48,20 @@ public class UsuarioCRUD {
             Conexao.fecharConexao(con, stmt);
         }
     }
+    
+    public void exclusao(String nome){
+        PreparedStatement stmt = null;
+        String sql = "delete from aeroporto where nome = ?";
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, nome);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+        } finally {
+            Conexao.fecharConexao(con, stmt);
+        }
+    }
 
     //Busca cada um dos usuarios e armazena em um ArrayList
     public List<Usuario> buscaTodos() {

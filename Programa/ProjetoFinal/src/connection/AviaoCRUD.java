@@ -51,6 +51,20 @@ public class AviaoCRUD {
         }
     }
     
+    public void exclusao(String registro){
+        PreparedStatement stmt = null;
+        String sql = "delete from aviao where registro = ?";
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, registro);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+        } finally {
+            Conexao.fecharConexao(con, stmt);
+        }
+    }
+    
     public List<Aviao> buscaTudo(){
         List<Aviao> avioes = new ArrayList<>();
         String sql = "select * from aviao";

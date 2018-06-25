@@ -53,6 +53,21 @@ public class RotaCRUD {
             Conexao.fecharConexao(con, stmt);
         }
     }
+    
+    public void exclusao(int id){
+        PreparedStatement stmt = null;
+        String sql = "delete from aeroporto where id_rota = ?";
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+        } finally {
+            Conexao.fecharConexao(con, stmt);
+        }
+    }
+    
     public List<Rota> buscaTudo(){
         ArrayList<Rota> rotas = new ArrayList<>();
         String sql = "select * from rota";
