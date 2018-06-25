@@ -17,6 +17,7 @@ public class Inicio extends javax.swing.JFrame {
 
     /**
      * Creates new form Inicio
+     *
      * @param usuario
      */
     public Inicio(Usuario usuario) {
@@ -55,6 +56,8 @@ public class Inicio extends javax.swing.JFrame {
         menuFrota_CadRotas = new javax.swing.JMenuItem();
         menuAero = new javax.swing.JMenu();
         menuAero_CadAero = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -133,6 +136,22 @@ public class Inicio extends javax.swing.JFrame {
         });
         menuAero.add(menuAero_CadAero);
 
+        jMenuItem1.setText("Consulta/Atualização de Aeroporto");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menuAero.add(jMenuItem1);
+
+        jMenuItem3.setText("Exclusao de Aeroportos");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        menuAero.add(jMenuItem3);
+
         barraMenu.add(menuAero);
 
         setJMenuBar(barraMenu);
@@ -141,7 +160,7 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuAero_CadAeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAero_CadAeroActionPerformed
-        CadastroAeroporto cadAero = new CadastroAeroporto(this, true);
+        Aeroporto_Cadastro cadAero = new Aeroporto_Cadastro(this, true);
     }//GEN-LAST:event_menuAero_CadAeroActionPerformed
 
     private void menuFrota_CadAviaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFrota_CadAviaoActionPerformed
@@ -164,10 +183,20 @@ public class Inicio extends javax.swing.JFrame {
         VendaPassagem vendaPassagem = new VendaPassagem(null, true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        Aeroporto_Consulta_Atualizacao consulta_Atualizacao = new Aeroporto_Consulta_Atualizacao(null, true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        Aeroporto_Exclusao exclusao = new Aeroporto_Exclusao(null, true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barraMenu;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JMenu menuAero;
     private javax.swing.JMenuItem menuAero_CadAero;

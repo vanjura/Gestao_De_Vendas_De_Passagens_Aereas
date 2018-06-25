@@ -46,14 +46,22 @@ public class AeroportoCRUD {
         }
     }
     
+    public void exclusao(int registro){
+        PreparedStatement stmt = null;
+        String sql = "delete from aeroporto where registro = ?";
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, registro);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+        } finally {
+            Conexao.fecharConexao(con, stmt);
+        }
+    }
+    
     public void atualizar(Aeroporto aeroporto){
         PreparedStatement stmt = null;
-        System.out.println(
-                aeroporto.getRegistro() + " " +
-                aeroporto.getNome() + " " +
-                aeroporto.getCidade() + " " +
-                aeroporto.getEstado()
-        );
         String sql = "update aeroporto set nome = ?, cidade = ?, estado = ? where registro = ?";
         try {
             stmt = con.prepareStatement(sql);

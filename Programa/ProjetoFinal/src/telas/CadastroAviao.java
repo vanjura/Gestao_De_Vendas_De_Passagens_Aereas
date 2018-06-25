@@ -14,14 +14,31 @@ import passagens_aereas.Aviao;
  * @author lucas_nuze0yo
  */
 public class CadastroAviao extends DefaultCadastro {
-
+    String registroOld = "";
+    boolean atualizacao = false;
     /**
      * Creates new form CadastroAviao
+     *
      * @param parent
      * @param modal
      */
     public CadastroAviao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+    }
+
+    public CadastroAviao(java.awt.Frame parent, boolean modal, Aviao aviao) {
+        super(parent, modal);
+    }
+
+    private void iniciaTela() {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+    }
+    
+    private void iniciaTela(Aviao aviao) {
+        registroOld = aviao.getRegistro();
+        atualizacao = true;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -84,7 +101,7 @@ public class CadastroAviao extends DefaultCadastro {
             this.jFtfAssC.setText(null);
             this.jFtfRegistro.setText(null);
             return true;
-        } else if (op == JOptionPane.NO_OPTION){
+        } else if (op == JOptionPane.NO_OPTION) {
             this.dispose();
             return true;
         }
@@ -93,7 +110,11 @@ public class CadastroAviao extends DefaultCadastro {
 
     public void salvaAviao(Aviao aviao) {
         AviaoCRUD aviaoCRUD = new AviaoCRUD();
-        aviaoCRUD.inserir(aviao);
+        if(atualizacao){
+            
+        }else{
+            aviaoCRUD.inserir(aviao);
+        }
     }
 
     public Aviao criaAviao() {

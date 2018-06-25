@@ -6,6 +6,7 @@
 package telas;
 
 import connection.AeroportoCRUD;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import passagens_aereas.Aeroporto;
 
@@ -13,7 +14,7 @@ import passagens_aereas.Aeroporto;
  *
  * @author lucas
  */
-public class TabelaAeroporto extends DefaultTabelas {
+public class Aeroporto_Tabela extends javax.swing.JDialog {
 
     /**
      * Creates new form TabelaAeroporto
@@ -21,12 +22,10 @@ public class TabelaAeroporto extends DefaultTabelas {
      * @param parent
      * @param modal
      */
-    public TabelaAeroporto(java.awt.Frame parent, boolean modal) {
+    public Aeroporto_Tabela(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         escreveTabela();
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
     }
 
     private void escreveTabela() {
@@ -63,21 +62,30 @@ public class TabelaAeroporto extends DefaultTabelas {
         return (String) jTable1.getValueAt(linha, coluna);
     }
     
-    public void edita(){
+    protected void edita(){
         Aeroporto aeroporto = new Aeroporto();
         aeroporto.setRegistro(this.pegaRegistro());
         aeroporto.setNome(this.pegaNome());
         aeroporto.setCidade(this.pegaCidade());
         aeroporto.setEstado(this.pegaEstado());
-        System.out.println(
-                aeroporto.getRegistro() + " " +
-                aeroporto.getNome() + " " +
-                aeroporto.getCidade() + " " +
-                aeroporto.getEstado()
-        );
         this.dispose();
-        CadastroAeroporto cadastroAeroporto = new CadastroAeroporto(null, true, aeroporto);
-        TabelaAeroporto tabelaAeroporto = new TabelaAeroporto(null, true);
+        Aeroporto_Cadastro cadastroAeroporto = new Aeroporto_Cadastro(null, true, aeroporto);
+        Aeroporto_Consulta_Atualizacao consulta_Atualizacao = new Aeroporto_Consulta_Atualizacao(null, true);
+    }
+    
+    protected void excui(){
+        Aeroporto aeroporto = new Aeroporto();
+        aeroporto.setRegistro(this.pegaRegistro());
+        aeroporto.setNome(this.pegaNome());
+        this.dispose();
+        int op = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o aeroporto " 
+                + aeroporto.getNome()
+                + "?",null, JOptionPane.YES_NO_OPTION);
+        if(op == JOptionPane.OK_OPTION){
+            AeroportoCRUD aeroportoCRUD = new AeroportoCRUD();
+            aeroportoCRUD.exclusao(aeroporto.getRegistro());
+        }
+        Aeroporto_Exclusao exclusao = new Aeroporto_Exclusao(null, true);
     }
 
     /**
@@ -92,9 +100,6 @@ public class TabelaAeroporto extends DefaultTabelas {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
 
@@ -124,55 +129,16 @@ public class TabelaAeroporto extends DefaultTabelas {
         jPanel1.add(jScrollPane1);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
-
-        jButton1.setText("Editar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton1);
-
-        jButton2.setText("Sair");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton2);
-
-        getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
         getContentPane().add(jPanel4, java.awt.BorderLayout.LINE_END);
         getContentPane().add(jPanel5, java.awt.BorderLayout.LINE_START);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try{
-            edita();
-        }catch(Exception ex){
-            
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        TabelaAeroporto tabelaAeroporto = new TabelaAeroporto(null, true);
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;

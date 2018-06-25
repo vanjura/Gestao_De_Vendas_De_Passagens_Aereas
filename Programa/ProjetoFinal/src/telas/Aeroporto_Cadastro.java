@@ -14,7 +14,7 @@ import passagens_aereas.Aeroporto;
  *
  * @author lucas_nuze0yo
  */
-public final class CadastroAeroporto extends DefaultCadastro {
+public final class Aeroporto_Cadastro extends DefaultCadastro {
 
     boolean atualizacao = false;
     int registroat = 0;
@@ -25,12 +25,12 @@ public final class CadastroAeroporto extends DefaultCadastro {
      * @param parent
      * @param modal
      */
-    public CadastroAeroporto(java.awt.Frame parent, boolean modal) {
+    public Aeroporto_Cadastro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         iniciaTela();
     }
 
-    public CadastroAeroporto(java.awt.Frame parent, boolean modal, Aeroporto aeroporto) {
+    public Aeroporto_Cadastro(java.awt.Frame parent, boolean modal, Aeroporto aeroporto) {
         super(parent, modal);
         iniciaTela(aeroporto);
     }
@@ -268,7 +268,7 @@ public final class CadastroAeroporto extends DefaultCadastro {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        CadastroAeroporto cadastroAeroporto = new CadastroAeroporto(null, true);
+        Aeroporto_Cadastro cadastroAeroporto = new Aeroporto_Cadastro(null, true);
     }
 
 
