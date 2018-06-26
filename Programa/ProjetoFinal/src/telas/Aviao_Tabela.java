@@ -13,7 +13,7 @@ import passagens_aereas.Aviao;
  *
  * @author lucas
  */
-public class TabelaAviao extends DefaultTabelas {
+public class Aviao_Tabela extends javax.swing.JDialog {
 
     /**
      * Creates new form TabelaAviao
@@ -21,12 +21,10 @@ public class TabelaAviao extends DefaultTabelas {
      * @param parent
      * @param modal
      */
-    public TabelaAviao(java.awt.Frame parent, boolean modal) {
+    public Aviao_Tabela(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         escreveTabela();
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
     }
 
     private void escreveTabela() {
@@ -43,6 +41,38 @@ public class TabelaAviao extends DefaultTabelas {
             });
         }
     }
+    
+    private String pegaRegistro(){
+        int coluna = 0;
+        int linha = this.jTbAviao.getSelectedRow();
+        return (String) this.jTbAviao.getValueAt(linha, coluna);
+    }
+    private String pegaModelo(){
+        int coluna = 1;
+        int linha = this.jTbAviao.getSelectedRow();
+        return (String) this.jTbAviao.getValueAt(linha, coluna);
+    }
+    private int pegaQtd_assentos(){
+        int coluna = 2;
+        int linha = this.jTbAviao.getSelectedRow();
+        return (int) this.jTbAviao.getValueAt(linha, coluna);
+    }
+    private int pegaQtd_assentos_esp(){
+        int coluna = 3;
+        int linha = this.jTbAviao.getSelectedRow();
+        return (int) this.jTbAviao.getValueAt(linha, coluna);
+    }
+    
+    protected void edita(){
+        Aviao aviao = new Aviao();
+        aviao.setRegistro(this.pegaRegistro());
+        aviao.setModelo(this.pegaModelo());
+        aviao.setQtd_assentos(this.pegaQtd_assentos());
+        aviao.setQtd_assentos_esp(this.pegaQtd_assentos_esp());
+        this.dispose();
+        Aviao_Cadastro cadastro = new Aviao_Cadastro(null, true, aviao);
+        Aviao_Consulta_Atualizacao consulta_Atualizacao = new Aviao_Consulta_Atualizacao(null, true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,9 +86,8 @@ public class TabelaAviao extends DefaultTabelas {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTbAviao = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -86,25 +115,17 @@ public class TabelaAviao extends DefaultTabelas {
         jPanel1.add(jScrollPane1);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
-        getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
-        getContentPane().add(jPanel4, java.awt.BorderLayout.LINE_END);
-        getContentPane().add(jPanel5, java.awt.BorderLayout.LINE_START);
+        getContentPane().add(jPanel2, java.awt.BorderLayout.EAST);
+        getContentPane().add(jPanel3, java.awt.BorderLayout.WEST);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        TabelaAviao tabelaAviao = new TabelaAviao(null, true);
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTbAviao;
     // End of variables declaration//GEN-END:variables

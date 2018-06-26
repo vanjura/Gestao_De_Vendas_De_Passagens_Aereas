@@ -164,7 +164,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_menuAero_CadAeroActionPerformed
 
     private void menuFrota_CadAviaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFrota_CadAviaoActionPerformed
-        CadastroAviao cadastroAviao = new CadastroAviao(null, true);
+        Aviao_Cadastro cadastroAviao = new Aviao_Cadastro(null, true);
     }//GEN-LAST:event_menuFrota_CadAviaoActionPerformed
 
     private void menuCadastroDeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroDeUsuarioActionPerformed

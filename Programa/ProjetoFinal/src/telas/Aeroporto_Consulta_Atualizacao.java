@@ -34,6 +34,8 @@ public class Aeroporto_Consulta_Atualizacao extends Aeroporto_Tabela {
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -57,7 +59,14 @@ public class Aeroporto_Consulta_Atualizacao extends Aeroporto_Tabela {
         });
         jPanel3.add(jButton2);
 
-        add(jPanel3, java.awt.BorderLayout.PAGE_END);
+        getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
+
+        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        jLabel1.setText("Selecione um item e precione 'Editar' para editar um item da tabela.");
+        jPanel2.add(jLabel1);
+
+        getContentPane().add(jPanel2, java.awt.BorderLayout.NORTH);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -93,6 +102,8 @@ public class Aeroporto_Consulta_Atualizacao extends Aeroporto_Tabela {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.2" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.DialogFormInfo">
+<Form version="1.2" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
@@ -63,7 +63,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Selecione um item e precione &apos;Excluir&apos; para exclui-lo"/>
+            <Property name="text" type="java.lang.String" value="Selecione um item e precione &apos;Excluir&apos; para excluir um item da tabela."/>
           </Properties>
         </Component>
       </SubComponents>

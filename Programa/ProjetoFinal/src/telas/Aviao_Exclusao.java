@@ -9,12 +9,12 @@ package telas;
  *
  * @author lucas_nuze0yo
  */
-public class Aeroporto_Exclusao extends Aeroporto_Tabela {
+public class Aviao_Exclusao extends Aviao_Tabela {
 
     /**
-     * Creates new form E_Aeroporto
+     * Creates new form Aviao_Exclusao
      */
-    public Aeroporto_Exclusao(java.awt.Frame parent, boolean modal) {
+    public Aviao_Exclusao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -29,11 +29,11 @@ public class Aeroporto_Exclusao extends Aeroporto_Tabela {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -41,30 +41,21 @@ public class Aeroporto_Exclusao extends Aeroporto_Tabela {
             }
         });
 
-        jButton1.setText("Excluir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1);
-
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2);
-
-        getContentPane().add(jPanel1, java.awt.BorderLayout.SOUTH);
-
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jLabel1.setText("Selecione um item e precione 'Excluir' para excluir um item da tabela.");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel1.setText("Selecione um item e pressione 'Excluir' para excluir um item.");
         jPanel2.add(jLabel1);
 
-        getContentPane().add(jPanel2, java.awt.BorderLayout.NORTH);
+        add(jPanel2, java.awt.BorderLayout.NORTH);
+
+        jButton1.setText("Excluir");
+        jPanel1.add(jButton1);
+
+        jButton2.setText("Sair");
+        jPanel1.add(jButton2);
+
+        add(jPanel1, java.awt.BorderLayout.SOUTH);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -77,24 +68,11 @@ public class Aeroporto_Exclusao extends Aeroporto_Tabela {
         dispose();
     }//GEN-LAST:event_closeDialog
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(false);
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try{
-            super.excui();
-        }catch(Exception ex){
-            
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        Aeroporto_Exclusao exclusao = new Aeroporto_Exclusao(null, true);
+        Aviao_Exclusao exclusao = new Aviao_Exclusao(null, true);
     }
 
 

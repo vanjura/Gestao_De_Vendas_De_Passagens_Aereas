@@ -13,7 +13,7 @@ import passagens_aereas.Aviao;
  *
  * @author lucas_nuze0yo
  */
-public class CadastroAviao extends DefaultCadastro {
+public class Aviao_Cadastro extends DefaultCadastro {
     String registroOld = "";
     boolean atualizacao = false;
     /**
@@ -22,12 +22,15 @@ public class CadastroAviao extends DefaultCadastro {
      * @param parent
      * @param modal
      */
-    public CadastroAviao(java.awt.Frame parent, boolean modal) {
+    public Aviao_Cadastro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        iniciaTela();
     }
 
-    public CadastroAviao(java.awt.Frame parent, boolean modal, Aviao aviao) {
+    public Aviao_Cadastro(java.awt.Frame parent, boolean modal, Aviao aviao) {
         super(parent, modal);
+        this.atualizacao = true;
+        this.registroOld = aviao.getRegistro();
     }
 
     private void iniciaTela() {
@@ -136,7 +139,7 @@ public class CadastroAviao extends DefaultCadastro {
     }
 
     public static void main(String[] args) {
-        CadastroAviao cadastroAviao = new CadastroAviao(null, true);
+        Aviao_Cadastro cadastroAviao = new Aviao_Cadastro(null, true);
     }
 
     /**
