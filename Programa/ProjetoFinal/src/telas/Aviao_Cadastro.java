@@ -92,8 +92,9 @@ public class Aviao_Cadastro extends DefaultCadastro {
                         + "\nFavor informar um registro diferente.");
             } else {
                 if (atualizacao) {
-                    mostraDadosAt(aviao);
-                    salvaAviao(aviao);
+                    if(mostraDadosAt(aviao)){
+                        salvaAviao(aviao);
+                    }
                 } else {
                     if (mostraDados(aviao)) {
                         salvaAviao(aviao);
@@ -103,13 +104,19 @@ public class Aviao_Cadastro extends DefaultCadastro {
         }
     }
     
-    public void mostraDadosAt(Aviao aviao) {
-        JOptionPane.showMessageDialog(null, "Dados Gravados: "
+    public boolean mostraDadosAt(Aviao aviao) {
+        int op = JOptionPane.showConfirmDialog(null, "Dados Gravados: "
                 + "\n" + this.jLblRegistro.getText() + " " + aviao.getRegistro()
                 + "\nModelo: " + aviao.getModelo()
                 + "\nQuantidade ass. comum: " + aviao.getQtd_assentos()
-                + "\nQuantidade ass. espec.: " + aviao.getQtd_assentos_esp());
-        this.dispose();
+                + "\nQuantidade ass. espec.: " + aviao.getQtd_assentos_esp()
+                + "\n"
+                + "\nDeseja realmente atualizar?","Atualização",JOptionPane.YES_NO_OPTION);
+        if(op == JOptionPane.YES_OPTION){
+            this.dispose();
+            return true;
+        }
+        return false;
     }
 
     public boolean mostraDados(Aviao aviao) {
