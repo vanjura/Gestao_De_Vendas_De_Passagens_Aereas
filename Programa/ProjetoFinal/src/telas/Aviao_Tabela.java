@@ -69,8 +69,8 @@ public class Aviao_Tabela extends javax.swing.JDialog {
         aviao.setModelo(this.pegaModelo());
         aviao.setQtd_assentos(this.pegaQtd_assentos());
         aviao.setQtd_assentos_esp(this.pegaQtd_assentos_esp());
-        this.dispose();
         Aviao_Cadastro cadastro = new Aviao_Cadastro(null, true, aviao);
+        this.dispose();
         Aviao_Consulta_Atualizacao consulta_Atualizacao = new Aviao_Consulta_Atualizacao(null, true);
     }
 

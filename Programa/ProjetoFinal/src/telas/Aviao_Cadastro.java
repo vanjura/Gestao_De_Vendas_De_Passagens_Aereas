@@ -14,8 +14,10 @@ import passagens_aereas.Aviao;
  * @author lucas_nuze0yo
  */
 public class Aviao_Cadastro extends DefaultCadastro {
+
     String registroOld = "";
     boolean atualizacao = false;
+
     /**
      * Creates new form CadastroAviao
      *
@@ -29,8 +31,7 @@ public class Aviao_Cadastro extends DefaultCadastro {
 
     public Aviao_Cadastro(java.awt.Frame parent, boolean modal, Aviao aviao) {
         super(parent, modal);
-        this.atualizacao = true;
-        this.registroOld = aviao.getRegistro();
+        iniciaTela(aviao);
     }
 
     private void iniciaTela() {
@@ -38,11 +39,19 @@ public class Aviao_Cadastro extends DefaultCadastro {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-    
+
+    private void setaCampos(Aviao aviao) {
+        this.jFtfRegistro.setText(aviao.getRegistro());
+        this.jTfModelo.setText(aviao.getModelo());
+        this.jFtfAssC.setValue(aviao.getQtd_assentos());
+        this.jFtfAssE.setValue(aviao.getQtd_assentos_esp());
+    }
+
     private void iniciaTela(Aviao aviao) {
         registroOld = aviao.getRegistro();
         atualizacao = true;
         initComponents();
+        setaCampos(aviao);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
@@ -78,15 +87,28 @@ public class Aviao_Cadastro extends DefaultCadastro {
             return;
         }
         if (aviao != null) {
-            if (aviaocrud.procuraRegistro(aviao.getRegistro())) {
+            if (aviaocrud.procuraRegistro(aviao.getRegistro()) && !registroOld.equals(aviao.getRegistro())) {
                 JOptionPane.showMessageDialog(null, "Já existe um avião cadastrado com esse registro."
                         + "\nFavor informar um registro diferente.");
             } else {
-                if (mostraDados(aviao)) {
+                if (atualizacao) {
+                    mostraDadosAt(aviao);
                     salvaAviao(aviao);
+                } else {
+                    if (mostraDados(aviao)) {
+                        salvaAviao(aviao);
+                    }
                 }
             }
         }
+    }
+    
+    public void mostraDadosAt(Aviao aviao) {
+        JOptionPane.showMessageDialog(null, "Dados Gravados: "
+                + "\n" + this.jLblRegistro.getText() + " " + aviao.getRegistro()
+                + "\nModelo: " + aviao.getModelo()
+                + "\nQuantidade ass. comum: " + aviao.getQtd_assentos()
+                + "\nQuantidade ass. espec.: " + aviao.getQtd_assentos_esp());
     }
 
     public boolean mostraDados(Aviao aviao) {
@@ -113,9 +135,9 @@ public class Aviao_Cadastro extends DefaultCadastro {
 
     public void salvaAviao(Aviao aviao) {
         AviaoCRUD aviaoCRUD = new AviaoCRUD();
-        if(atualizacao){
-            
-        }else{
+        if (atualizacao) {
+            aviaoCRUD.atualizar(aviao, registroOld);
+        } else {
             aviaoCRUD.inserir(aviao);
         }
     }

@@ -25,33 +25,49 @@ public class AviaoCRUD {
         con = Conexao.getConexao();
     }
 
+    //Executa uma inserção na tabela aviao
     public boolean inserir(Aviao aviao) {
         PreparedStatement stmt = null;
-
-        //Comando sql de inserção 
         String sql = "INSERT INTO AVIAO (registro, modelo, qtd_assentos, qtd_assentos_esp) VALUES(?,?,?,?)";
-
         try {
             stmt = con.prepareStatement(sql);
-            // cada numero do setString ou setInt corresponde a um ? (interrogação) do comando sql
             stmt.setString(1, aviao.getRegistro());
             stmt.setString(2, aviao.getModelo());
             stmt.setInt(3, aviao.getQtd_assentos());
             stmt.setInt(4, aviao.getQtd_assentos_esp());
-            //Executa o Update
             stmt.executeUpdate();
             return true;
         } catch (SQLException ex) {
-            //imprime o erro em vermelho no console
             System.err.println("Erro: " + ex);
             return false;
         } finally {
-            //fecha a conexão e o Statement
             Conexao.fecharConexao(con, stmt);
         }
     }
+
+    //Executa um update no na tabela de aviao
+    public boolean atualizar(Aviao aviao, String registroOld) {
+        PreparedStatement stmt = null;
+        String sql = "update aviao set registro = ?, modelo = ?, qtd_assentos = ?, qtd_assentos_esp = ? where registro = ?";
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, aviao.getRegistro());
+            stmt.setString(2, aviao.getModelo());
+            stmt.setInt(3, aviao.getQtd_assentos());
+            stmt.setInt(4, aviao.getQtd_assentos_esp());
+            stmt.setString(5, registroOld);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+            return false;
+        } finally {
+            Conexao.fecharConexao(con, stmt);
+        }
+    }
+
     
-    public void exclusao(String registro){
+    public void exclusao(String registro) {
         PreparedStatement stmt = null;
         String sql = "delete from aviao where registro = ?";
         try {
@@ -64,8 +80,8 @@ public class AviaoCRUD {
             Conexao.fecharConexao(con, stmt);
         }
     }
-    
-    public List<Aviao> buscaTudo(){
+
+    public List<Aviao> buscaTudo() {
         List<Aviao> avioes = new ArrayList<>();
         String sql = "select * from aviao";
         PreparedStatement stmt = null;
@@ -75,9 +91,9 @@ public class AviaoCRUD {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Aviao aviao = new Aviao(
-                        rs.getString("registro"), 
-                        rs.getString("modelo"), 
-                        rs.getInt("qtd_assentos"), 
+                        rs.getString("registro"),
+                        rs.getString("modelo"),
+                        rs.getInt("qtd_assentos"),
                         rs.getInt("qtd_assentos_esp")
                 );
                 avioes.add(aviao);
