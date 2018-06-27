@@ -6,6 +6,7 @@
 package telas;
 
 import connection.AviaoCRUD;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import passagens_aereas.Aviao;
 
@@ -30,9 +31,7 @@ public class Aviao_Tabela extends javax.swing.JDialog {
     private void escreveTabela() {
         DefaultTableModel modelo = (DefaultTableModel) jTbAviao.getModel();
         AviaoCRUD aviaoCRUD = new AviaoCRUD();
-        System.out.println("entrou1");
         for (Aviao a : aviaoCRUD.buscaTudo()) {
-            System.out.println("entrou2");
             modelo.addRow(new Object[]{
                 a.getRegistro(),
                 a.getModelo(),
@@ -41,36 +40,51 @@ public class Aviao_Tabela extends javax.swing.JDialog {
             });
         }
     }
-    
-    private String pegaRegistro(){
+
+    private String pegaRegistro() {
         int coluna = 0;
         int linha = this.jTbAviao.getSelectedRow();
         return (String) this.jTbAviao.getValueAt(linha, coluna);
     }
-    private String pegaModelo(){
+
+    private String pegaModelo() {
         int coluna = 1;
         int linha = this.jTbAviao.getSelectedRow();
         return (String) this.jTbAviao.getValueAt(linha, coluna);
     }
-    private int pegaQtd_assentos(){
+
+    private int pegaQtd_assentos() {
         int coluna = 2;
         int linha = this.jTbAviao.getSelectedRow();
         return (int) this.jTbAviao.getValueAt(linha, coluna);
     }
-    private int pegaQtd_assentos_esp(){
+
+    private int pegaQtd_assentos_esp() {
         int coluna = 3;
         int linha = this.jTbAviao.getSelectedRow();
         return (int) this.jTbAviao.getValueAt(linha, coluna);
     }
-    
-    protected void edita(){
+
+    protected void edita() {
         Aviao aviao = new Aviao();
         aviao.setRegistro(this.pegaRegistro());
         aviao.setModelo(this.pegaModelo());
         aviao.setQtd_assentos(this.pegaQtd_assentos());
         aviao.setQtd_assentos_esp(this.pegaQtd_assentos_esp());
-        Aviao_Cadastro cadastro = new Aviao_Cadastro(null, true, aviao);
         this.dispose();
+        Aviao_Cadastro cadastro = new Aviao_Cadastro(null, true, aviao);
+        Aviao_Consulta_Atualizacao consulta_Atualizacao = new Aviao_Consulta_Atualizacao(null, true);
+    }
+
+    protected void exclui() {
+        AviaoCRUD aviaoCRUD = new AviaoCRUD();
+        String texto = "Deseja realmente excluir esse item?";
+        String titulo = "Exclusão";
+        this.dispose();
+        int op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_OPTION);
+        if (op == JOptionPane.YES_OPTION) {
+            aviaoCRUD.exclusao(this.pegaRegistro());
+        }
         Aviao_Consulta_Atualizacao consulta_Atualizacao = new Aviao_Consulta_Atualizacao(null, true);
     }
 

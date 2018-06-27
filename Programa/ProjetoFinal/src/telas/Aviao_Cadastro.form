@@ -124,7 +124,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLblQtdAss">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Quantidade Total de Assentos:"/>
+                <Property name="text" type="java.lang.String" value="Quantidade de Assentos Comuns:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="jFtfAssC">

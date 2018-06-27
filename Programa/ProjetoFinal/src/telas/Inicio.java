@@ -53,6 +53,8 @@ public class Inicio extends javax.swing.JFrame {
         menuCadastroDeUsuario = new javax.swing.JMenuItem();
         menuFrota = new javax.swing.JMenu();
         menuFrota_CadAviao = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         menuFrota_CadRotas = new javax.swing.JMenuItem();
         menuAero = new javax.swing.JMenu();
         menuAero_CadAero = new javax.swing.JMenuItem();
@@ -115,6 +117,22 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         menuFrota.add(menuFrota_CadAviao);
+
+        jMenuItem4.setText("Consulta/Atualização de Aviao");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        menuFrota.add(jMenuItem4);
+
+        jMenuItem5.setText("Exclusao de Aviao");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        menuFrota.add(jMenuItem5);
 
         menuFrota_CadRotas.setText("Cadastro de Rotas");
         menuFrota_CadRotas.addActionListener(new java.awt.event.ActionListener() {
@@ -191,12 +209,22 @@ public class Inicio extends javax.swing.JFrame {
         Aeroporto_Exclusao exclusao = new Aeroporto_Exclusao(null, true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        Aviao_Consulta_Atualizacao aviao_Consulta_Atualizacao = new Aviao_Consulta_Atualizacao(null, true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        Aviao_Exclusao aviao_Exclusao = new Aviao_Exclusao(null, true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barraMenu;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JMenu menuAero;
     private javax.swing.JMenuItem menuAero_CadAero;

@@ -65,11 +65,11 @@ public class Aviao_Cadastro extends DefaultCadastro {
             return false;
         }
         try {
-            if (Integer.valueOf(this.jFtfAssC.getText()) < 1) {
+            if (Integer.valueOf(this.jFtfAssC.getText()) < 0) {
                 System.out.println("Valor de assentos menor que 1");
                 return false;
             }
-            if (Integer.valueOf(this.jFtfAssE.getText()) < 1) {
+            if (Integer.valueOf(this.jFtfAssE.getText()) < 0) {
                 System.out.println("Valor de assentos especiais menor que 1");
                 return false;
             }
@@ -109,6 +109,7 @@ public class Aviao_Cadastro extends DefaultCadastro {
                 + "\nModelo: " + aviao.getModelo()
                 + "\nQuantidade ass. comum: " + aviao.getQtd_assentos()
                 + "\nQuantidade ass. espec.: " + aviao.getQtd_assentos_esp());
+        this.dispose();
     }
 
     public boolean mostraDados(Aviao aviao) {
@@ -147,7 +148,7 @@ public class Aviao_Cadastro extends DefaultCadastro {
             String registro = this.jFtfRegistro.getText();
             String modelo = this.jTfModelo.getText();
             int qtd_ass_esp = Integer.parseInt(this.jFtfAssE.getText());
-            int qtd_ass = Integer.parseInt(this.jFtfAssC.getText()) - qtd_ass_esp;
+            int qtd_ass = Integer.parseInt(this.jFtfAssC.getText());
             Aviao aviao = new Aviao(registro, modelo, qtd_ass, qtd_ass_esp);
             return aviao;
         } catch (NumberFormatException ex) {
@@ -245,7 +246,7 @@ public class Aviao_Cadastro extends DefaultCadastro {
         jLblRegistro3.setText("*");
         jPanel3.add(jLblRegistro3);
 
-        jLblQtdAss.setText("Quantidade Total de Assentos:");
+        jLblQtdAss.setText("Quantidade de Assentos Comuns:");
         jPanel3.add(jLblQtdAss);
 
         jFtfAssC.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));

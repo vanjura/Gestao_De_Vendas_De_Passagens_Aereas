@@ -78,14 +78,19 @@ public final class Aeroporto_Cadastro extends DefaultCadastro {
         String titulo = "Cadastro de Aeroporto";
         String texto;
 
-        texto = "Informações cadastradas:"
+        texto = "Informações a ser cadastradas:"
                 + "\nNome: " + aeroporto.getNome()
                 + "\nCidade: " + aeroporto.getCidade()
                 + "\nEstado: " + aeroporto.getEstado();
         if (atualizacao) {
-            JOptionPane.showMessageDialog(null, texto);
-            cadastraAeroporto(aeroporto);
-            this.dispose();
+            texto += "\n"
+                    + "Você confirma a atualização?";
+            titulo = "Atualização";
+            op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_OPTION);
+            if (op == JOptionPane.YES_OPTION) {
+                cadastraAeroporto(aeroporto);
+                this.dispose();
+            }
         } else {
             texto += "\n"
                     + "\nDeseja cadastrar outro?"
