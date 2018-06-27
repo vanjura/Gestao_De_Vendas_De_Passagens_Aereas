@@ -9,7 +9,7 @@ package telas;
  *
  * @author lucas_nuze0yo
  */
-public class Usuario_Exclusao extends Aviao_Tabela {
+public class Usuario_Exclusao extends Usuario_Tabela {
 
     /**
      * Creates new form Aviao_Exclusao

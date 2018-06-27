@@ -9,7 +9,7 @@ package telas;
  *
  * @author lucas_nuze0yo
  */
-public class Usuario_Consulta_Atualizacao extends Aviao_Tabela {
+public class Usuario_Consulta_Atualizacao extends Usuario_Tabela {
 
     /**
      * Creates new form Aviao_Consulta_Atualizacao
@@ -71,7 +71,7 @@ public class Usuario_Consulta_Atualizacao extends Aviao_Tabela {
     }//GEN-LAST:event_closeDialog
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        super.edita();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

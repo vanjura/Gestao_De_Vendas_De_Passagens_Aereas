@@ -9,7 +9,7 @@ package telas;
  *
  * @author lucas_nuze0yo
  */
-public class Rota_Exclusao extends Aviao_Tabela {
+public class Rota_Exclusao extends Rota_Tabela {
 
     /**
      * Creates new form Aviao_Exclusao
