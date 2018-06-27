@@ -168,19 +168,19 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_menuFrota_CadAviaoActionPerformed
 
     private void menuCadastroDeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroDeUsuarioActionPerformed
-        CadastroUsuario cadastroUsuario = new CadastroUsuario(null, true);
+        Usuario_Cadastro cadastroUsuario = new Usuario_Cadastro(null, true);
     }//GEN-LAST:event_menuCadastroDeUsuarioActionPerformed
 
     private void menuFrota_CadRotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFrota_CadRotasActionPerformed
-        CadastroRota cadastroRota = new CadastroRota(null, true);
+        Rota_Cadastro cadastroRota = new Rota_Cadastro(null, true);
     }//GEN-LAST:event_menuFrota_CadRotasActionPerformed
 
     private void menuVoos_CadVooActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVoos_CadVooActionPerformed
-        CadastroVoo cadastroVoo = new CadastroVoo(null, true);
+        Voo_Cadastro cadastroVoo = new Voo_Cadastro(null, true);
     }//GEN-LAST:event_menuVoos_CadVooActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        VendaPassagem vendaPassagem = new VendaPassagem(null, true);
+        Passagem_Venda vendaPassagem = new Passagem_Venda(null, true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed

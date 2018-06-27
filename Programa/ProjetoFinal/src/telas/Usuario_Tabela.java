@@ -14,14 +14,14 @@ import passagens_aereas.Usuario;
  *
  * @author JVict
  */
-public final class TabelaUsuario extends DefaultTabelas {
+public final class Usuario_Tabela extends DefaultTabelas {
 
     /**
      * Creates new form TabelaUsuario
      * @param parent
      * @param modal
      */
-    public TabelaUsuario(java.awt.Frame parent, boolean modal) {
+    public Usuario_Tabela(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         escreveTabela();
@@ -113,7 +113,7 @@ public final class TabelaUsuario extends DefaultTabelas {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        TabelaUsuario tabelaUsuario = new TabelaUsuario(null, true);
+        Usuario_Tabela tabelaUsuario = new Usuario_Tabela(null, true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

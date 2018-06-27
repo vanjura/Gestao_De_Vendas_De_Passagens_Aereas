@@ -13,7 +13,7 @@ import passagens_aereas.Passagem;
  *
  * @author lucas
  */
-public class VendaPassagem extends javax.swing.JDialog {
+public class Passagem_Venda extends javax.swing.JDialog {
 
     Passagem passagem = new Passagem();
 
@@ -23,7 +23,7 @@ public class VendaPassagem extends javax.swing.JDialog {
      * @param parent
      * @param modal
      */
-    public VendaPassagem(java.awt.Frame parent, boolean modal) {
+    public Passagem_Venda(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -355,7 +355,7 @@ public class VendaPassagem extends javax.swing.JDialog {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        VendaPassagem cadastroPassagem = new VendaPassagem(null, true);
+        Passagem_Venda cadastroPassagem = new Passagem_Venda(null, true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

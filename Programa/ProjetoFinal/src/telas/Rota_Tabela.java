@@ -5,22 +5,20 @@
  */
 package telas;
 
-import connection.VooCRUD;
+import connection.RotaCRUD;
 import javax.swing.table.DefaultTableModel;
-import passagens_aereas.Voo;
+import passagens_aereas.Rota;
 
 /**
  *
  * @author lucas
  */
-public class TabelaVoo extends DefaultTabelas {
+public class Rota_Tabela extends DefaultTabelas {
 
     /**
-     * Creates new form TabelaVoo
-     * @param parent
-     * @param modal
+     * Creates new form TabelaRota
      */
-    public TabelaVoo(java.awt.Frame parent, boolean modal) {
+    public Rota_Tabela(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         escreveTabela();
@@ -30,20 +28,16 @@ public class TabelaVoo extends DefaultTabelas {
     
     private void escreveTabela() {
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        VooCRUD vooCRUD = new VooCRUD();
-        for (Voo v : vooCRUD.buscaTudo()) {
+        RotaCRUD rotaCRUD = new RotaCRUD();
+        System.out.println("entrou1");
+        for (Rota r : rotaCRUD.buscaTudo()) {
+            System.out.println("entrou2");
             modelo.addRow(new Object[]{
-                v.getId(),
-                v.getRota(),
-                v.getOrigem(),
-                v.getDestino(),
-                v.getPreco_c(),
-                v.getPreco_e(),
-                v.getData(),
-                v.getHora(),
-                v.getAviao(),
-                v.getAss_c(),
-                v.getAss_e()
+                r.getId(),
+                r.getOrigem(),
+                r.getDestino(),
+                r.getPreco_c(),
+                r.getPreco_e()
             });
         }
     }
@@ -57,27 +51,27 @@ public class TabelaVoo extends DefaultTabelas {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(600, 300));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Rota", "Origem", "Destino", "Preço Comum", "Preço Especial", "Data", "Hora", "Aviao", "Quantidade de Ass. Comuns ", "Quantidade de Ass. Especiais"
+                "Código", "Origem", "Destino", "Preco Comum", "Preco Especial"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false, false, false, false
+                false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -86,12 +80,19 @@ public class TabelaVoo extends DefaultTabelas {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1);
+        jPanel5.add(jScrollPane1);
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
-        getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
-        getContentPane().add(jPanel4, java.awt.BorderLayout.LINE_END);
-        getContentPane().add(jPanel5, java.awt.BorderLayout.LINE_START);
+        getContentPane().add(jPanel5, java.awt.BorderLayout.CENTER);
+
+        jButton1.setText("Editar");
+        jPanel4.add(jButton1);
+
+        jButton2.setText("Sair");
+        jPanel4.add(jButton2);
+
+        getContentPane().add(jPanel4, java.awt.BorderLayout.PAGE_END);
+        getContentPane().add(jPanel3, java.awt.BorderLayout.LINE_END);
+        getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_START);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -100,11 +101,13 @@ public class TabelaVoo extends DefaultTabelas {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        TabelaVoo tabelaVoo = new TabelaVoo(null, true);
-    }
+        Rota_Tabela tabelaRota = new Rota_Tabela(null, true);
+   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;

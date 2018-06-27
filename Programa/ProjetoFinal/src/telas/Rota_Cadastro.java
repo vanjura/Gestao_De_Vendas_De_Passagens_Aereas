@@ -14,14 +14,14 @@ import passagens_aereas.Rota;
  *
  * @author lucas_nuze0yo
  */
-public final class CadastroRota extends DefaultCadastro {
+public final class Rota_Cadastro extends DefaultCadastro {
 
     /**
      * Creates new form CadastroRota
      * @param parent
      * @param modal
      */
-    public CadastroRota(java.awt.Frame parent, boolean modal) {
+    public Rota_Cadastro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         pesquisaAeroporto();
@@ -109,7 +109,7 @@ public final class CadastroRota extends DefaultCadastro {
                 closeDialog(evt);
             }
         });
-        add(jPanel7, java.awt.BorderLayout.NORTH);
+        getContentPane().add(jPanel7, java.awt.BorderLayout.NORTH);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.PAGE_AXIS));
@@ -209,7 +209,7 @@ public final class CadastroRota extends DefaultCadastro {
 
         jPanel2.add(jPanel10);
 
-        add(jPanel2, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         botaoSalvar.setText("Salvar");
         botaoSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -227,9 +227,9 @@ public final class CadastroRota extends DefaultCadastro {
         });
         jPanel1.add(botaoCancelar);
 
-        add(jPanel1, java.awt.BorderLayout.SOUTH);
-        add(jPanel6, java.awt.BorderLayout.EAST);
-        add(jPanel9, java.awt.BorderLayout.WEST);
+        getContentPane().add(jPanel1, java.awt.BorderLayout.SOUTH);
+        getContentPane().add(jPanel6, java.awt.BorderLayout.EAST);
+        getContentPane().add(jPanel9, java.awt.BorderLayout.WEST);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -282,7 +282,7 @@ public final class CadastroRota extends DefaultCadastro {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        CadastroRota cadastroRota = new CadastroRota(null, true);
+        Rota_Cadastro cadastroRota = new Rota_Cadastro(null, true);
     }
 
 

@@ -13,14 +13,14 @@ import passagens_aereas.Passagem;
  *
  * @author lucas
  */
-public class TabelaPassagem extends javax.swing.JDialog {
+public class Passagem_Tabela extends javax.swing.JDialog {
 
     /**
      * Creates new form TabelaPassagem
      * @param parent
      * @param modal
      */
-    public TabelaPassagem(java.awt.Frame parent, boolean modal) {
+    public Passagem_Tabela(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         escreveTabela();
@@ -101,7 +101,7 @@ public class TabelaPassagem extends javax.swing.JDialog {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        TabelaPassagem tabelaPassagem = new TabelaPassagem(null, true);
+        Passagem_Tabela tabelaPassagem = new Passagem_Tabela(null, true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

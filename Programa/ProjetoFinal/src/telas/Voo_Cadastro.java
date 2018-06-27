@@ -17,7 +17,7 @@ import passagens_aereas.Voo;
  *
  * @author lucas_nuze0yo
  */
-public final class CadastroVoo extends DefaultCadastro {
+public final class Voo_Cadastro extends DefaultCadastro {
 
     private int rota_selecionada = -1;
 
@@ -35,7 +35,7 @@ public final class CadastroVoo extends DefaultCadastro {
      * @param parent
      * @param modal
      */
-    public CadastroVoo(java.awt.Frame parent, boolean modal) {
+    public Voo_Cadastro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setAvioesComboBox();
@@ -227,7 +227,7 @@ public final class CadastroVoo extends DefaultCadastro {
         });
 
         jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
-        add(jPanel6, java.awt.BorderLayout.NORTH);
+        getContentPane().add(jPanel6, java.awt.BorderLayout.NORTH);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
@@ -307,7 +307,7 @@ public final class CadastroVoo extends DefaultCadastro {
 
         jPanel2.add(jPanel5);
 
-        add(jPanel2, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         jButton1.setText("Salvar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -325,9 +325,9 @@ public final class CadastroVoo extends DefaultCadastro {
         });
         jPanel1.add(jButton2);
 
-        add(jPanel1, java.awt.BorderLayout.SOUTH);
-        add(jPanel7, java.awt.BorderLayout.EAST);
-        add(jPanel8, java.awt.BorderLayout.WEST);
+        getContentPane().add(jPanel1, java.awt.BorderLayout.SOUTH);
+        getContentPane().add(jPanel7, java.awt.BorderLayout.EAST);
+        getContentPane().add(jPanel8, java.awt.BorderLayout.WEST);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -350,7 +350,7 @@ public final class CadastroVoo extends DefaultCadastro {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
-        CadastroVoo cadastroVoo = new CadastroVoo(null, true);
+        Voo_Cadastro cadastroVoo = new Voo_Cadastro(null, true);
     }
 
 

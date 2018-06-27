@@ -12,7 +12,7 @@ import passagens_aereas.Usuario;
  *
  * @author lucas_nuze0yo
  */
-public class CadastroUsuario extends DefaultCadastro {
+public class Usuario_Cadastro extends DefaultCadastro {
     
     boolean atualizacao = false;
 
@@ -21,14 +21,14 @@ public class CadastroUsuario extends DefaultCadastro {
      * @param parent
      * @param modal
      */
-    public CadastroUsuario(java.awt.Frame parent, boolean modal) {
+    public Usuario_Cadastro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
-    public CadastroUsuario(java.awt.Frame parent, boolean modal, Usuario usuario) {
+    public Usuario_Cadastro(java.awt.Frame parent, boolean modal, Usuario usuario) {
         super(parent, modal);
         initComponents();
         atualizacao = true;
@@ -114,7 +114,7 @@ public class CadastroUsuario extends DefaultCadastro {
      * @param args
      */
     public static void main(String[] args) {
-        CadastroUsuario teste = new CadastroUsuario(null, true);
+        Usuario_Cadastro teste = new Usuario_Cadastro(null, true);
     }
 
     /**
@@ -219,7 +219,7 @@ public class CadastroUsuario extends DefaultCadastro {
 
         jPanel2.add(jPanel5);
 
-        add(jPanel2, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         botaoSalvar.setText("Salvar");
         botaoSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -237,10 +237,10 @@ public class CadastroUsuario extends DefaultCadastro {
         });
         jPanel1.add(botaoCancelar);
 
-        add(jPanel1, java.awt.BorderLayout.SOUTH);
-        add(jPanel7, java.awt.BorderLayout.NORTH);
-        add(jPanel8, java.awt.BorderLayout.EAST);
-        add(jPanel9, java.awt.BorderLayout.WEST);
+        getContentPane().add(jPanel1, java.awt.BorderLayout.SOUTH);
+        getContentPane().add(jPanel7, java.awt.BorderLayout.NORTH);
+        getContentPane().add(jPanel8, java.awt.BorderLayout.EAST);
+        getContentPane().add(jPanel9, java.awt.BorderLayout.WEST);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
