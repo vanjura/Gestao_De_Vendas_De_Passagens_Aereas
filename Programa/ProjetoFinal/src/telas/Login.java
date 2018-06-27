@@ -6,6 +6,11 @@
 package telas;
 
 import connection.UsuarioCRUD;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import passagens_aereas.Usuario;
 
@@ -20,6 +25,70 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+    }
+
+    public void validaUsuario() {
+        Usuario usuario = new Usuario(this.TextoUsuario, this.SenhaUsuario);
+        UsuarioCRUD usuarioCrud = new UsuarioCRUD();
+        //uso de booleans para um controle maior em caso de novas opções de login surgirem futuramente
+        boolean U = false;
+        boolean S = false;
+
+        //codigo que percorre o array criado com os dados do banco e detecta qual dos dados está errado
+        for (Usuario u : usuarioCrud.buscaTodos()) {
+            if (u.getNome().equals(usuario.getNome())) {
+                U = true;
+                if (u.getSenha().equals(usuario.getSenha())) {
+                    S = true;
+                    usuario.setNivel(u.getNivel());
+                }
+            }
+        }
+        //inicia o sistema somente se usuario e senha conferem
+        if (U == true && S == true) {
+            gravaLog();
+            iniciaSistema(usuario);
+            //se somente o usuário for encontrado, avisa que a senha está incorreta
+        } else if (U == true) {
+            JOptionPane.showMessageDialog(null, "Senha incorreta.");
+            //se o usuario não for encontrado também informa este fato
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuário não encontrado.");
+        }
+    }
+
+    //inicia o sistema utilizando o usuário encontrado no banco e previne a entrada de usuários com nível zerado.
+    public void iniciaSistema(Usuario usuario) {
+        if (usuario.getNivel() == 0) {
+            JOptionPane.showMessageDialog(null, "Usuário banido, impossível logar.");
+            System.exit(0);
+        }
+        Inicio inicio = new Inicio(usuario);
+        inicio.setLocationRelativeTo(null);
+        inicio.setVisible(true);
+        this.setVisible(false);
+    }
+    
+    
+    //Grava um log de usuários para controle de entrada dos usuários
+    public void gravaLog() {
+        try {
+            String nome = TextoUsuario.getText();
+            String senha = SenhaUsuario.getText();
+            Date dataAtual = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+            String data = sdf.format(dataAtual);
+
+            File arquivo = new File("log_Usuário.txt");
+
+            FileWriter inserindo = new FileWriter(arquivo, true);
+            inserindo.write("Usuário:" + nome + " | ");
+            inserindo.write("Senha:" + senha + " | ");
+            inserindo.write("Data e Hora:" + data + "\r\n");
+            inserindo.close();
+        } catch (IOException ex) {
+            System.out.println("erro" + ex);
+        }
     }
 
     /**
@@ -164,46 +233,6 @@ public class Login extends javax.swing.JFrame {
         login.setVisible(true);
     }
 
-    public void validaUsuario() {
-        Usuario usuario = new Usuario(this.TextoUsuario, this.SenhaUsuario);
-        UsuarioCRUD usuarioCrud = new UsuarioCRUD();
-        //uso de booleans para um controle maior em caso de novas opções de login surgirem futuramente
-        boolean U = false;
-        boolean S = false;
-
-        //codigo que percorre o array criado com os dados do banco e detecta qual dos dados está errado
-        for (Usuario u : usuarioCrud.buscaTodos()) {
-            if (u.getNome().equals(usuario.getNome())) {
-                U = true;
-                if (u.getSenha().equals(usuario.getSenha())) {
-                    S = true;
-                    usuario.setNivel(u.getNivel());
-                }
-            }
-        }
-        //inicia o sistema somente se usuario e senha conferem
-        if (U == true && S == true) {
-            iniciaSistema(usuario);
-        //se somente o usuário for encontrado, avisa que a senha está incorreta
-        } else if (U == true) {
-            JOptionPane.showMessageDialog(null, "Senha incorreta.");
-        //se o usuario não for encontrado também informa este fato
-        } else {
-            JOptionPane.showMessageDialog(null, "Usuário não encontrado.");
-        }
-    }
-
-    //inicia o sistema utilizando o usuário encontrado no banco e previne a entrada de usuários com nível zerado.
-    public void iniciaSistema(Usuario usuario) {
-        if(usuario.getNivel() == 0){
-            JOptionPane.showMessageDialog(null, "Usuário banido, impossível logar.");
-            System.exit(0);
-        }
-        Inicio inicio = new Inicio(usuario);
-        inicio.setLocationRelativeTo(null);
-        inicio.setVisible(true);
-        this.setVisible(false);
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField SenhaUsuario;
