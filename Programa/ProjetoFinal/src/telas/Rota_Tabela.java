@@ -17,21 +17,19 @@ public class Rota_Tabela extends DefaultTabelas {
 
     /**
      * Creates new form TabelaRota
+     * @param parent
+     * @param modal
      */
     public Rota_Tabela(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         escreveTabela();
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
     }
     
     private void escreveTabela() {
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         RotaCRUD rotaCRUD = new RotaCRUD();
-        System.out.println("entrou1");
         for (Rota r : rotaCRUD.buscaTudo()) {
-            System.out.println("entrou2");
             modelo.addRow(new Object[]{
                 r.getId(),
                 r.getOrigem(),
@@ -40,6 +38,44 @@ public class Rota_Tabela extends DefaultTabelas {
                 r.getPreco_e()
             });
         }
+    }
+    
+    public int pegaId(){
+        int coluna = 0;
+        int linha = this.jTable1.getSelectedRow();
+        return (int) this.jTable1.getValueAt(linha, coluna);
+    }
+    public String pegaOrigem(){
+        int coluna = 1;
+        int linha = this.jTable1.getSelectedRow();
+        return (String) this.jTable1.getValueAt(linha, coluna);
+    }
+    public String pegaDestino(){
+        int coluna = 2;
+        int linha = this.jTable1.getSelectedRow();
+        return (String) this.jTable1.getValueAt(linha, coluna);
+    }
+    public float pegaPreco_c(){
+        int coluna = 3;
+        int linha = this.jTable1.getSelectedRow();
+        return (float) this.jTable1.getValueAt(linha, coluna);
+    }
+    public float pegaPreco_e(){
+        int coluna = 4;
+        int linha = this.jTable1.getSelectedRow();
+        return (float) this.jTable1.getValueAt(linha, coluna);
+    }
+    
+    protected void edita() {
+        Rota rota = new Rota();
+        rota.setId(this.pegaId());
+        rota.setOrigem(this.pegaOrigem());
+        rota.setDestino(this.pegaDestino());
+        rota.setPreco_c(this.pegaPreco_c());
+        rota.setPreco_e(this.pegaPreco_e());
+        this.dispose();
+        Rota_Cadastro cadastro = new Rota_Cadastro(null, true, rota);
+        Rota_Consulta_Atualizacao consulta_Atualizacao = new Rota_Consulta_Atualizacao(null, true);
     }
 
     /**
@@ -54,9 +90,6 @@ public class Rota_Tabela extends DefaultTabelas {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
 
@@ -83,33 +116,16 @@ public class Rota_Tabela extends DefaultTabelas {
         jPanel5.add(jScrollPane1);
 
         getContentPane().add(jPanel5, java.awt.BorderLayout.CENTER);
-
-        jButton1.setText("Editar");
-        jPanel4.add(jButton1);
-
-        jButton2.setText("Sair");
-        jPanel4.add(jButton2);
-
-        getContentPane().add(jPanel4, java.awt.BorderLayout.PAGE_END);
         getContentPane().add(jPanel3, java.awt.BorderLayout.LINE_END);
         getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_START);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        Rota_Tabela tabelaRota = new Rota_Tabela(null, true);
-   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

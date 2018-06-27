@@ -36,10 +36,27 @@ public final class Rota_Cadastro extends DefaultCadastro {
         pesquisaAeroporto();
         codOld = rota.getId();
         atualizacao = true;
-        
+        setaCampos(rota);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
     
+    private float pegaPorcentagem(Rota rota){
+        float valor1 = rota.getPreco_c();
+        float valor2 = rota.getPreco_e();
+        float result1;
+        float result2;
+        result1 = valor1-valor2;
+        result2 = result1/valor1;
+        return result2*100;
+    }
     
+    private void setaCampos(Rota rota){
+        this.caixaOrigem.setSelectedItem(rota.getOrigem());
+        this.caixaDestino.setSelectedItem(rota.getDestino());
+        this.ftextoPrecoPass.setText(Float.toString(rota.getPreco_c()));
+        this.ftextoDesconto.setText(Float.toString(pegaPorcentagem(rota)));
+    }
 
     public void pesquisaAeroporto() {
         AeroportoCRUD aeroCRUD = new AeroportoCRUD();
@@ -47,12 +64,11 @@ public final class Rota_Cadastro extends DefaultCadastro {
             this.caixaOrigem.addItem(a.getNome());
             this.caixaDestino.addItem(a.getNome());
         }
-
     }
 
     public Rota validaCampos() {
         Rota rota = criaRota();
-        if (rota.getPreco_c() <= 0 || rota.getPreco_e() <= 0){
+        if (rota.getPreco_c() <= 0 || rota.getPreco_e() < 0){
             System.out.println("Os campos Preço e Desconto não podem ser menores ou iguais a zero.");
             return null;
         }
@@ -75,7 +91,12 @@ public final class Rota_Cadastro extends DefaultCadastro {
     
     public void insereRota(Rota rota){
         RotaCRUD rotaCRUD = new RotaCRUD();
-        rotaCRUD.inserir(rota);
+        if(atualizacao){
+            rotaCRUD.atualizar(rota, codOld);
+        }else{
+            rotaCRUD.inserir(rota);
+            
+        }
         //mensagem para rota inserida
     }
 

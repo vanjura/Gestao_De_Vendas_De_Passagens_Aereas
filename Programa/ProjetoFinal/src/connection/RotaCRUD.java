@@ -54,6 +54,26 @@ public class RotaCRUD {
         }
     }
     
+    public boolean atualizar(Rota rota, int codOld) {
+        PreparedStatement stmt = null;
+        String sql = "update rota set origem = ?, destino = ?, preco_c = ?, preco_e = ? where id_rota = ?";
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, rota.getOrigem());
+            stmt.setString(2,rota.getDestino());
+            stmt.setFloat(3, rota.getPreco_c());
+            stmt.setFloat(4, rota.getPreco_e());
+            stmt.setInt(5, codOld);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+            return false;
+        } finally {
+            Conexao.fecharConexao(con, stmt);
+        }
+    }
+    
     public void exclusao(int id){
         PreparedStatement stmt = null;
         String sql = "delete from aeroporto where id_rota = ?";
