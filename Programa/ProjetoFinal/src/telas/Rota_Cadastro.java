@@ -15,7 +15,8 @@ import passagens_aereas.Rota;
  * @author lucas_nuze0yo
  */
 public final class Rota_Cadastro extends DefaultCadastro {
-
+    int codOld = 0;
+    boolean atualizacao = false;
     /**
      * Creates new form CadastroRota
      * @param parent
@@ -28,6 +29,17 @@ public final class Rota_Cadastro extends DefaultCadastro {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
+
+    public Rota_Cadastro(java.awt.Frame parent, boolean modal, Rota rota) {
+        super(parent, modal);
+        initComponents();
+        pesquisaAeroporto();
+        codOld = rota.getId();
+        atualizacao = true;
+        
+    }
+    
+    
 
     public void pesquisaAeroporto() {
         AeroportoCRUD aeroCRUD = new AeroportoCRUD();
