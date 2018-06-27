@@ -85,7 +85,7 @@ public class Aviao_Tabela extends javax.swing.JDialog {
         if (op == JOptionPane.YES_OPTION) {
             aviaoCRUD.exclusao(this.pegaRegistro());
         }
-        Aviao_Consulta_Atualizacao consulta_Atualizacao = new Aviao_Consulta_Atualizacao(null, true);
+        Aviao_Exclusao exclusao = new Aviao_Exclusao(null, true);
     }
 
     /**

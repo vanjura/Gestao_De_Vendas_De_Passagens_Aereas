@@ -63,6 +63,7 @@ public class Aeroporto_Consulta_Atualizacao extends Aeroporto_Tabela {
 
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setText("Selecione um item e precione 'Editar' para editar um item da tabela.");
         jPanel2.add(jLabel1);
 
