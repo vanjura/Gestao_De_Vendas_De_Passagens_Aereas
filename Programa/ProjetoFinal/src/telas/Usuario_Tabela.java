@@ -35,6 +35,14 @@ public class Usuario_Tabela extends javax.swing.JDialog {
             });
         }
     }
+    private String pegaNome() {
+        int coluna = 1;
+        int linha = this.jTable1.getSelectedRow();
+        return (String) jTable1.getValueAt(linha, coluna);
+    }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
