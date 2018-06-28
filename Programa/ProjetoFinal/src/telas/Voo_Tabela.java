@@ -111,12 +111,6 @@ public class Voo_Tabela extends DefaultTabelas {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        Voo_Tabela tabelaVoo = new Voo_Tabela(null, true);
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
