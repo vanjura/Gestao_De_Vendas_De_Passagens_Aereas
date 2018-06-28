@@ -10,6 +10,11 @@ import connection.AviaoCRUD;
 import connection.RotaCRUD;
 import connection.VooCRUD;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import passagens_aereas.Voo;
 
@@ -22,6 +27,7 @@ public final class Voo_Cadastro extends DefaultCadastro {
     private int rota_selecionada = -1;
     int idOld = 0;
     boolean atualizacao = false;
+    String aviaoOld = "";
 
     public int getRota_selecionada() {
         return rota_selecionada;
@@ -45,21 +51,24 @@ public final class Voo_Cadastro extends DefaultCadastro {
         this.setVisible(true);
     }
 
-    public Voo_Cadastro(java.awt.Frame parent, boolean modal, Voo voo) {
+    public Voo_Cadastro(java.awt.Frame parent, boolean modal, Voo voo, int hora, int minuto) {
         super(parent, modal);
         initComponents();
         setAvioesComboBox();
+        this.aviaoOld = voo.getAviao();
         this.atualizacao = true;
         this.idOld = voo.getId();
-        setacampos(voo);
+        setacampos(voo, hora, minuto);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
-    
-    private void setacampos(Voo voo){
-        String hora;
-        String teste = voo.getHora();
-        hora = teste.substring(1, 2);
-        System.out.println(hora);
+
+    private void setacampos(Voo voo, int hora, int minuto) {
         this.jDateChooser1.setDate(voo.getData());
+        this.jSpinField1.setValue(hora);
+        this.jSpinField2.setValue(minuto);
+        this.setRota_selecionada(voo.getRota());
+        this.jComboBox1.setSelectedItem(voo.getAviao());
     }
 
     private void setAvioesComboBox() {
@@ -102,9 +111,17 @@ public final class Voo_Cadastro extends DefaultCadastro {
         VooCRUD vooCRUD = new VooCRUD();
         Date data = new Date(this.jDateChooser1.getDate().getTime());
         for (Voo v : vooCRUD.procuraAvioesUtilizados(data)) {
-            if (v.getAviao().equals(this.jComboBox1.getSelectedItem().toString())) {
-                System.out.println("Avião sendo utilizado");
-                return false;
+            if (!atualizacao) {
+                if (v.getAviao().equals(this.jComboBox1.getSelectedItem().toString())) {
+                    System.out.println("Avião sendo utilizado");
+                    return false;
+                }
+            } else {
+                if (v.getAviao().equals(this.jComboBox1.getSelectedItem().toString())
+                        && !v.getAviao().equals(aviaoOld)) {
+                    System.out.println("Avião sendo utilizado");
+                    return false;
+                }
             }
         }
         return true;
@@ -187,9 +204,33 @@ public final class Voo_Cadastro extends DefaultCadastro {
         quantidadeAss(voo);
         setaPrecos(voo);
         setaOeD(voo);
-        if (perguntaVoo(voo)) {
-            VooCRUD vooCRUD = new VooCRUD();
-            vooCRUD.inserir(voo);
+        VooCRUD vooCRUD = new VooCRUD();
+        if (atualizacao) {
+            if (perguntaAt(voo)) {
+                vooCRUD.atualizar(voo, idOld);
+            }
+        } else {
+            if (perguntaVoo(voo)) {
+                vooCRUD.inserir(voo);
+            }
+        }
+    }
+
+    private boolean perguntaAt(Voo voo) {
+        String titulo = "Atualização";
+        String texto = "Dados atualizados:"
+                + "\n"
+                + "\nRota selecionada:  " + voo.getOrigem() + " até " + voo.getDestino()
+                + "\nAvião selecionado: " + voo.getAviao()
+                + "\nData selecionada:  " + voo.getData()
+                + "\n"
+                + "\nVocê confirma a atualização?";
+        int op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_OPTION);
+        if (op == JOptionPane.YES_OPTION) {
+            this.dispose();
+            return true;
+        } else {
+            return false;
         }
     }
 
