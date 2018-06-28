@@ -72,7 +72,11 @@ public class Usuario_Consulta_Atualizacao extends Usuario_Tabela {
     }//GEN-LAST:event_closeDialog
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        try{
+            super.edita();
+        }catch(Exception ex){
+            
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
