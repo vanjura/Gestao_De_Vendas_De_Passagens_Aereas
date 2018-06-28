@@ -55,9 +55,9 @@ public class UsuarioCRUD {
         try {
             stmt = con.prepareStatement(sql);
             stmt.setString(1, usuario.getNome());
-            stmt.setString(2, usuario.getNome());
+            stmt.setString(2, usuario.getSenha());
             stmt.setInt(3, usuario.getNivel());
-            stmt.setString(1, nomeOld);
+            stmt.setString(4, nomeOld);
             stmt.executeUpdate();
             return true;
         } catch (SQLException ex) {

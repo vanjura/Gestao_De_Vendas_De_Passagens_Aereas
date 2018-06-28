@@ -6,6 +6,7 @@
 package telas;
 
 import connection.UsuarioCRUD;
+import javax.swing.JOptionPane;
 import passagens_aereas.Usuario;
 
 /**
@@ -13,12 +14,13 @@ import passagens_aereas.Usuario;
  * @author lucas_nuze0yo
  */
 public class Usuario_Cadastro extends DefaultCadastro {
-    
+
     boolean atualizacao = false;
     String nomeOld;
 
     /**
      * Creates new form CadastroUsuario
+     *
      * @param parent
      * @param modal
      */
@@ -38,15 +40,15 @@ public class Usuario_Cadastro extends DefaultCadastro {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-    
-    private void setaCampos(Usuario usuario){
+
+    private void setaCampos(Usuario usuario) {
         this.campoNome.setText(usuario.getNome());
         this.campoNivel.setSelectedItem(retornaNivel(usuario));
         this.campoSenha.setText(usuario.getSenha());
         this.campoConfirmaSenha.setText(usuario.getSenha());
     }
-    
-    public String retornaNivel(Usuario usuario){
+
+    public String retornaNivel(Usuario usuario) {
         switch (usuario.getNivel()) {
             case 1:
                 return "Atendente";
@@ -59,37 +61,55 @@ public class Usuario_Cadastro extends DefaultCadastro {
         }
         return null;
     }
-    
-    private boolean perguntaAt(){
-        
+
+    private boolean perguntaAt() {
+        String titulo = "Atualização";
+        String texto = "Dados atualizados:"
+                + "\n"
+                + "\nNome: " + this.campoNome.getText()
+                + "\nNível: " + this.campoNivel.getSelectedItem()
+                + "\nSenha:" + this.campoSenha.getText()
+                + "\n"
+                + "\nVocê confirma a atualização?";
+        int op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_OPTION);
+        if (op == JOptionPane.YES_OPTION) {
+            this.dispose();
+            return true;
+        } else {
+            return false;
+        }
     }
-    
-    private boolean pergunta(){
-        
+
+    private boolean pergunta() {
+        return false;
     }
-    
-    public void salvaUsuario(Usuario usuario){
-        if(!validaUsuario()){
+
+    public void salvaUsuario(Usuario usuario) {
+        System.out.println("Salva");
+        if (!validaUsuario()) {
             //mensagem de usuario já cadastrado ou nulo
+            System.out.println("Usuário com problema");
             return;
         }
-        if(!validaSenha()){
+        if (!validaSenha()) {
+            System.out.println("Senha com problema");
             //mensagem de senha não confere ou nula
             return;
         }
         UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
-        if (atualizacao){
+        System.out.println("Validado");
+        if (atualizacao) {
+            System.out.println("Atualização");
             if (perguntaAt()) {
+                System.out.println("Pergunta ok");
                 usuarioCRUD.atualizar(usuario, nomeOld);
-            }
-        }else{
-            if (pergunta()) {
+            } else if (pergunta()) {
                 usuarioCRUD.inserir(usuario);
             }
         }
     }
-    
-    public Usuario criaUsuario(){
+
+    public Usuario criaUsuario() {
         Usuario usuario = new Usuario();
         usuario.setNome(this.campoNome.getText());
         usuario.setSenha(this.campoSenha.getText());
@@ -101,32 +121,38 @@ public class Usuario_Cadastro extends DefaultCadastro {
     }
 
     public boolean validaSenha() {
-        if("".equals(this.campoSenha.getText())){
+        if ("".equals(this.campoSenha.getText())) {
             return false;
         }
-        if("".equals(this.campoConfirmaSenha.getText())){
+        if ("".equals(this.campoConfirmaSenha.getText())) {
             return false;
         }
         String senha = this.campoSenha.getText();
         String confSenha = this.campoConfirmaSenha.getText();
+        System.out.println(senha.equals(confSenha));
         return senha.equals(confSenha);
     }
 
     public boolean validaUsuario() {
-        if("".equals(this.campoNome.getText())){
-            return false;
-        } else {
-        }
         UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
-        return !usuarioCRUD.procurarUsuario(this.campoNome.getText());
+        if (!"".equals(this.campoNome.getText())) {
+            return true;
+        } else if (usuarioCRUD.procurarUsuario(this.campoNome.getText()) && atualizacao) {
+            return true;
+        }
+        return false;
     }
-    
-    public int transformaNivel(){
-        switch(this.campoNivel.getSelectedItem().toString()){
-            case "Atendente" : return 1;
-            case "Gerente" : return 5;
-            case "Administrador" : return 10;
-            default : return 0;
+
+    public int transformaNivel() {
+        switch (this.campoNivel.getSelectedItem().toString()) {
+            case "Atendente":
+                return 1;
+            case "Gerente":
+                return 5;
+            case "Administrador":
+                return 10;
+            default:
+                return 0;
         }
     }
 
