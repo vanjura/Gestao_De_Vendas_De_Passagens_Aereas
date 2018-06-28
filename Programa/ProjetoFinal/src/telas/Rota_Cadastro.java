@@ -5,7 +5,6 @@
  */
 package telas;
 
-import com.sun.prism.j2d.J2DPipeline;
 import connection.AeroportoCRUD;
 import connection.RotaCRUD;
 import javax.swing.JOptionPane;
@@ -125,7 +124,7 @@ public final class Rota_Cadastro extends DefaultCadastro {
                 + "\n"
                 + "\nDeseja cadastrar outro?"
                 + "\nClique em cancelar para editar os dados acima.";
-        int op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.WARNING_MESSAGE);
+        int op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
         switch (op) {
             case JOptionPane.YES_OPTION:
                 return true;

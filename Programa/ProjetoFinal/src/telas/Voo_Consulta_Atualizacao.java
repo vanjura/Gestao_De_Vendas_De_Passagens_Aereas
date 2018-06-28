@@ -79,17 +79,7 @@ public class Voo_Consulta_Atualizacao extends Voo_Tabela {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Voo_Consulta_Atualizacao dialog = new Voo_Consulta_Atualizacao(new java.awt.Frame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
+        Voo_Consulta_Atualizacao consulta_Atualizacao = new Voo_Consulta_Atualizacao(null, true);
     }
 
 

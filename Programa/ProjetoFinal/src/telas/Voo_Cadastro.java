@@ -20,6 +20,8 @@ import passagens_aereas.Voo;
 public final class Voo_Cadastro extends DefaultCadastro {
 
     private int rota_selecionada = -1;
+    int idOld = 0;
+    boolean atualizacao = false;
 
     public int getRota_selecionada() {
         return rota_selecionada;
@@ -41,6 +43,23 @@ public final class Voo_Cadastro extends DefaultCadastro {
         setAvioesComboBox();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+    }
+
+    public Voo_Cadastro(java.awt.Frame parent, boolean modal, Voo voo) {
+        super(parent, modal);
+        initComponents();
+        setAvioesComboBox();
+        this.atualizacao = true;
+        this.idOld = voo.getId();
+        setacampos(voo);
+    }
+    
+    private void setacampos(Voo voo){
+        String hora;
+        String teste = voo.getHora();
+        hora = teste.substring(1, 2);
+        System.out.println(hora);
+        this.jDateChooser1.setDate(voo.getData());
     }
 
     private void setAvioesComboBox() {
@@ -147,15 +166,15 @@ public final class Voo_Cadastro extends DefaultCadastro {
         String minuto = "";
         if (this.jSpinField1.getValue() < 10) {
             hora += "0" + this.jSpinField1.getValue();
-        }else{
+        } else {
             hora += this.jSpinField1.getValue();
         }
         if (this.jSpinField2.getValue() < 10) {
             minuto += "0" + this.jSpinField2.getValue();
-        }else{
+        } else {
             minuto += this.jSpinField2.getValue();
         }
-        return hora +":"+ minuto;
+        return hora + ":" + minuto;
     }
 
     private void gravaVoo() {
