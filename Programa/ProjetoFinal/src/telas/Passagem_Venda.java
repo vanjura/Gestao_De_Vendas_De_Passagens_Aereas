@@ -16,6 +16,8 @@ import passagens_aereas.Passagem;
 public class Passagem_Venda extends javax.swing.JDialog {
 
     Passagem passagem = new Passagem();
+    int idOld;
+    boolean atualizacao;
 
     /**
      * Creates new form CadastroPassagem
@@ -28,6 +30,27 @@ public class Passagem_Venda extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+    }
+
+    public Passagem_Venda(java.awt.Frame parent, boolean modal, Passagem passagem) {
+        super(parent, modal);
+        initComponents();
+        this.idOld = passagem.getId_passagem();
+        this.atualizacao = true;
+        setaCampos(passagem);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+    }
+    
+    private void setaCampos(Passagem passagem){
+        this.jTextField1.setText(passagem.getNome());
+        this.jFtfCPF.setText(passagem.getCpf());
+        this.jFtfRG.setText(passagem.getRg());
+        if("Comum".equals(passagem.getTipo())){
+            this.jRBComum.setSelected(true);
+        } else{
+            this.jRBEspecial.setSelected(true);
+        }
     }
 
     private void escreveTabela() {

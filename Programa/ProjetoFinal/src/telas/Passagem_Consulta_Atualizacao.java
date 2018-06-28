@@ -13,6 +13,8 @@ public class Passagem_Consulta_Atualizacao extends Passagem_Tabela {
 
     /**
      * Creates new form Aviao_Consulta_Atualizacao
+     * @param parent
+     * @param modal
      */
     public Passagem_Consulta_Atualizacao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
