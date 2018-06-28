@@ -42,7 +42,7 @@ public class Usuario_Tabela extends javax.swing.JDialog {
         return (String) jTable1.getValueAt(linha, coluna);
     }
     
-    protected void excui() {
+    protected void exclui() {
         Usuario usuario = new Usuario();
         usuario.setNome(this.pegaNome());
         this.dispose();
