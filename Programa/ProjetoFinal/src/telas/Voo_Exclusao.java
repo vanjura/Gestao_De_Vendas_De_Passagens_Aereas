@@ -50,6 +50,11 @@ public class Voo_Exclusao extends Voo_Tabela {
         getContentPane().add(jPanel2, java.awt.BorderLayout.NORTH);
 
         jButton1.setText("Excluir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
 
         jButton2.setText("Sair");
@@ -67,6 +72,10 @@ public class Voo_Exclusao extends Voo_Tabela {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_closeDialog
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        super.exclui();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
