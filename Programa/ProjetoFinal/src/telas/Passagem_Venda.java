@@ -46,11 +46,12 @@ public class Passagem_Venda extends javax.swing.JDialog {
         this.jTextField1.setText(passagem.getNome());
         this.jFtfCPF.setText(passagem.getCpf());
         this.jFtfRG.setText(passagem.getRg());
-        if("Comum".equals(passagem.getTipo())){
+        if(passagem.getTipo().equals("Comum")){
             this.jRBComum.setSelected(true);
         } else{
             this.jRBEspecial.setSelected(true);
         }
+        
     }
 
     private void escreveTabela() {

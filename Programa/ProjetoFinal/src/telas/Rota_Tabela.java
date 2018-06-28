@@ -47,6 +47,8 @@ public class Rota_Tabela extends DefaultTabelas {
         int linha = this.jTable1.getSelectedRow();
         return (int) this.jTable1.getValueAt(linha, coluna);
     }
+    
+    
 
     public String pegaOrigem() {
         int coluna = 1;
