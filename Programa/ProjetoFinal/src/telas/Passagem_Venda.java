@@ -6,6 +6,7 @@
 package telas;
 
 import connection.PassagemCRUD;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import passagens_aereas.Passagem;
 
@@ -38,20 +39,34 @@ public class Passagem_Venda extends javax.swing.JDialog {
         this.idOld = passagem.getId_passagem();
         this.atualizacao = true;
         setaCampos(passagem);
+        setaPassagem(passagem);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-    
-    private void setaCampos(Passagem passagem){
+
+    private void setaPassagem(Passagem passagem) {
+        this.passagem.setId_passagem(passagem.getId_passagem());
+        this.passagem.setCpf(passagem.getCpf());
+        this.passagem.setData(passagem.getData());
+        this.passagem.setDestino(passagem.getDestino());
+        this.passagem.setHora(passagem.getHora());
+        this.passagem.setNome(passagem.getNome());
+        this.passagem.setOrigem(passagem.getOrigem());
+        this.passagem.setPlataforma(passagem.getPlataforma());
+        this.passagem.setRg(passagem.getRg());
+        this.passagem.setTipo(passagem.getTipo());
+        this.passagem.setValor(passagem.getValor());
+    }
+
+    private void setaCampos(Passagem passagem) {
         this.jTextField1.setText(passagem.getNome());
         this.jFtfCPF.setText(passagem.getCpf());
         this.jFtfRG.setText(passagem.getRg());
-        if(passagem.getTipo().equals("Comum")){
+        if (passagem.getTipo().equals("Comum")) {
             this.jRBComum.setSelected(true);
-        } else{
+        } else {
             this.jRBEspecial.setSelected(true);
         }
-        
     }
 
     private void escreveTabela() {
@@ -78,49 +93,86 @@ public class Passagem_Venda extends javax.swing.JDialog {
                 this.passagem.getTipo()
             });
         }
-        
 
     }
 
     private boolean validaRG() {
         return this.jFtfRG.getText().matches("\\d{2}.\\d{3}.\\d{3}-\\d{1}");
     }
+
     private boolean validaCPF() {
         return this.jFtfCPF.getText().matches("\\d{3}.\\d{3}.\\d{3}-\\d{2}");
     }
-    
-    private boolean validaNome(){
+
+    private boolean validaNome() {
         return !this.jTextField1.getText().equals("");
     }
-    private boolean validaVoo(){
+
+    private boolean validaVoo() {
         return !this.jLabel6.getText().equals("Selecione um voo clicando no botão ao lado.");
     }
 
     private boolean validaCampos() {
-        if(!validaNome()){
+        if (!validaNome()) {
             return false;
-        } else if(!validaRG()){
+        } else if (!validaRG()) {
             return false;
-        }else if(!validaCPF()){
+        } else if (!validaCPF()) {
             return false;
         } else {
             return validaVoo();
         }
     }
-    
-    private void setarDadosRestantes(){
+
+    private void setarDadosRestantes() {
         this.passagem.setNome(this.jTextField1.getText());
         this.passagem.setCpf(this.jFtfCPF.getText());
         this.passagem.setRg(this.jFtfRG.getText());
     }
-    
-    private void gravaPassagem(){
+
+    private void gravaPassagem() {
         setarDadosRestantes();
         PassagemCRUD passagemCRUD = new PassagemCRUD();
-        passagemCRUD.inserir(passagem);
+        if (atualizacao) {
+            perguntaAt();
+            passagemCRUD.atualizar(passagem, idOld);
+            this.dispose();
+        } else {
+            if(pergunta()){
+                passagemCRUD.inserir(passagem);
+            }
+        }
     }
-    private void imprimePassagem(){
-        System.out.println("Imprimindo");
+    //Pergunta sobre o cadastro
+    private boolean pergunta() {
+        String texto = "Operação aceita."
+                + "\nPassagem no valor de " + this.passagem.getValor()
+                + " gerada com sucesso."
+                + "\nDeseja imprimir?"
+                + "\nPrecione 'Cancelar' para voltar para a tela de vendas"
+                + "\ne editar esta passagem.";
+        int op = JOptionPane.showConfirmDialog(null, texto);
+        if(op == JOptionPane.YES_OPTION){
+            this.dispose();
+            imprimePassagem();
+            return true;
+        } else if(op == JOptionPane.NO_OPTION){
+            this.dispose();
+            return true;
+        }
+        return false;
+    }
+
+    //Pergunta sobre a atualização
+    private boolean perguntaAt() {
+        String texto = "Operação aceita."
+                + "\nPassagem atualizada.";
+        JOptionPane.showMessageDialog(null, texto);
+        return true;
+    }
+
+    private void imprimePassagem() {
+        Impressao impressao = new Impressao(null, true, passagem);
     }
 
     /**
@@ -365,9 +417,8 @@ public class Passagem_Venda extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnSelecionarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(validaCampos()){
+        if (validaCampos()) {
             gravaPassagem();
-            imprimePassagem();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
