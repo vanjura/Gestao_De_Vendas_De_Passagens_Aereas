@@ -76,7 +76,7 @@ public class RotaCRUD {
     
     public void exclusao(int id){
         PreparedStatement stmt = null;
-        String sql = "delete from aeroporto where id_rota = ?";
+        String sql = "delete from rota where id_rota = ?";
         try {
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, id);
