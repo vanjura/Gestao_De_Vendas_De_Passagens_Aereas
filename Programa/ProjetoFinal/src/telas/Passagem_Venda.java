@@ -6,6 +6,7 @@
 package telas;
 
 import connection.PassagemCRUD;
+import connection.VooCRUD;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import passagens_aereas.Passagem;
@@ -19,6 +20,7 @@ public class Passagem_Venda extends javax.swing.JDialog {
     Passagem passagem = new Passagem();
     int idOld;
     boolean atualizacao;
+    int vooId;
 
     /**
      * Creates new form CadastroPassagem
@@ -140,9 +142,20 @@ public class Passagem_Venda extends javax.swing.JDialog {
         } else {
             if(pergunta()){
                 passagemCRUD.inserir(passagem);
+                voo();
             }
         }
     }
+    
+    private void voo(){
+        VooCRUD vcrud = new VooCRUD();
+        if(passagem.getTipo().equals("Comum")){
+            vcrud.vooDecrementaC(vooId);
+        }else{
+            vcrud.vooDecrementaE(vooId);
+        }
+    }
+    
     //Pergunta sobre o cadastro
     private boolean pergunta() {
         String texto = "Operação aceita."
@@ -411,6 +424,7 @@ public class Passagem_Venda extends javax.swing.JDialog {
             this.passagem.setValor(selecVoo.getPreco_e());
             this.passagem.setTipo("Especial");
         }
+        this.vooId = selecVoo.getCodigo();
         this.jLabel6.setText("Voo selecionado: " + selecVoo.getCodigo());
         selecVoo.dispose();
         escreveTabela();
