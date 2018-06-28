@@ -56,8 +56,9 @@ public final class Voo_Cadastro extends DefaultCadastro {
     
     private void setacampos(Voo voo){
         String hora;
-        String teste;
-        teste.substring(WIDTH, WIDTH)
+        String teste = voo.getHora();
+        hora = teste.substring(1, 2);
+        System.out.println(hora);
         this.jDateChooser1.setDate(voo.getData());
     }
 
