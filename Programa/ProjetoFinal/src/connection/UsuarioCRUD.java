@@ -51,7 +51,7 @@ public class UsuarioCRUD {
     
     public void exclusao(String nome){
         PreparedStatement stmt = null;
-        String sql = "delete from aeroporto where nome = ?";
+        String sql = "delete from usuario where nome = ?";
         try {
             stmt = con.prepareStatement(sql);
             stmt.setString(1, nome);

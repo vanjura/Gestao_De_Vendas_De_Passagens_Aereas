@@ -37,7 +37,7 @@ public class Usuario_Tabela extends javax.swing.JDialog {
         }
     }
     private String pegaNome() {
-        int coluna = 1;
+        int coluna = 0;
         int linha = this.jTable1.getSelectedRow();
         return (String) jTable1.getValueAt(linha, coluna);
     }
@@ -46,11 +46,12 @@ public class Usuario_Tabela extends javax.swing.JDialog {
         Usuario usuario = new Usuario();
         usuario.setNome(this.pegaNome());
         this.dispose();
-        int op = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o aeroporto "
+        int op = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o usuário "
                 + usuario.getNome()
                 + "?", null, JOptionPane.YES_NO_OPTION);
         if (op == JOptionPane.OK_OPTION) {
             UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
+            usuarioCRUD.exclusao(usuario.getNome());
         }
         Usuario_Exclusao exclusao = new Usuario_Exclusao(null, true);
     }
