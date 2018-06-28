@@ -6,6 +6,7 @@
 package connection;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,8 +28,9 @@ public class PassagemCRUD {
     }
     
     public boolean inserir(Passagem passagem) {
+        Date data = new Date(System.currentTimeMillis());
         PreparedStatement stmt = null;
-        String sql = "insert into passagem (tipo, origem, destino, data, plataforma, valor, rg, cpf, nome,hora) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into passagem (tipo, origem, destino, data, plataforma, valor, rg, cpf, nome,hora,data_de_compra) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         try {
             stmt = con.prepareStatement(sql);
             stmt.setString(1, passagem.getTipo());
@@ -42,6 +44,34 @@ public class PassagemCRUD {
             stmt.setString(9, passagem.getNome());
             stmt.setString(9, passagem.getNome());
             stmt.setString(10, passagem.getHora());
+            stmt.setDate(11, data);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+            return false;
+        } finally {
+            Conexao.fecharConexao(con, stmt);
+        }
+    }
+    
+    public boolean atualizar(Passagem passagem, int idOld) {
+        PreparedStatement stmt = null;
+        String sql = "update passagem set tipo = ?, origem = ?, destino = ?, data = ?, plataforma = ?, valor = ?, rg = ?, cpf = ?, nome = ?,hora = ? where id_passagem = ?";
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, passagem.getTipo());
+            stmt.setString(2, passagem.getOrigem());
+            stmt.setString(3, passagem.getDestino());
+            stmt.setDate(4, passagem.getData());
+            stmt.setString(5, passagem.getPlataforma());
+            stmt.setFloat(6, passagem.getValor());
+            stmt.setString(7, passagem.getRg());
+            stmt.setString(8, passagem.getCpf());
+            stmt.setString(9, passagem.getNome());
+            stmt.setString(9, passagem.getNome());
+            stmt.setString(10, passagem.getHora());
+            stmt.setInt(11, idOld);
             stmt.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -97,7 +127,5 @@ public class PassagemCRUD {
         }
         return passagens;
     }
-    
-    
     
 }

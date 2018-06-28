@@ -6,6 +6,7 @@
 package telas;
 
 import connection.PassagemCRUD;
+import java.sql.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import passagens_aereas.Passagem;
@@ -52,6 +53,83 @@ public class Passagem_Tabela extends javax.swing.JDialog {
                 p.getTipo()
             });
         }
+    }
+
+    public String pegaNome() {
+        int coluna = 1;
+        int linha = this.jTbPassagem.getSelectedRow();
+        return (String) this.jTbPassagem.getValueAt(linha, coluna);
+    }
+
+    public String pegaCPF() {
+        int coluna = 2;
+        int linha = this.jTbPassagem.getSelectedRow();
+        return (String) this.jTbPassagem.getValueAt(linha, coluna);
+    }
+
+    public String pegaRG() {
+        int coluna = 3;
+        int linha = this.jTbPassagem.getSelectedRow();
+        return (String) this.jTbPassagem.getValueAt(linha, coluna);
+    }
+
+    public Date pegaData() {
+        int coluna = 4;
+        int linha = this.jTbPassagem.getSelectedRow();
+        return (Date) this.jTbPassagem.getValueAt(linha, coluna);
+    }
+
+    public String pegaHora() {
+        int coluna = 5;
+        int linha = this.jTbPassagem.getSelectedRow();
+        return (String) this.jTbPassagem.getValueAt(linha, coluna);
+    }
+
+    public String pegaPlataforma() {
+        int coluna = 6;
+        int linha = this.jTbPassagem.getSelectedRow();
+        return (String) this.jTbPassagem.getValueAt(linha, coluna);
+    }
+
+    public String pegaOrigem() {
+        int coluna = 7;
+        int linha = this.jTbPassagem.getSelectedRow();
+        return (String) this.jTbPassagem.getValueAt(linha, coluna);
+    }
+
+    public String pegaDestino() {
+        int coluna = 8;
+        int linha = this.jTbPassagem.getSelectedRow();
+        return (String) this.jTbPassagem.getValueAt(linha, coluna);
+    }
+    
+    public float pegaValor(){
+        int coluna = 9;
+        int linha = this.jTbPassagem.getSelectedRow();
+        return (float) this.jTbPassagem.getValueAt(linha, coluna);
+    }
+    public String pegaTipo() {
+        int coluna = 10;
+        int linha = this.jTbPassagem.getSelectedRow();
+        return (String) this.jTbPassagem.getValueAt(linha, coluna);
+    }
+
+    protected void edita() {
+        Passagem passagem = new Passagem();
+        passagem.setId_passagem(pegaId());
+        passagem.setNome(pegaNome());
+        passagem.setCpf(pegaCPF());
+        passagem.setRg(pegaRG());
+        passagem.setData(pegaData());
+        passagem.setHora(pegaHora());
+        passagem.setPlataforma(pegaPlataforma());
+        passagem.setOrigem(pegaOrigem());
+        passagem.setDestino(pegaDestino());
+        passagem.setTipo(pegaTipo());
+        passagem.setValor(pegaValor());
+        this.dispose();
+        Passagem_Venda venda = new Passagem_Venda(null, true, passagem);
+        Passagem_Consulta_Atualizacao consulta_Atualizacao = new Passagem_Consulta_Atualizacao(null, true);
     }
 
     protected void exclui() {
