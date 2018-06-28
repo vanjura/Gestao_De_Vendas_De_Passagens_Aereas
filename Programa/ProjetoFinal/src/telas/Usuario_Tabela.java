@@ -43,15 +43,14 @@ public class Usuario_Tabela extends javax.swing.JDialog {
     }
     
     protected void exclui() {
-        Usuario usuario = new Usuario();
-        usuario.setNome(this.pegaNome());
+        String nome = pegaNome();
         this.dispose();
         int op = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o usuário "
-                + usuario.getNome()
-                + "?", null, JOptionPane.YES_NO_OPTION);
+                + nome
+                + "?", "Excluir", JOptionPane.YES_NO_OPTION);
         if (op == JOptionPane.OK_OPTION) {
             UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
-            usuarioCRUD.exclusao(usuario.getNome());
+            usuarioCRUD.exclusao(nome);
         }
         Usuario_Exclusao exclusao = new Usuario_Exclusao(null, true);
     }
