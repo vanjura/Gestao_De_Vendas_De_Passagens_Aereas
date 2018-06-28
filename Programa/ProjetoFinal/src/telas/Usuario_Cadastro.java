@@ -15,6 +15,7 @@ import passagens_aereas.Usuario;
 public class Usuario_Cadastro extends DefaultCadastro {
     
     boolean atualizacao = false;
+    String nomeOld;
 
     /**
      * Creates new form CadastroUsuario
@@ -32,23 +33,40 @@ public class Usuario_Cadastro extends DefaultCadastro {
         super(parent, modal);
         initComponents();
         atualizacao = true;
+        nomeOld = usuario.getNome();
+        setaCampos(usuario);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+    }
+    
+    private void setaCampos(Usuario usuario){
         this.campoNome.setText(usuario.getNome());
+        this.campoNivel.setSelectedItem(retornaNivel(usuario));
         this.campoSenha.setText(usuario.getSenha());
         this.campoConfirmaSenha.setText(usuario.getSenha());
-        this.campoNivel.setSelectedItem(retornaNivel(usuario));
     }
     
     public String retornaNivel(Usuario usuario){
-        if (usuario.getNivel() == 1){
-            return "Atendente";
-        }else if(usuario.getNivel() == 5){
-            return "Gerente";
-        }else if(usuario.getNivel() == 10){
-            return "Administrador";
+        switch (usuario.getNivel()) {
+            case 1:
+                return "Atendente";
+            case 5:
+                return "Gerente";
+            case 10:
+                return "Administrador";
+            default:
+                break;
         }
         return null;
     }
     
+    private boolean perguntaAt(){
+        
+    }
+    
+    private boolean pergunta(){
+        
+    }
     
     public void salvaUsuario(Usuario usuario){
         if(!validaUsuario()){
@@ -61,11 +79,14 @@ public class Usuario_Cadastro extends DefaultCadastro {
         }
         UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
         if (atualizacao){
-            
+            if (perguntaAt()) {
+                usuarioCRUD.atualizar(usuario, nomeOld);
+            }
         }else{
-            usuarioCRUD.inserir(usuario);            
+            if (pergunta()) {
+                usuarioCRUD.inserir(usuario);
+            }
         }
-        
     }
     
     public Usuario criaUsuario(){

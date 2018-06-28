@@ -49,7 +49,26 @@ public class UsuarioCRUD {
         }
     }
     
-    public void exclusao(String nome){
+    public boolean atualizar(Usuario usuario, String nomeOld) {
+        PreparedStatement stmt = null;
+        String sql = "update usuario set nome = ?, senha = ?, nivel = ? where nome = ?";
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, usuario.getNome());
+            stmt.setString(2, usuario.getNome());
+            stmt.setInt(3, usuario.getNivel());
+            stmt.setString(1, nomeOld);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+            return false;
+        } finally {
+            Conexao.fecharConexao(con, stmt);
+        }
+    }
+    
+    public void excluir(String nome){
         PreparedStatement stmt = null;
         String sql = "delete from usuario where nome = ?";
         try {

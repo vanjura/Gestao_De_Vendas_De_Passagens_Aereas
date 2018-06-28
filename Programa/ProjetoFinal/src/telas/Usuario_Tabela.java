@@ -41,6 +41,16 @@ public class Usuario_Tabela extends javax.swing.JDialog {
         int linha = this.jTable1.getSelectedRow();
         return (String) jTable1.getValueAt(linha, coluna);
     }
+    private String pegaSenha() {
+        int coluna = 2;
+        int linha = this.jTable1.getSelectedRow();
+        return (String) jTable1.getValueAt(linha, coluna);
+    }
+    private int pegaNivel() {
+        int coluna = 1;
+        int linha = this.jTable1.getSelectedRow();
+        return (int) jTable1.getValueAt(linha, coluna);
+    }
     
     protected void exclui() {
         String nome = pegaNome();
@@ -50,9 +60,19 @@ public class Usuario_Tabela extends javax.swing.JDialog {
                 + "?", "Excluir", JOptionPane.YES_NO_OPTION);
         if (op == JOptionPane.OK_OPTION) {
             UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
-            usuarioCRUD.exclusao(nome);
+            usuarioCRUD.excluir(nome);
         }
         Usuario_Exclusao exclusao = new Usuario_Exclusao(null, true);
+    }
+    
+    protected void edita(){
+        Usuario usuario = new Usuario();
+        usuario.setNome(pegaNome());
+        usuario.setSenha(pegaSenha());
+        usuario.setNivel(pegaNivel());
+        this.dispose();
+        Usuario_Cadastro cadastro = new Usuario_Cadastro(null, true, usuario);
+        Usuario_Consulta_Atualizacao consulta_Atualizacao = new Usuario_Consulta_Atualizacao(null, true);
     }
     
     
