@@ -24,8 +24,6 @@ public class Voo_Tabela extends DefaultTabelas {
         super(parent, modal);
         initComponents();
         escreveTabela();
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
     }
     
     private void escreveTabela() {
@@ -60,9 +58,8 @@ public class Voo_Tabela extends DefaultTabelas {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -89,9 +86,8 @@ public class Voo_Tabela extends DefaultTabelas {
         jPanel1.add(jScrollPane1);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
-        getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
-        getContentPane().add(jPanel4, java.awt.BorderLayout.LINE_END);
-        getContentPane().add(jPanel5, java.awt.BorderLayout.LINE_START);
+        getContentPane().add(jPanel2, java.awt.BorderLayout.WEST);
+        getContentPane().add(jPanel3, java.awt.BorderLayout.EAST);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -105,9 +101,8 @@ public class Voo_Tabela extends DefaultTabelas {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
