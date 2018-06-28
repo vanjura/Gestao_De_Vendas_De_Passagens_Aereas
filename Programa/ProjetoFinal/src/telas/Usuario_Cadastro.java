@@ -81,7 +81,25 @@ public class Usuario_Cadastro extends DefaultCadastro {
     }
 
     private boolean pergunta() {
-        return false;
+        String titulo = "Cadastro";
+        String texto = "Dados cadastrados:"
+                + "\n"
+                + "\nNome: " + this.campoNome.getText()
+                + "\nNível: " + this.campoNivel.getSelectedItem()
+                + "\nSenha:" + this.campoSenha.getText()
+                + "\n"
+                + "\nDeseja cadastrar outro?"
+                + "\nClique em cancelar para editar os dados acima.";
+        int op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+        switch (op) {
+            case JOptionPane.YES_OPTION:
+                return true;
+            case JOptionPane.NO_OPTION:
+                this.dispose();
+                return true;
+            default:
+                return false;
+        }
     }
 
     public void salvaUsuario(Usuario usuario) {
@@ -99,13 +117,12 @@ public class Usuario_Cadastro extends DefaultCadastro {
         UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
         System.out.println("Validado");
         if (atualizacao) {
-            System.out.println("Atualização");
             if (perguntaAt()) {
-                System.out.println("Pergunta ok");
                 usuarioCRUD.atualizar(usuario, nomeOld);
-            } else if (pergunta()) {
-                usuarioCRUD.inserir(usuario);
             }
+        } else if (pergunta()) {
+            System.out.println("inserção");
+            usuarioCRUD.inserir(usuario);
         }
     }
 
