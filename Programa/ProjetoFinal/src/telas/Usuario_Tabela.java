@@ -17,6 +17,8 @@ public class Usuario_Tabela extends javax.swing.JDialog {
 
     /**
      * Creates new form Usuario_Tabela
+     * @param parent
+     * @param modal
      */
     public Usuario_Tabela(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
