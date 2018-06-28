@@ -43,7 +43,7 @@ public class Usuario_Tabela extends javax.swing.JDialog {
         }
     }
 
-    protected void excui() {
+    protected void exclui() {
         Usuario usuario = new Usuario();
         usuario.setNome(this.pegaNome());
         this.dispose();
