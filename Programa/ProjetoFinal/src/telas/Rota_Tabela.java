@@ -86,7 +86,6 @@ public class Rota_Tabela extends DefaultTabelas {
         this.dispose();
         int op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
         if (op == JOptionPane.YES_OPTION) {
-            System.out.println("excluindo...");
             rotaCRUD.exclusao(pegaId());
         }
         Rota_Exclusao exclusao = new Rota_Exclusao(null, true);
