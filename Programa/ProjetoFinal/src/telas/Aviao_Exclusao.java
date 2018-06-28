@@ -75,7 +75,7 @@ public class Aviao_Exclusao extends Aviao_Tabela {
      */
     private void closeDialog(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeDialog
         setVisible(false);
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_closeDialog
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -88,7 +88,7 @@ public class Aviao_Exclusao extends Aviao_Tabela {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         setVisible(false);
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
