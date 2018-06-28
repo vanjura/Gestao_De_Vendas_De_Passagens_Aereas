@@ -26,9 +26,9 @@ public class VooCRUD {
     public VooCRUD() {
         con = Conexao.getConexao();
     }
-    
+
     public void inserir(Voo voo) {
-        PreparedStatement stmt = null; 
+        PreparedStatement stmt = null;
         String sql = "insert into voo (origem, destino, aviao, data, ass_c, ass_esp, preco_c, preco_e, rota,hora) VALUES(?,?,?,?,?,?,?,?,?,?)";
         try {
             stmt = con.prepareStatement(sql);
@@ -49,7 +49,7 @@ public class VooCRUD {
             Conexao.fecharConexao(con, stmt);
         }
     }
-    
+
     public boolean atualizar(Voo voo, int idOld) {
         PreparedStatement stmt = null;
         String sql = "update voo set origem = ?, destino = ?, aviao = ?, data = ?, ass_c = ?, ass_esp = ?, preco_c = ?, preco_e = ?, rota= ? ,hora = ? where id_voo = ?";
@@ -75,8 +75,8 @@ public class VooCRUD {
             Conexao.fecharConexao(con, stmt);
         }
     }
-    
-    public void exclusao(int id){
+
+    public void exclusao(int id) {
         PreparedStatement stmt = null;
         String sql = "delete from voo where id_voo = ?";
         try {
@@ -89,8 +89,64 @@ public class VooCRUD {
             Conexao.fecharConexao(con, stmt);
         }
     }
-    
-    public List<Voo> buscaTudo(){
+
+    public void vooIncrementaC(int id) {
+        PreparedStatement stmt = null;
+        String sql = "update voo set ass_c = ass_c + 1 where id_voo = ?";
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+        } finally {
+            Conexao.fecharConexao(con, stmt);
+        }
+    }
+
+    public void vooDecrementaC(int id) {
+        PreparedStatement stmt = null;
+        String sql = "update voo set ass_c = ass_c - 1 where id_voo = ?";
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+        } finally {
+            Conexao.fecharConexao(con, stmt);
+        }
+    }
+
+    public void vooIncrementaE(int id) {
+        PreparedStatement stmt = null;
+        String sql = "update voo set ass_esp = ass_esp + 1 where id_voo = ?";
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+        } finally {
+            Conexao.fecharConexao(con, stmt);
+        }
+    }
+
+    public void vooDecrementaE(int id) {
+        PreparedStatement stmt = null;
+        String sql = "update voo set ass_esp = ass_esp - 1 where id_voo = ?";
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+        } finally {
+            Conexao.fecharConexao(con, stmt);
+        }
+    }
+
+    public List<Voo> buscaTudo() {
         List<Voo> voos = new ArrayList<>();
         String sql = "select * from voo";
         PreparedStatement stmt = null;
@@ -115,7 +171,7 @@ public class VooCRUD {
             }
         } catch (SQLException ex) {
             Logger.getLogger(VooCRUD.class.getName()).log(Level.SEVERE, null, ex);
-        }finally {
+        } finally {
             Conexao.fecharConexao(con, stmt);
         }
         return voos;
@@ -137,7 +193,7 @@ public class VooCRUD {
             }
         } catch (SQLException ex) {
             Logger.getLogger(VooCRUD.class.getName()).log(Level.SEVERE, null, ex);
-        }finally {
+        } finally {
             Conexao.fecharConexao(con, stmt);
         }
         return voos;
