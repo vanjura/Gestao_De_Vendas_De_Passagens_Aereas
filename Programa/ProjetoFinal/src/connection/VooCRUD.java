@@ -50,6 +50,32 @@ public class VooCRUD {
         }
     }
     
+    public boolean atualizar(Voo voo, int idOld) {
+        PreparedStatement stmt = null;
+        String sql = "update voo set origem = ?, destino = ?, aviao = ?, data = ?, ass_c = ?, ass_esp = ?, preco_c = ?, preco_e = ?, rota= ? ,hora = ? where id_voo = ?";
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, voo.getOrigem());
+            stmt.setString(2, voo.getDestino());
+            stmt.setString(3, voo.getAviao());
+            stmt.setDate(4, voo.getData());
+            stmt.setInt(5, voo.getAss_c());
+            stmt.setInt(6, voo.getAss_e());
+            stmt.setFloat(7, voo.getPreco_c());
+            stmt.setFloat(8, voo.getPreco_e());
+            stmt.setInt(9, voo.getRota());
+            stmt.setString(10, voo.getHora());
+            stmt.setInt(11, idOld);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+            return false;
+        } finally {
+            Conexao.fecharConexao(con, stmt);
+        }
+    }
+    
     public void exclusao(int id){
         PreparedStatement stmt = null;
         String sql = "delete from voo where id_voo = ?";

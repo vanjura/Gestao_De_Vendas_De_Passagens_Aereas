@@ -6,6 +6,7 @@
 package telas;
 
 import connection.VooCRUD;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import passagens_aereas.Voo;
@@ -18,6 +19,7 @@ public class Voo_Tabela extends DefaultTabelas {
 
     /**
      * Creates new form TabelaVoo
+     *
      * @param parent
      * @param modal
      */
@@ -26,13 +28,13 @@ public class Voo_Tabela extends DefaultTabelas {
         initComponents();
         escreveTabela();
     }
-    
+
     private int pegaId() {
         int coluna = 0;
         int linha = this.jTbVoo.getSelectedRow();
         return (int) this.jTbVoo.getValueAt(linha, coluna);
     }
-    
+
     private void escreveTabela() {
         DefaultTableModel modelo = (DefaultTableModel) jTbVoo.getModel();
         VooCRUD vooCRUD = new VooCRUD();
@@ -52,7 +54,7 @@ public class Voo_Tabela extends DefaultTabelas {
             });
         }
     }
-    
+
     protected void exclui() {
         VooCRUD vooCRUD = new VooCRUD();
         String texto = "Deseja realmente excluir esse item?";
@@ -63,6 +65,91 @@ public class Voo_Tabela extends DefaultTabelas {
             vooCRUD.exclusao(this.pegaId());
         }
         Voo_Exclusao exclusao = new Voo_Exclusao(null, true);
+    }
+
+    private int pegaHora() {
+        int coluna = 7;
+        int linha = this.jTbVoo.getSelectedRow();
+        String valor = (String) jTbVoo.getValueAt(linha, coluna);
+        String hora = valor.substring(0, 2);
+        return Integer.parseInt(hora);
+    }
+
+    private int pegaMinuto() {
+        int coluna = 7;
+        int linha = this.jTbVoo.getSelectedRow();
+        String valor = (String) jTbVoo.getValueAt(linha, coluna);
+        String hora = valor.substring(3, 5);
+        return Integer.parseInt(hora);
+    }
+
+    private int pegaRota() {
+        int coluna = 1;
+        int linha = this.jTbVoo.getSelectedRow();
+        return (int) this.jTbVoo.getValueAt(linha, coluna);
+    }
+    
+    private String pegaOrigem(){
+        int coluna = 2;
+        int linha = this.jTbVoo.getSelectedRow();
+        return (String) this.jTbVoo.getValueAt(linha, coluna);
+    }
+    
+    private String pegaDestino(){
+        int coluna = 3;
+        int linha = this.jTbVoo.getSelectedRow();
+        return (String) this.jTbVoo.getValueAt(linha, coluna);
+    }
+    
+    private float pegaPrecoC(){
+        int coluna = 4;
+        int linha = this.jTbVoo.getSelectedRow();
+        return (float) this.jTbVoo.getValueAt(linha, coluna);
+    }
+    
+    private float pegaPrecoE(){
+        int coluna = 5;
+        int linha = this.jTbVoo.getSelectedRow();
+        return (float) this.jTbVoo.getValueAt(linha, coluna);
+    }
+    
+    private Date pegaData(){
+        int coluna = 6;
+        int linha = this.jTbVoo.getSelectedRow();
+        return (Date) this.jTbVoo.getValueAt(linha, coluna);
+    }
+    
+    private String pegaAviao(){
+        int coluna = 8;
+        int linha = this.jTbVoo.getSelectedRow();
+        return (String) this.jTbVoo.getValueAt(linha, coluna);
+    }
+    
+    private int pegaQAC() {
+        int coluna = 9;
+        int linha = this.jTbVoo.getSelectedRow();
+        return (int) this.jTbVoo.getValueAt(linha, coluna);
+    }
+    
+    private int pegaQAE() {
+        int coluna = 10;
+        int linha = this.jTbVoo.getSelectedRow();
+        return (int) this.jTbVoo.getValueAt(linha, coluna);
+    }
+
+    protected void edita() {
+        Voo voo = new Voo();
+        voo.setId(pegaId());
+        voo.setRota(pegaRota());
+        voo.setOrigem(pegaOrigem());
+        voo.setDestino(pegaDestino());
+        voo.setPreco_c(pegaPrecoC());
+        voo.setPreco_e(pegaPrecoE());
+        voo.setAviao(pegaAviao());
+        voo.setAss_c(pegaQAC());
+        voo.setAss_e(pegaQAE());
+        voo.setData((java.sql.Date) pegaData());
+        Voo_Cadastro cadastro = new Voo_Cadastro(null, true, voo, pegaHora(), pegaMinuto());
     }
 
     /**
