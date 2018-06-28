@@ -106,6 +106,7 @@ public class AviaoCRUD {
         return avioes;
     }
 
+    //detecta se um registro já existe no banco
     public boolean procuraRegistro(String registro) {
         boolean result = false;
         PreparedStatement stmt = null;
@@ -126,6 +127,7 @@ public class AviaoCRUD {
         return result;
     }
 
+    //retorna os registros de aviões cadastrados no banco
     public List<String> selecionaRegistro() {
         List<String> avioes = new ArrayList<>();
         String sql = "select registro from aviao";
@@ -145,6 +147,7 @@ public class AviaoCRUD {
         return avioes;
     }
 
+    //retorna o numero de assentos utilizando o registro
     public int retornaAssentosC(String registro) {
         int assentosC = 0;
         String sql = "select qtd_assentos from aviao where registro = ?";
@@ -165,6 +168,7 @@ public class AviaoCRUD {
         return assentosC;
     }
 
+    //retorna o numero de assentos utilizando o registro
     public int retornaAssentosE(String registro) {
         int assentosE = 0;
         String sql = "select qtd_assentos_esp from aviao where registro = ?";

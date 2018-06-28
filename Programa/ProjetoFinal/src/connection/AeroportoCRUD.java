@@ -21,10 +21,12 @@ public class AeroportoCRUD {
 
     private Connection con = null;
 
+    //construtor
     public AeroportoCRUD() {
         con = Conexao.getConexao();
     }
     
+    //método de inserção no banco
     public boolean inserir(Aeroporto aeroporto) {
         PreparedStatement stmt = null;
         String sql = "INSERT INTO aeroporto (NOME, CIDADE, ESTADO) VALUES(?,?,?)";
@@ -46,6 +48,7 @@ public class AeroportoCRUD {
         }
     }
     
+    //exclusão no banco
     public void exclusao(int registro){
         PreparedStatement stmt = null;
         String sql = "delete from aeroporto where registro = ?";
@@ -60,6 +63,7 @@ public class AeroportoCRUD {
         }
     }
     
+    //atualização
     public void atualizar(Aeroporto aeroporto){
         PreparedStatement stmt = null;
         String sql = "update aeroporto set nome = ?, cidade = ?, estado = ? where registro = ?";
@@ -77,6 +81,7 @@ public class AeroportoCRUD {
         }
     }
     
+    //retorna todos os objetos gravados no banco
     public List<Aeroporto> buscaTudo(){
         List<Aeroporto> aeroportos = new ArrayList<>();
         String slq = "select * from aeroporto";
@@ -101,6 +106,7 @@ public class AeroportoCRUD {
         return aeroportos;
     }
 
+    //retorna os nomes dos aeroportos
     public List<Aeroporto> buscaNome() {
         List<Aeroporto> aeroportoNomes = new ArrayList<>();
         String slq = "select nome from aeroporto";
@@ -122,6 +128,7 @@ public class AeroportoCRUD {
         return aeroportoNomes;
     }
 
+    //retorna o registro relacionado ao nome do aeroporto
     public int buscaRegistroComNome(String nome) {
         int registro = 0;
         String slq = "select registro from aeroporto where nome = ?";
@@ -142,6 +149,7 @@ public class AeroportoCRUD {
         return registro;
     }
 
+    //busca a cidade em que o aeroporto está
     public String buscaCidade(String nome) {
         String cidade = "";
         String slq = "select cidade from aeroporto where nome = ?";
