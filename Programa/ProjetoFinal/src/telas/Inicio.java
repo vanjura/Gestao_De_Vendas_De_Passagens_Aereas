@@ -56,6 +56,8 @@ public class Inicio extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         menuFrota_CadRotas = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         menuAero = new javax.swing.JMenu();
         menuAero_CadAero = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -142,6 +144,22 @@ public class Inicio extends javax.swing.JFrame {
         });
         menuFrota.add(menuFrota_CadRotas);
 
+        jMenuItem6.setText("Consulta/Atualização de Rota");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        menuFrota.add(jMenuItem6);
+
+        jMenuItem7.setText("Exclusao de Rota");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        menuFrota.add(jMenuItem7);
+
         barraMenu.add(menuFrota);
 
         menuAero.setText("Aeroportos");
@@ -217,6 +235,14 @@ public class Inicio extends javax.swing.JFrame {
         Aviao_Exclusao aviao_Exclusao = new Aviao_Exclusao(null, true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        Rota_Consulta_Atualizacao consulta_Atualizacao = new Rota_Consulta_Atualizacao(null, true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        Rota_Exclusao exclusao = new Rota_Exclusao(null, true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barraMenu;
@@ -225,6 +251,8 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JMenu menuAero;
     private javax.swing.JMenuItem menuAero_CadAero;

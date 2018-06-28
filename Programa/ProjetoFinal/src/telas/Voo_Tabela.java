@@ -6,6 +6,7 @@
 package telas;
 
 import connection.VooCRUD;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import passagens_aereas.Voo;
 
@@ -28,8 +29,14 @@ public class Voo_Tabela extends DefaultTabelas {
         this.setVisible(true);
     }
     
+    private int pegaId() {
+        int coluna = 0;
+        int linha = this.jTbVoo.getSelectedRow();
+        return (int) this.jTbVoo.getValueAt(linha, coluna);
+    }
+    
     private void escreveTabela() {
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) jTbVoo.getModel();
         VooCRUD vooCRUD = new VooCRUD();
         for (Voo v : vooCRUD.buscaTudo()) {
             modelo.addRow(new Object[]{
@@ -47,6 +54,18 @@ public class Voo_Tabela extends DefaultTabelas {
             });
         }
     }
+    
+    protected void exclui() {
+        VooCRUD vooCRUD = new VooCRUD();
+        String texto = "Deseja realmente excluir esse item?";
+        String titulo = "Exclusão";
+        this.dispose();
+        int op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_OPTION);
+        if (op == JOptionPane.YES_OPTION) {
+            vooCRUD.exclusao(this.pegaId());
+        }
+        Voo_Exclusao exclusao = new Voo_Exclusao(null, true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,7 +78,7 @@ public class Voo_Tabela extends DefaultTabelas {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTbVoo = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -68,7 +87,7 @@ public class Voo_Tabela extends DefaultTabelas {
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(600, 300));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTbVoo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -84,7 +103,7 @@ public class Voo_Tabela extends DefaultTabelas {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTbVoo);
 
         jPanel1.add(jScrollPane1);
 
@@ -109,6 +128,6 @@ public class Voo_Tabela extends DefaultTabelas {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTbVoo;
     // End of variables declaration//GEN-END:variables
 }

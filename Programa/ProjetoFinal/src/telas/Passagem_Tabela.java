@@ -6,6 +6,7 @@
 package telas;
 
 import connection.PassagemCRUD;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import passagens_aereas.Passagem;
 
@@ -20,6 +21,13 @@ public class Passagem_Tabela extends javax.swing.JDialog {
      * @param parent
      * @param modal
      */
+    
+    private int pegaId() {
+        int coluna = 0;
+        int linha = this.jTbPassagem.getSelectedRow();
+        return (int) this.jTbPassagem.getValueAt(linha, coluna);
+    }
+    
     public Passagem_Tabela(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -27,7 +35,7 @@ public class Passagem_Tabela extends javax.swing.JDialog {
     }
     
     private void escreveTabela() {
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) jTbPassagem.getModel();
         PassagemCRUD passCRUD = new PassagemCRUD();
         for (Passagem p : passCRUD.buscaTudo()) {
             modelo.addRow(new Object[]{
@@ -45,6 +53,18 @@ public class Passagem_Tabela extends javax.swing.JDialog {
             });
         }
     }
+    
+    protected void exclui() {
+        PassagemCRUD passagemCRUD = new PassagemCRUD();
+        String texto = "Deseja realmente excluir esse item?";
+        String titulo = "Exclusão";
+        this.dispose();
+        int op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_OPTION);
+        if (op == JOptionPane.YES_OPTION) {
+            passagemCRUD.exclusao(this.pegaId());
+        }
+        Passagem_Exclusao exclusao = new Passagem_Exclusao(null, true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,7 +77,7 @@ public class Passagem_Tabela extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTbPassagem = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
 
@@ -65,7 +85,7 @@ public class Passagem_Tabela extends javax.swing.JDialog {
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(800, 300));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTbPassagem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -73,7 +93,7 @@ public class Passagem_Tabela extends javax.swing.JDialog {
                 "Código", "Nome", "CPF", "RG", "Data", "Hora", "Plataforma", "Origem", "Destino", "Valor", "Tipo"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTbPassagem);
 
         jPanel1.add(jScrollPane1);
 
@@ -91,6 +111,6 @@ public class Passagem_Tabela extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTbPassagem;
     // End of variables declaration//GEN-END:variables
 }

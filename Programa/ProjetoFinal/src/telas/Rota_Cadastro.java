@@ -7,6 +7,7 @@ package telas;
 
 import connection.AeroportoCRUD;
 import connection.RotaCRUD;
+import javax.swing.JOptionPane;
 import passagens_aereas.Aeroporto;
 import passagens_aereas.Rota;
 
@@ -15,10 +16,14 @@ import passagens_aereas.Rota;
  * @author lucas_nuze0yo
  */
 public final class Rota_Cadastro extends DefaultCadastro {
+
     int codOld = 0;
     boolean atualizacao = false;
+    float valorPassagem = 0;
+
     /**
      * Creates new form CadastroRota
+     *
      * @param parent
      * @param modal
      */
@@ -40,18 +45,18 @@ public final class Rota_Cadastro extends DefaultCadastro {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-    
-    private float pegaPorcentagem(Rota rota){
+
+    private float pegaPorcentagem(Rota rota) {
         float valor1 = rota.getPreco_c();
         float valor2 = rota.getPreco_e();
         float result1;
         float result2;
-        result1 = valor1-valor2;
-        result2 = result1/valor1;
-        return result2*100;
+        result1 = valor1 - valor2;
+        result2 = result1 / valor1;
+        return result2 * 100;
     }
-    
-    private void setaCampos(Rota rota){
+
+    private void setaCampos(Rota rota) {
         this.caixaOrigem.setSelectedItem(rota.getOrigem());
         this.caixaDestino.setSelectedItem(rota.getDestino());
         this.ftextoPrecoPass.setText(Float.toString(rota.getPreco_c()));
@@ -68,7 +73,7 @@ public final class Rota_Cadastro extends DefaultCadastro {
 
     public Rota validaCampos() {
         Rota rota = criaRota();
-        if (rota.getPreco_c() <= 0 || rota.getPreco_e() < 0){
+        if (rota.getPreco_c() <= 0 || rota.getPreco_e() < 0) {
             System.out.println("Os campos Preço e Desconto não podem ser menores ou iguais a zero.");
             return null;
         }
@@ -85,19 +90,80 @@ public final class Rota_Cadastro extends DefaultCadastro {
         rota.setOrigem(this.caixaOrigem.getSelectedItem().toString());
         rota.setDestino(this.caixaDestino.getSelectedItem().toString());
         rota.setPreco_c(Float.parseFloat(this.ftextoPrecoPass.getText().replace(",", ".")));
-        rota.setPreco_e(Float.parseFloat(this.textoValorPassEsp.getText().replace(",", ".")));
+        rota.setPreco_e(this.valorPassagem);
         return rota;
     }
-    
-    public void insereRota(Rota rota){
-        RotaCRUD rotaCRUD = new RotaCRUD();
-        if(atualizacao){
-            rotaCRUD.atualizar(rota, codOld);
-        }else{
-            rotaCRUD.inserir(rota);
-            
+
+    private boolean perguntaAt() {
+        String titulo = "Atualização";
+        String texto = "Dados atualizados:"
+                + "\n"
+                + "\nOrigem: " + this.caixaOrigem.getSelectedItem().toString()
+                + "\nDestino: " + this.caixaDestino.getSelectedItem().toString()
+                + "\nPreço Ass. Comum:" + this.ftextoPrecoPass.getText()
+                + "\nPreço Ass. Especial:" + this.valorPassagem
+                + "\n"
+                + "\nVocê confirma a atualização?";
+        int op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_OPTION);
+        if (op == JOptionPane.YES_OPTION) {
+            this.dispose();
+            return true;
+        } else {
+            return false;
         }
-        //mensagem para rota inserida
+    }
+
+    private boolean pergunta() {
+        String titulo = "Cadastro";
+        String texto = "Dados cadastrados:"
+                + "\n"
+                + "\nOrigem: " + this.caixaOrigem.getSelectedItem().toString()
+                + "\nDestino: " + this.caixaDestino.getSelectedItem().toString()
+                + "\nPreço Ass. Comum:" + this.ftextoPrecoPass.getText()
+                + "\nPreço Ass. Especial:" + this.valorPassagem
+                + "\n"
+                + "\nDeseja cadastrar outro?"
+                + "\nClique em cancelar para editar os dados acima.";
+        int op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+        switch (op) {
+            case JOptionPane.YES_OPTION:
+                return true;
+            case JOptionPane.NO_OPTION:
+                this.dispose();
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public void insereRota(Rota rota) {
+        RotaCRUD rotaCRUD = new RotaCRUD();
+        if (atualizacao) {
+            if (perguntaAt()) {
+                rotaCRUD.atualizar(rota, codOld);
+            }
+        } else {
+            if (pergunta()) {
+                rotaCRUD.inserir(rota);
+            }
+        }
+    }
+
+    private void calcula() {
+        String texto01 = this.ftextoPrecoPass.getText().replace(",", ".");
+        String texto02 = this.ftextoDesconto.getText().replace(",", ".");
+        float num1, num2, result;
+        try {
+            num1 = Float.parseFloat(texto01);
+            num2 = Float.parseFloat(texto02);
+        } catch (NumberFormatException ex) {
+            num1 = 0;
+            num2 = 0;
+        }
+        if (num1 != 0 || num2 != 0) {
+            result = num1 - (num2 * (num1 / 100));
+            this.valorPassagem = result;
+        }
     }
 
     /**
@@ -126,10 +192,6 @@ public final class Rota_Cadastro extends DefaultCadastro {
         textoDesconto = new javax.swing.JLabel();
         ftextoDesconto = new javax.swing.JFormattedTextField();
         textoPorcent = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
-        textoPrecoPassEsp = new javax.swing.JLabel();
-        textoSifra = new javax.swing.JLabel();
-        textoValorPassEsp = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         botaoSalvar = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
@@ -229,19 +291,6 @@ public final class Rota_Cadastro extends DefaultCadastro {
 
         jPanel2.add(jPanel8);
 
-        jPanel10.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
-
-        textoPrecoPassEsp.setText("Preço da Passagem Especial:");
-        jPanel10.add(textoPrecoPassEsp);
-
-        textoSifra.setText("R$");
-        jPanel10.add(textoSifra);
-
-        textoValorPassEsp.setText("0,00");
-        jPanel10.add(textoValorPassEsp);
-
-        jPanel2.add(jPanel10);
-
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         botaoSalvar.setText("Salvar");
@@ -285,8 +334,9 @@ public final class Rota_Cadastro extends DefaultCadastro {
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
         Rota rota = validaCampos();
-        if (rota != null){
+        if (rota != null) {
             insereRota(rota);
+            calcula();
         }
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
@@ -295,20 +345,7 @@ public final class Rota_Cadastro extends DefaultCadastro {
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void ftextoDescontoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ftextoDescontoFocusLost
-        String texto01 = this.ftextoPrecoPass.getText().replace(",", ".");
-        String texto02 = this.ftextoDesconto.getText().replace(",", ".");
-        float num1, num2, result;
-        try {
-            num1 = Float.parseFloat(texto01);
-            num2 = Float.parseFloat(texto02);
-        } catch (NumberFormatException ex) {
-            num1 = 0;
-            num2 = 0;
-        }
-        if (num1 != 0 || num2 != 0) {
-            result = num1 - (num2 * (num1 / 100));
-            this.textoValorPassEsp.setText(Float.toString(result));
-        }
+        calcula();
     }//GEN-LAST:event_ftextoDescontoFocusLost
 
     /**
@@ -331,7 +368,6 @@ public final class Rota_Cadastro extends DefaultCadastro {
     private javax.swing.JLabel jLblRegistro3;
     private javax.swing.JLabel jLblRegistro4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -344,8 +380,5 @@ public final class Rota_Cadastro extends DefaultCadastro {
     private javax.swing.JLabel textoOrigem;
     private javax.swing.JLabel textoPorcent;
     private javax.swing.JLabel textoPrecoPass;
-    private javax.swing.JLabel textoPrecoPassEsp;
-    private javax.swing.JLabel textoSifra;
-    private javax.swing.JLabel textoValorPassEsp;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,7 @@
 package telas;
 
 import connection.RotaCRUD;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import passagens_aereas.Rota;
 
@@ -76,6 +77,18 @@ public class Rota_Tabela extends DefaultTabelas {
         this.dispose();
         Rota_Cadastro cadastro = new Rota_Cadastro(null, true, rota);
         Rota_Consulta_Atualizacao consulta_Atualizacao = new Rota_Consulta_Atualizacao(null, true);
+    }
+    
+    protected void exclui(){
+        RotaCRUD rotaCRUD = new RotaCRUD();
+        String texto = "Deseja realmente excluir esse item?";
+        String titulo = "Exclusão";
+        this.dispose();
+        int op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+        if (op == JOptionPane.YES_OPTION) {
+            rotaCRUD.exclusao(pegaId());
+        }
+        Rota_Exclusao exclusao = new Rota_Exclusao(null, true);
     }
 
     /**
