@@ -18,6 +18,7 @@ public class Rota_Tabela extends DefaultTabelas {
 
     /**
      * Creates new form TabelaRota
+     *
      * @param parent
      * @param modal
      */
@@ -26,7 +27,7 @@ public class Rota_Tabela extends DefaultTabelas {
         initComponents();
         escreveTabela();
     }
-    
+
     private void escreveTabela() {
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         RotaCRUD rotaCRUD = new RotaCRUD();
@@ -40,33 +41,37 @@ public class Rota_Tabela extends DefaultTabelas {
             });
         }
     }
-    
-    public int pegaId(){
+
+    public int pegaId() {
         int coluna = 0;
         int linha = this.jTable1.getSelectedRow();
         return (int) this.jTable1.getValueAt(linha, coluna);
     }
-    public String pegaOrigem(){
+
+    public String pegaOrigem() {
         int coluna = 1;
         int linha = this.jTable1.getSelectedRow();
         return (String) this.jTable1.getValueAt(linha, coluna);
     }
-    public String pegaDestino(){
+
+    public String pegaDestino() {
         int coluna = 2;
         int linha = this.jTable1.getSelectedRow();
         return (String) this.jTable1.getValueAt(linha, coluna);
     }
-    public float pegaPreco_c(){
+
+    public float pegaPreco_c() {
         int coluna = 3;
         int linha = this.jTable1.getSelectedRow();
         return (float) this.jTable1.getValueAt(linha, coluna);
     }
-    public float pegaPreco_e(){
+
+    public float pegaPreco_e() {
         int coluna = 4;
         int linha = this.jTable1.getSelectedRow();
         return (float) this.jTable1.getValueAt(linha, coluna);
     }
-    
+
     protected void edita() {
         Rota rota = new Rota();
         rota.setId(this.pegaId());
@@ -78,13 +83,13 @@ public class Rota_Tabela extends DefaultTabelas {
         Rota_Cadastro cadastro = new Rota_Cadastro(null, true, rota);
         Rota_Consulta_Atualizacao consulta_Atualizacao = new Rota_Consulta_Atualizacao(null, true);
     }
-    
-    protected void exclui(){
+
+    protected void exclui() {
         RotaCRUD rotaCRUD = new RotaCRUD();
         String texto = "Deseja realmente excluir esse item?";
         String titulo = "Exclusão";
         this.dispose();
-        int op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+        int op = JOptionPane.showConfirmDialog(null, texto, titulo, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         if (op == JOptionPane.YES_OPTION) {
             rotaCRUD.exclusao(pegaId());
         }

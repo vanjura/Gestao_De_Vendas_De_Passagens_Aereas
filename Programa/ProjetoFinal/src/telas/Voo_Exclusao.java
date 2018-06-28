@@ -17,8 +17,6 @@ public class Voo_Exclusao extends Voo_Tabela {
     public Voo_Exclusao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
     }
 
     /**

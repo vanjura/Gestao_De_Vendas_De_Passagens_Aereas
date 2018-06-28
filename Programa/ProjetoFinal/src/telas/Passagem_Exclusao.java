@@ -17,8 +17,6 @@ public class Passagem_Exclusao extends Passagem_Tabela {
     public Passagem_Exclusao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
     }
 
     /**

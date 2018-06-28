@@ -18,6 +18,7 @@ public class Voo_Tabela extends DefaultTabelas {
 
     /**
      * Creates new form TabelaVoo
+     *
      * @param parent
      * @param modal
      */
@@ -28,13 +29,13 @@ public class Voo_Tabela extends DefaultTabelas {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-    
+
     private int pegaId() {
         int coluna = 0;
         int linha = this.jTbVoo.getSelectedRow();
         return (int) this.jTbVoo.getValueAt(linha, coluna);
     }
-    
+
     private void escreveTabela() {
         DefaultTableModel modelo = (DefaultTableModel) jTbVoo.getModel();
         VooCRUD vooCRUD = new VooCRUD();
@@ -54,7 +55,7 @@ public class Voo_Tabela extends DefaultTabelas {
             });
         }
     }
-    
+
     protected void exclui() {
         VooCRUD vooCRUD = new VooCRUD();
         String texto = "Deseja realmente excluir esse item?";
@@ -118,9 +119,6 @@ public class Voo_Tabela extends DefaultTabelas {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        Voo_Tabela tabelaVoo = new Voo_Tabela(null, true);
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;

@@ -18,22 +18,22 @@ public class Passagem_Tabela extends javax.swing.JDialog {
 
     /**
      * Creates new form TabelaPassagem
+     *
      * @param parent
      * @param modal
      */
-    
     private int pegaId() {
         int coluna = 0;
         int linha = this.jTbPassagem.getSelectedRow();
         return (int) this.jTbPassagem.getValueAt(linha, coluna);
     }
-    
+
     public Passagem_Tabela(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         escreveTabela();
     }
-    
+
     private void escreveTabela() {
         DefaultTableModel modelo = (DefaultTableModel) jTbPassagem.getModel();
         PassagemCRUD passCRUD = new PassagemCRUD();
@@ -53,7 +53,7 @@ public class Passagem_Tabela extends javax.swing.JDialog {
             });
         }
     }
-    
+
     protected void exclui() {
         PassagemCRUD passagemCRUD = new PassagemCRUD();
         String texto = "Deseja realmente excluir esse item?";
@@ -104,7 +104,6 @@ public class Passagem_Tabela extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;

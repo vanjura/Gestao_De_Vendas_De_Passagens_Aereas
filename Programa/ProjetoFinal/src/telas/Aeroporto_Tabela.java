@@ -40,29 +40,32 @@ public class Aeroporto_Tabela extends javax.swing.JDialog {
             });
         }
     }
-    
-    private int pegaRegistro(){
+
+    private int pegaRegistro() {
         int coluna = 0;
         int linha = this.jTable1.getSelectedRow();
         return (Integer) jTable1.getValueAt(linha, coluna);
     }
-    private String pegaNome(){
+
+    private String pegaNome() {
         int coluna = 1;
         int linha = this.jTable1.getSelectedRow();
         return (String) jTable1.getValueAt(linha, coluna);
     }
-    private String pegaCidade(){
+
+    private String pegaCidade() {
         int coluna = 2;
         int linha = this.jTable1.getSelectedRow();
         return (String) jTable1.getValueAt(linha, coluna);
     }
-    private String pegaEstado(){
+
+    private String pegaEstado() {
         int coluna = 3;
         int linha = this.jTable1.getSelectedRow();
         return (String) jTable1.getValueAt(linha, coluna);
     }
-    
-    protected void edita(){
+
+    protected void edita() {
         Aeroporto aeroporto = new Aeroporto();
         aeroporto.setRegistro(this.pegaRegistro());
         aeroporto.setNome(this.pegaNome());
@@ -72,16 +75,16 @@ public class Aeroporto_Tabela extends javax.swing.JDialog {
         Aeroporto_Cadastro cadastroAeroporto = new Aeroporto_Cadastro(null, true, aeroporto);
         Aeroporto_Consulta_Atualizacao consulta_Atualizacao = new Aeroporto_Consulta_Atualizacao(null, true);
     }
-    
-    protected void excui(){
+
+    protected void excui() {
         Aeroporto aeroporto = new Aeroporto();
         aeroporto.setRegistro(this.pegaRegistro());
         aeroporto.setNome(this.pegaNome());
         this.dispose();
-        int op = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o aeroporto " 
+        int op = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o aeroporto "
                 + aeroporto.getNome()
-                + "?",null, JOptionPane.YES_NO_OPTION);
-        if(op == JOptionPane.OK_OPTION){
+                + "?", null, JOptionPane.YES_NO_OPTION);
+        if (op == JOptionPane.OK_OPTION) {
             AeroportoCRUD aeroportoCRUD = new AeroportoCRUD();
             aeroportoCRUD.exclusao(aeroporto.getRegistro());
         }
@@ -134,7 +137,6 @@ public class Aeroporto_Tabela extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

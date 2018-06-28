@@ -17,8 +17,6 @@ public class Rota_Exclusao extends Rota_Tabela {
     public Rota_Exclusao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
     }
 
     /**

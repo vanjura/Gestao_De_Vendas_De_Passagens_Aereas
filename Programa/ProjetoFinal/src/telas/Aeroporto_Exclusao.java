@@ -17,8 +17,6 @@ public class Aeroporto_Exclusao extends Aeroporto_Tabela {
     public Aeroporto_Exclusao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
     }
 
     /**
@@ -94,9 +92,6 @@ public class Aeroporto_Exclusao extends Aeroporto_Tabela {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        Aeroporto_Exclusao exclusao = new Aeroporto_Exclusao(null, true);
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

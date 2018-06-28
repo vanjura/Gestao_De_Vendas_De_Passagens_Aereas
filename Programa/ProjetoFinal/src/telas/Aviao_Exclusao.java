@@ -17,8 +17,6 @@ public class Aviao_Exclusao extends Aviao_Tabela {
     public Aviao_Exclusao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
     }
 
     /**
@@ -94,9 +92,6 @@ public class Aviao_Exclusao extends Aviao_Tabela {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        Aviao_Exclusao exclusao = new Aviao_Exclusao(null, true);
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -17,8 +17,6 @@ public class Usuario_Exclusao extends Usuario_Tabela {
     public Usuario_Exclusao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
     }
 
     /**
@@ -50,6 +48,11 @@ public class Usuario_Exclusao extends Usuario_Tabela {
         getContentPane().add(jPanel2, java.awt.BorderLayout.NORTH);
 
         jButton1.setText("Excluir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
 
         jButton2.setText("Sair");
@@ -68,10 +71,14 @@ public class Usuario_Exclusao extends Usuario_Tabela {
         dispose();
     }//GEN-LAST:event_closeDialog
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        super.excui();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[])   {
         Usuario_Exclusao exclusao = new Usuario_Exclusao(null, true);
     }
 
