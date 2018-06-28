@@ -6,6 +6,7 @@
 package telas;
 
 import connection.UsuarioCRUD;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import passagens_aereas.Usuario;
 
@@ -39,6 +40,19 @@ public class Usuario_Tabela extends javax.swing.JDialog {
         int coluna = 1;
         int linha = this.jTable1.getSelectedRow();
         return (String) jTable1.getValueAt(linha, coluna);
+    }
+    
+    protected void excui() {
+        Usuario usuario = new Usuario();
+        usuario.setNome(this.pegaNome());
+        this.dispose();
+        int op = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o aeroporto "
+                + usuario.getNome()
+                + "?", null, JOptionPane.YES_NO_OPTION);
+        if (op == JOptionPane.OK_OPTION) {
+            UsuarioCRUD usuarioCRUD = new UsuarioCRUD();
+        }
+        Usuario_Exclusao exclusao = new Usuario_Exclusao(null, true);
     }
     
     
