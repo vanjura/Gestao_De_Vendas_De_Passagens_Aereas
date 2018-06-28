@@ -95,37 +95,6 @@ public class VooCRUD {
         }
         return voos;
     }
-    
-    public List<Voo> buscaAssC(){
-        List<Voo> voos = new ArrayList<>();
-        String sql = "select ass_c from voo where ";
-        PreparedStatement stmt = null;
-        ResultSet rs;
-        try {
-            stmt = con.prepareStatement(sql);
-            rs = stmt.executeQuery();
-            while (rs.next()) {
-                Voo voo = new Voo();
-                voo.setId(rs.getInt("id_voo"));
-                voo.setRota(rs.getInt("rota"));
-                voo.setAviao(rs.getString("aviao"));
-                voo.setData(rs.getDate("data"));
-                voo.setAss_c(rs.getInt("ass_c"));
-                voo.setAss_e(rs.getInt("ass_esp"));
-                voo.setPreco_c(rs.getFloat("preco_c"));
-                voo.setPreco_e(rs.getFloat("preco_e"));
-                voo.setOrigem(rs.getString("origem"));
-                voo.setDestino(rs.getString("destino"));
-                voo.setHora(rs.getString("hora"));
-                voos.add(voo);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(VooCRUD.class.getName()).log(Level.SEVERE, null, ex);
-        }finally {
-            Conexao.fecharConexao(con, stmt);
-        }
-        return voos;
-    }
 
     public List<Voo> procuraAvioesUtilizados(java.sql.Date data) {
         List<Voo> voos = new ArrayList<>();
