@@ -58,14 +58,13 @@ public final class Aeroporto_Cadastro extends DefaultCadastro {
 
     public boolean validaAeroporto(Aeroporto aeroporto) {
         if (aeroporto.getNome().equals("") || aeroporto.getCidade().equals("")) {
-            System.out.println("Os campos de Nome e Cidade devem estar preenchidos.");
+            JOptionPane.showMessageDialog(null, "Os campos de Nome e Cidade devem estar preenchidos.");
             return false;
         }
         AeroportoCRUD aeroportoCRUD = new AeroportoCRUD();
         for (Aeroporto a : aeroportoCRUD.buscaNome()) {
             if (a.getNome().equals(aeroporto.getNome())) {
-                System.out.println("Aeroporto já existe com esse nome.");
-                //frase de aeroporto já existente com esse nome
+                JOptionPane.showMessageDialog(null,"Aeroporto já existe com esse nome.");
                 return false;
             }
         }
@@ -73,7 +72,7 @@ public final class Aeroporto_Cadastro extends DefaultCadastro {
     }
 
     //Mostra em tela os dados que serão inseridos e da a opção de cancelamento e nova inserção após a atual
-    public void perguntaCadastro(Aeroporto aeroporto) {
+    public void pergunta(Aeroporto aeroporto) {
         int op;
         String titulo = "Cadastro de Aeroporto";
         String texto;
@@ -125,7 +124,7 @@ public final class Aeroporto_Cadastro extends DefaultCadastro {
         Aeroporto aeroporto = criaAeroporto();
         System.out.println("Reg iniciaGravacaoAeroporto: " + aeroporto.getRegistro());
         if (validaAeroporto(aeroporto)) {
-            perguntaCadastro(aeroporto);
+            pergunta(aeroporto);
         }
     }
 
